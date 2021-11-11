@@ -12,7 +12,6 @@ public class GameManager {
 
     GameManager(int boardSize){
         playerInfo = new String[jogadores.size()][4];
-        tabuleiro = new Posicao[boardSize];
         jogadores= new ArrayList<>();
     }
 
@@ -51,6 +50,7 @@ public class GameManager {
                 }
             }
         }
+        tabuleiro = new Posicao[boardSize-1];
         return true;
     }
 

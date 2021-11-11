@@ -65,6 +65,8 @@ public class GameManager {
         return jogadores;
     }
 
+    //
+
     /*Devolve uma lista com os objectos Programmer que se encontrem numa
     determinada posição do tabuleiro.*/
     /*Caso o position seja inválido ou caso não existam programadores na

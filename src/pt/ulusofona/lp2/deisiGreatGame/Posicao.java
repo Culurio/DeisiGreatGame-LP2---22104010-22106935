@@ -4,4 +4,5 @@ import java.util.ArrayList;
 
 public class Posicao {
     ArrayList<Programmer> programmers;
+    int boardSize;
 }

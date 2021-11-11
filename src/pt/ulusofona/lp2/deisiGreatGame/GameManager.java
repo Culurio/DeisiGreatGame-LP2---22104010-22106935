@@ -5,14 +5,14 @@ import java.util.ArrayList;
 public class GameManager {
 
     String[][] playerInfo;
+    boolean gameStatus;
     Posicao[] tabuleiro;
-    int boardSize;
     Programmer jogadorAtual;
     ArrayList<Programmer> jogadores;
 
     GameManager(int boardSize){
         playerInfo = new String[jogadores.size()][4];
-        this.boardSize=boardSize;
+        tabuleiro = new Posicao[boardSize];
         jogadores= new ArrayList<>();
     }
 
@@ -72,12 +72,23 @@ public class GameManager {
     /*Caso o position seja inválido ou caso não existam programadores na
     posição indicada, a função deve devolver null.*/
     public ArrayList<Programmer> getProgrammers(int position){
-        if (position < 0 || position > 50 ){
+        if (position>0 || position <= tabuleiro.length-1){
             return null;
         }
         return null;
     }
 
+    /*
+    Devolve o ID do programador que se
+    encontra activo no turno actual.
+    */
+    public int getCurrentPlayerID(){
+        return jogadorAtual.id;
+    }
+
+    public boolean gameIsOver(){
+        return true;
+    }
 
 
 }

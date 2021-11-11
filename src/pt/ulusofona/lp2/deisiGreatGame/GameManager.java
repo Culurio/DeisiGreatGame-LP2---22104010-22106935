@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class GameManager {
 
     String[][] playerInfo;
+    Posicao[] tabuleiro;
     int boardSize;
     Programmer jogadorAtual;
     ArrayList<Programmer> jogadores;

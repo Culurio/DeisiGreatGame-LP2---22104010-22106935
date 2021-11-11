@@ -1,16 +1,23 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
+import java.util.ArrayList;
+
 public class Programmer {
 
+    static int[] usedId = {-1,-1,-1,-1};
+    static ProgrammerColor[] usedColors = {ProgrammerColor.NONE,ProgrammerColor.NONE,ProgrammerColor.NONE,ProgrammerColor.NONE};
+
     String nome;
-    String linguagensFavoritas;
+    ArrayList<String> linguagensFavoritas;
     int id;
+    int position;
+    boolean status; // Derrotado = false  em jogo = true
     ProgrammerColor corDoAvatar;
 
-    Programmer(String nome, String linguagensFavoritas, int id, ProgrammerColor corDoAvatar){
+    Programmer(String nome, ArrayList<String> linguagensFavoritas, ProgrammerColor corDoAvatar){
         this.nome = nome;
         this.linguagensFavoritas = linguagensFavoritas;
-        this.id = id;
+        this.id = (int)(Math.random()*(100+1)+0);
         this.corDoAvatar = corDoAvatar;
     }
 
@@ -20,15 +27,58 @@ public class Programmer {
     }
 
     String getProgrammerFavLan(){
-        return linguagensFavoritas;
+        return ((linguagensFavoritas.toString()).replace(',',';')).replace("[","").replace("]","");
     }
 
     int getProgrammerId(){
         return id;
     }
 
+    String getStatus(){
+        if(status)
+        return "Em Jogo";
+        return "Derrotado";
+    }
+
+    int getPosition(){
+        return position;
+    }
+
+    boolean isNameValid(){
+        return nome != null && !nome.isEmpty();
+    }
+
+    boolean isIdUsed(){
+        for (int num :usedId) {
+            if (id == num){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    boolean colorExists(){
+        return corDoAvatar.toString().equals("Blue") || corDoAvatar.toString().equals("Green")
+                || corDoAvatar.toString().equals("Purple") || corDoAvatar.toString().equals("Brown");
+    }
+
+    boolean isColorUsed(){
+        for(ProgrammerColor color : usedColors){
+            if(corDoAvatar == color){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     ProgrammerColor getProgrammerColor(){
         return corDoAvatar;
     }
 
+    @Override
+    public String toString() {
+        return getProgrammerId() + " | " + getProgrammerName() + " | " + getPosition() + " | " + getProgrammerFavLan()
+                + " | " + getStatus();
+    }
 }

@@ -20,8 +20,6 @@ public class GameManager {
 
     }
 
-    //public void DadosFinais(){}
-
     public boolean createInitialBoard(String[][] playerInfo, int boardSize){
         if(jogadores.size()<2 || boardSize<2*jogadores.size()){
             return false;
@@ -72,22 +70,33 @@ public class GameManager {
     /*Caso o position seja inválido ou caso não existam programadores na
     posição indicada, a função deve devolver null.*/
     public ArrayList<Programmer> getProgrammers(int position){
-        if (position>0 || position <= tabuleiro.length-1){
+        if (position < 1 || position > tabuleiro.length - 1 || tabuleiro[position - 1] == null){
             return null;
         }
-        return null;
+        return tabuleiro[position - 1].programmers;
     }
 
-    /*
-    Devolve o ID do programador que se
-    encontra activo no turno actual.
-    */
+    /* Devolve o ID do programador que se encontra activo no turno actual.*/
     public int getCurrentPlayerID(){
         return jogadorAtual.id;
     }
 
-    public boolean gameIsOver(){
-        return true;
+    /*Move o programador do turno actual tantas casas quantas as indicadas
+    no argumento nrPositions.*/
+    /*O argumento nrPositions não pode ser menor do que 1 ou maior do que 6,
+    porque o dado tem 6 lados*/
+    public boolean moveCurrentPlayer(int nrPositions){
+        if (nrPositions < 1 || nrPositions > 6){
+            return false;
+        } else{
+            jogadorAtual.position += nrPositions;
+            return true;
+        }
+    }
+
+    public ArrayList<String> getGameResults(){
+
+        return null;
     }
 
 

@@ -67,9 +67,10 @@ public class GameManager {
         Programmer joker;
         for (int i = tabuleiro.length-1 ; i >= 0 ; i--){
             if (tabuleiro[i].programmers != null){
-                tabuleiro[i].programmers[0]
+                //tabuleiro[i].programmers
             }
         }
+        return "";
     }
 
     public ArrayList<String> getGameResults(){
@@ -78,7 +79,8 @@ public class GameManager {
         //VER COMO FAZER O NUMERO DE TURNOS
         resultadosDoJogo.add("\n");
         resultadosDoJogo.add("VENCEDOR\n");
-        resultadosDoJogo.add()
+        resultadosDoJogo.add("");
+        return null;
     }
 
     public ArrayList<Programmer> getProgrammers(){

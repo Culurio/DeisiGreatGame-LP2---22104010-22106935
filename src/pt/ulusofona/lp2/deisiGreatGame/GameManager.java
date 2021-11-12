@@ -10,7 +10,7 @@ public class GameManager {
     Programmer jogadorAtual;
     ArrayList<Programmer> jogadores;
     int numeroDeTurnos = 0;
-    ArrayList<String> podio = new ArrayList<String>();
+    ArrayList<Programmer> podio = new ArrayList<Programmer>();
     ArrayList<String> resultadosDoJogo = new ArrayList<String>();
 
     GameManager(int boardSize){
@@ -67,7 +67,7 @@ public class GameManager {
         Programmer joker;
         for (int i = tabuleiro.length-1 ; i >= 0 ; i--){
             if (tabuleiro[i].programmers != null){
-                //tabuleiro[i].programmers
+                podio.add(tabuleiro[i].programmers.get(0));
             }
         }
         return "";
@@ -80,7 +80,7 @@ public class GameManager {
         resultadosDoJogo.add("\n");
         resultadosDoJogo.add("VENCEDOR\n");
         resultadosDoJogo.add("");
-        return null;
+        return resultadosDoJogo;
     }
 
     public ArrayList<Programmer> getProgrammers(){

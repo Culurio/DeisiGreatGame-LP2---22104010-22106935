@@ -21,6 +21,10 @@ public class Programmer {
         this.corDoAvatar = corDoAvatar;
     }
 
+    void move(int posicoesParaAvancar){
+        position += posicoesParaAvancar;
+    }
+
     String getProgrammerFavLan(){
         return ((linguagensFavoritas.toString()).replace(',',';')).replace("[","").replace("]","");
     }

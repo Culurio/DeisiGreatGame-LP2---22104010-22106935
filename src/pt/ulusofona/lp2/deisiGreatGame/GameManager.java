@@ -1,20 +1,18 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-import javax.sound.sampled.Port;
-import java.awt.geom.RectangularShape;
 import java.util.ArrayList;
 
 public class GameManager {
 
     String[][] playerInfo;
-    boolean gameStatus;//true quando está em jogo e false caso contrario 
+    boolean gameStatus;//true quando está em jogo e false caso contrario
     Posicao[] tabuleiro;
     CircularLinkedList ordemDeJogada;
     Node jogadorAtual;
     int numeroDeJogadas = 0;
-    ArrayList<Programmer> podio = new ArrayList<Programmer>();
+    ArrayList<Programmer> podio = new ArrayList<>();
     ArrayList<Programmer> jogadores;
-    ArrayList<String> resultadosDoJogo = new ArrayList<String>();
+    ArrayList<String> resultadosDoJogo = new ArrayList<>();
 
     GameManager(int boardSize){
         playerInfo = new String[jogadores.size()][4];
@@ -61,9 +59,10 @@ public class GameManager {
     }
 
     public String getImagePng(int position){
-
-
-        return "";
+        if(position == tabuleiro.length ){
+            return "images/glory.png" ;
+        }
+        return "images/blank.pbg";
     }
 
     public ArrayList<Programmer> getProgrammers(){

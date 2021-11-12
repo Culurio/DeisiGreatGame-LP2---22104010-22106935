@@ -7,8 +7,8 @@ public class GameManager {
     String[][] playerInfo;
     boolean gameStatus;//true quando está em jogo e false caso contrario
     CircularLinkedList ordemDeJogada;
-    Node jogadorAtual;
     int numberOfPlayer;
+    Node jogadorAtual;
     int numeroDeJogadas = 0;
     ArrayList<Programmer> podio = new ArrayList<>();
     ArrayList<Programmer> jogadores;

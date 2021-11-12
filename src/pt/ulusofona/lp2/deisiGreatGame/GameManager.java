@@ -14,12 +14,12 @@ public class GameManager {
     ArrayList<Programmer> jogadores;
     ArrayList<String> resultadosDoJogo = new ArrayList<>();
 
-    GameManager(int boardSize){
+    public GameManager(int boardSize){
         playerInfo = new String[jogadores.size()][4];
         jogadores= new ArrayList<>();
     }
 
-    GameManager(){
+    public GameManager(){
 
     }
 

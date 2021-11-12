@@ -8,34 +8,43 @@ public class GameManager {
     boolean gameStatus;//true quando está em jogo e false caso contrario
     CircularLinkedList ordemDeJogada;
     Node jogadorAtual;
-    int boardSize;
     int numeroDeJogadas = 0;
     ArrayList<Programmer> podio = new ArrayList<>();
     ArrayList<Programmer> jogadores;
     ArrayList<String> resultadosDoJogo = new ArrayList<>();
+    int tamanhoDoTabuleiro;
+
+    public GameManager(int boardSize){
+        playerInfo = new String[jogadores.size()][4];
+        jogadores= new ArrayList<>();
+    }
 
     public GameManager(){
 
     }
 
     public boolean createInitialBoard(String[][] playerInfo, int boardSize){
-        ArrayList<Integer> usedInts = new ArrayList<>();
-        for (int row = 0; row < 4; row++) {
+        if(jogadores.size()<2 || boardSize<2*jogadores.size()){
+            return false;
+        }
+
+        for (Programmer programmer : jogadores){
+            if (!programmer.colorExists() || !programmer.isNameValid() ||
+                    programmer.colorExists() || programmer.isIdUsed() || programmer.isColorUsed()){
+                return false;
+            }
+        }
+
+        for (int row = 0; row < jogadores.size(); row++) {
             ordemDeJogada.addNode(jogadores.get(row));
             jogadorAtual = ordemDeJogada.head;
-            for (int col = 0; col < 4; col++) {
+            for (int col = 0; col < playerInfo[row].length; col++) {
                 switch (col){
                     case 0:
-                        if(Integer.parseInt(playerInfo[row][col].trim())<0 ||
-                                usedInts.contains(Integer.parseInt(playerInfo[row][col].trim()))){
-                            return false;
-                        }
-                        usedInts.add(Integer.parseInt(playerInfo[row][col].trim()));
+                        playerInfo[row][col] = jogadores.get(row).getId()+"";
                         break;
                     case 1:
-                        if(playerInfo[row][col] == null || playerInfo[row][col].isEmpty() ){
-                            return false;
-                        }
+                        playerInfo[row][col] = jogadores.get(row).getName();
                         break;
                     case 2:
                         playerInfo[row][col] = jogadores.get(row).getProgrammerFavLan();
@@ -45,11 +54,12 @@ public class GameManager {
                 }
             }
         }
+        tabuleiro = new Posicao[boardSize-1];
         return true;
     }
 
     public String getImagePng(int position){
-        if(position == boardSize ){
+        if(position == tamanhoDoTabuleiro){
             return "images/glory.png" ;
         }
         return "images/blank.pbg";
@@ -60,25 +70,39 @@ public class GameManager {
     }
 
     public ArrayList<Programmer> getProgrammers(int position){
-        return null;
+        ArrayList<Programmer> jogadoresNaPosicao = new ArrayList<Programmer>();
+        for (int i = 0; i < jogadores.size(); i++){
+            if (jogadores.get(i).getPosition() == position){
+                jogadoresNaPosicao.add(jogadores.get(i));
+            }
+        }
+        return jogadoresNaPosicao;
     }
 
     public int getCurrentPlayerID(){
-        return jogadorAtual.value.id;
+        return jogadorAtual.value.getId();
     }
 
     public boolean moveCurrentPlayer(int nrPositions){
         if (nrPositions < 1 || nrPositions > 6){
             return false;
         } else{
-            jogadorAtual.value.position += nrPositions;
+            jogadorAtual.value.move(nrPositions);
             jogadorAtual = jogadorAtual.nextNode;
             numeroDeJogadas++;
             return true;
         }
     }
 
+    public void OrdenarPodio(Programmer current){
+        Programmer aux = new Programmer();
 
+        for (int i = 0; i < jogadores.size(); i++){
+            if (current != jogadores.get(i)){
+                if ()
+            }
+        }
+    }
 
     public ArrayList<String> getGameResults(){
         resultadosDoJogo.add("O GRANDE JOGO DO DEISI\n\n");

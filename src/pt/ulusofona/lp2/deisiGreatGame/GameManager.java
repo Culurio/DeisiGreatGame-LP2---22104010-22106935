@@ -7,7 +7,8 @@ public class GameManager {
     String[][] playerInfo;
     boolean gameStatus;
     Posicao[] tabuleiro;
-    Programmer jogadorAtual;
+    CircularLinkedList ordemDeJogada;
+    Node jogadorAtual;
     ArrayList<Programmer> jogadores;
 
     GameManager(int boardSize){
@@ -32,19 +33,21 @@ public class GameManager {
         }
 
         for (int row = 0; row < jogadores.size(); row++) {
+            ordemDeJogada.addNode(jogadores.get(row));
+            jogadorAtual = ordemDeJogada.head;
             for (int col = 0; col < playerInfo[row].length; col++) {
                 switch (col){
                     case 0:
-                        playerInfo[row][col] = jogadores.get(col).getProgrammerId()+"";
+                        playerInfo[row][col] = jogadores.get(row).getProgrammerId()+"";
                         break;
                     case 1:
-                        playerInfo[row][col] = jogadores.get(col).getProgrammerName();
+                        playerInfo[row][col] = jogadores.get(row).getProgrammerName();
                         break;
                     case 2:
-                        playerInfo[row][col] = jogadores.get(col).getProgrammerFavLan();
+                        playerInfo[row][col] = jogadores.get(row).getProgrammerFavLan();
                         break;
                     case 3:
-                        playerInfo[row][col] = jogadores.get(col).getProgrammerColor().toString();
+                        playerInfo[row][col] = jogadores.get(row).getProgrammerColor().toString();
                 }
             }
         }
@@ -80,7 +83,7 @@ public class GameManager {
 
     /* Devolve o ID do programador que se encontra activo no turno actual.*/
     public int getCurrentPlayerID(){
-        return jogadorAtual.id;
+        return jogadorAtual.value.id;
     }
 
     /*Move o programador do turno actual tantas casas quantas as indicadas
@@ -91,7 +94,8 @@ public class GameManager {
         if (nrPositions < 1 || nrPositions > 6){
             return false;
         } else{
-            jogadorAtual.position += nrPositions;
+            jogadorAtual.value.position += nrPositions;
+            jogadorAtual = jogadorAtual.nextNode;
             return true;
         }
     }

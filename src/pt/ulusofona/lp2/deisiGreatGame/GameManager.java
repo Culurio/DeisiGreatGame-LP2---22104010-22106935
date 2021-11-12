@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class GameManager {
 
     String[][] playerInfo;
-    boolean gameStatus;
+    boolean gameStatus;//true quando está em jogo e false caso contrario 
     Posicao[] tabuleiro;
     CircularLinkedList ordemDeJogada;
     Node jogadorAtual;

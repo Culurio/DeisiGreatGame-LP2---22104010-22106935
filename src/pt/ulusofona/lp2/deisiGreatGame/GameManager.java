@@ -94,13 +94,9 @@ public class GameManager {
         }
     }
 
-    public void OrdenarPodio(Programmer current){
-        Programmer aux = new Programmer();
-
-        for (int i = 0; i < jogadores.size(); i++){
-            if (current != jogadores.get(i)){
-                if ()
-            }
+    public void OrdenarPodio(){
+        for (Programmer programmer: jogadores) {
+            if (jogadores.get())
         }
     }
 

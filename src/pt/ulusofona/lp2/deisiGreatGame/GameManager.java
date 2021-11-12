@@ -1,6 +1,7 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 import javax.sound.sampled.Port;
+import java.awt.geom.RectangularShape;
 import java.util.ArrayList;
 
 public class GameManager {
@@ -58,25 +59,16 @@ public class GameManager {
         return true;
     }
 
-    /*Deve devolver o nome do ficheiro de imagem (formato PNG) que representa
-    no tabuleiro a posição cujo número é dado pelo argumento position.*/
     public String getImagePng(int position){
 
 
         return "";
     }
 
-    /*Devolve uma lista com todos os objectos Programmer que existem em jogo.*/
     public ArrayList<Programmer> getProgrammers(){
         return jogadores;
     }
 
-    //
-
-    /*Devolve uma lista com os objectos Programmer que se encontrem numa
-    determinada posição do tabuleiro.*/
-    /*Caso o position seja inválido ou caso não existam programadores na
-    posição indicada, a função deve devolver null.*/
     public ArrayList<Programmer> getProgrammers(int position){
         if (position < 1 || position > tabuleiro.length - 1 || tabuleiro[position - 1] == null){
             return null;
@@ -84,15 +76,10 @@ public class GameManager {
         return tabuleiro[position - 1].programmers;
     }
 
-    /* Devolve o ID do programador que se encontra activo no turno actual.*/
     public int getCurrentPlayerID(){
         return jogadorAtual.value.id;
     }
 
-    /*Move o programador do turno actual tantas casas quantas as indicadas
-    no argumento nrPositions.*/
-    /*O argumento nrPositions não pode ser menor do que 1 ou maior do que 6,
-    porque o dado tem 6 lados*/
     public boolean moveCurrentPlayer(int nrPositions){
         if (nrPositions < 1 || nrPositions > 6){
             return false;
@@ -103,13 +90,15 @@ public class GameManager {
         }
     }
 
-    public String verVencedorESeguintes(){
-        for (int i = tabuleiro.length-1 ; i >= 0 ; i--){
+    public void verVencedorESeguintes(){
+        for (int i = tabuleiro.length -  1 ; i >= 0 ; i--){
             if (tabuleiro[i].programmers != null){
                 podio.add(tabuleiro[i].programmers.get(0));
+                if (tabuleiro[i].programmers.get(1) != null){
+                    podio.add(tabuleiro[i].programmers.get(1));
+                }
             }
         }
-        return "";
     }
 
     public ArrayList<String> getGameResults(){
@@ -118,7 +107,15 @@ public class GameManager {
         //VER COMO FAZER O NUMERO DE TURNOS
         resultadosDoJogo.add("\n");
         resultadosDoJogo.add("VENCEDOR\n");
-        resultadosDoJogo.add("");
+        resultadosDoJogo.add(podio.get(0).nome + "\n");
+        resultadosDoJogo.add("RESTANTES\n");
+        resultadosDoJogo.add(podio.get(1).nome + " 2");
+        if (jogadores.size() == 3){
+            resultadosDoJogo.add(podio.get(2).nome + " 3");
+            if (jogadores.size() == 4){
+                resultadosDoJogo.add(podio.get(3).nome + " 4");
+            }
+        }
         return resultadosDoJogo;
     }
 

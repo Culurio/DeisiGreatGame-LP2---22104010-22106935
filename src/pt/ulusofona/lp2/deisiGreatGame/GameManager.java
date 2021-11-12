@@ -11,6 +11,7 @@ public class GameManager {
     Posicao[] tabuleiro;
     CircularLinkedList ordemDeJogada;
     Node jogadorAtual;
+    int numeroDeJogadas = 0;
     ArrayList<Programmer> podio = new ArrayList<Programmer>();
     ArrayList<Programmer> jogadores;
     ArrayList<String> resultadosDoJogo = new ArrayList<String>();
@@ -86,6 +87,7 @@ public class GameManager {
         } else{
             jogadorAtual.value.position += nrPositions;
             jogadorAtual = jogadorAtual.nextNode;
+            numeroDeJogadas++;
             return true;
         }
     }
@@ -104,8 +106,7 @@ public class GameManager {
     public ArrayList<String> getGameResults(){
         resultadosDoJogo.add("O GRANDE JOGO DO DEISI\n\n");
         resultadosDoJogo.add("NR. DE TURNOS\n");
-        //VER COMO FAZER O NUMERO DE TURNOS
-        resultadosDoJogo.add("\n");
+        resultadosDoJogo.add(numeroDeJogadas + "\n\n");
         resultadosDoJogo.add("VENCEDOR\n");
         resultadosDoJogo.add(podio.get(0).nome + "\n");
         resultadosDoJogo.add("RESTANTES\n");

@@ -81,7 +81,7 @@ public class Programmer {
         return id;
     }
 
-    ProgrammerColor getColor() {
+    public ProgrammerColor getColor() {
         return corDoAvatar;
     }
 

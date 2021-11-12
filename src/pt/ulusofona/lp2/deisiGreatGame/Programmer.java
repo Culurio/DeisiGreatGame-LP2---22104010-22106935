@@ -14,8 +14,9 @@ public class Programmer {
     boolean status; // Derrotado = false  em jogo = true
     ProgrammerColor corDoAvatar;
 
-    Programmer(String nome, ArrayList<String> linguagensFavoritas, ProgrammerColor corDoAvatar){
+     Programmer(String nome,int id, ArrayList<String> linguagensFavoritas, ProgrammerColor corDoAvatar){
         this.nome = nome;
+        this.id = id;
         this.linguagensFavoritas = linguagensFavoritas;
         this.id = (int)(Math.random()*(100+1)+0);
         this.corDoAvatar = corDoAvatar;
@@ -77,6 +78,7 @@ public class Programmer {
     ProgrammerColor getColor(){
         return corDoAvatar;
     }
+
 
     @Override
     public String toString() {

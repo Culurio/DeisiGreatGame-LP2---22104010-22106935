@@ -1,5 +1,6 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
+import javax.sound.sampled.Port;
 import java.util.ArrayList;
 
 public class GameManager {
@@ -9,7 +10,9 @@ public class GameManager {
     Posicao[] tabuleiro;
     CircularLinkedList ordemDeJogada;
     Node jogadorAtual;
+    ArrayList<Programmer> podio = new ArrayList<Programmer>();
     ArrayList<Programmer> jogadores;
+    ArrayList<String> resultadosDoJogo = new ArrayList<String>();
 
     GameManager(int boardSize){
         playerInfo = new String[jogadores.size()][4];
@@ -100,9 +103,23 @@ public class GameManager {
         }
     }
 
-    public ArrayList<String> getGameResults(){
+    public String verVencedorESeguintes(){
+        for (int i = tabuleiro.length-1 ; i >= 0 ; i--){
+            if (tabuleiro[i].programmers != null){
+                podio.add(tabuleiro[i].programmers.get(0));
+            }
+        }
+        return "";
+    }
 
-        return null;
+    public ArrayList<String> getGameResults(){
+        resultadosDoJogo.add("O GRANDE JOGO DO DEISI\n\n");
+        resultadosDoJogo.add("NR. DE TURNOS\n");
+        //VER COMO FAZER O NUMERO DE TURNOS
+        resultadosDoJogo.add("\n");
+        resultadosDoJogo.add("VENCEDOR\n");
+        resultadosDoJogo.add("");
+        return resultadosDoJogo;
     }
 
 

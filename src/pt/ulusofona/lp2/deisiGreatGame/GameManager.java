@@ -64,7 +64,6 @@ public class GameManager {
     }
 
     public String verVencedorESeguintes(){
-        Programmer joker;
         for (int i = tabuleiro.length-1 ; i >= 0 ; i--){
             if (tabuleiro[i].programmers != null){
                 podio.add(tabuleiro[i].programmers.get(0));

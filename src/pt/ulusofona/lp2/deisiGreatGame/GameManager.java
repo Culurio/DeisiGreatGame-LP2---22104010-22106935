@@ -8,6 +8,7 @@ public class GameManager {
     boolean gameStatus;//true quando está em jogo e false caso contrario
     CircularLinkedList ordemDeJogada;
     Node jogadorAtual;
+    int numberOfPlayer;
     int numeroDeJogadas = 0;
     ArrayList<Programmer> podio = new ArrayList<>();
     ArrayList<Programmer> jogadores;
@@ -24,37 +25,37 @@ public class GameManager {
     }
 
     public boolean createInitialBoard(String[][] playerInfo, int boardSize){
-        if(jogadores.size()<2 || boardSize<2*jogadores.size()){
+        ArrayList<Integer> usedInts = new ArrayList<>();
+        ArrayList<String> usedColor = new ArrayList<>();
+
+        if(boardSize < 0 ||  boardSize < 2 * numberOfPlayer)
             return false;
-        }
 
-        for (Programmer programmer : jogadores){
-            if (!programmer.colorExists() || !programmer.isNameValid() ||
-                    programmer.colorExists() || programmer.isIdUsed() || programmer.isColorUsed()){
-                return false;
-            }
-        }
-
-        for (int row = 0; row < jogadores.size(); row++) {
-            ordemDeJogada.addNode(jogadores.get(row));
-            jogadorAtual = ordemDeJogada.head;
-            for (int col = 0; col < playerInfo[row].length; col++) {
+        for (int row = 0; row < numberOfPlayer; row++) {
+            for (int col = 0; col < 4; col++) {
                 switch (col){
                     case 0:
-                        playerInfo[row][col] = jogadores.get(row).getId()+"";
+                        if(Integer.parseInt(playerInfo[row][col].trim())<0 ||
+                                usedInts.contains(Integer.parseInt(playerInfo[row][col].trim()))){
+                            return false;
+                        }
+                        usedInts.add(Integer.parseInt(playerInfo[row][col].trim()));
                         break;
                     case 1:
-                        playerInfo[row][col] = jogadores.get(row).getName();
+                        if(playerInfo[row][col] == null || playerInfo[row][col].isEmpty() ){
+                            return false;
+                        }
                         break;
                     case 2:
-                        playerInfo[row][col] = jogadores.get(row).getProgrammerFavLan();
                         break;
                     case 3:
-                        playerInfo[row][col] = jogadores.get(row).getColor().toString();
+                        if(usedColor.contains(playerInfo[row][col])){
+                            return false;
+                        }
+                        usedColor.add(playerInfo[row][col]);
                 }
             }
         }
-        tabuleiro = new Posicao[boardSize-1];
         return true;
     }
 
@@ -94,11 +95,6 @@ public class GameManager {
         }
     }
 
-    public void OrdenarPodio(){
-        for (Programmer programmer: jogadores) {
-            if (jogadores.get())
-        }
-    }
 
     public ArrayList<String> getGameResults(){
         resultadosDoJogo.add("O GRANDE JOGO DO DEISI\n\n");

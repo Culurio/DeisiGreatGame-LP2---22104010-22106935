@@ -38,16 +38,16 @@ public class GameManager {
             for (int col = 0; col < playerInfo[row].length; col++) {
                 switch (col){
                     case 0:
-                        playerInfo[row][col] = jogadores.get(row).getProgrammerId()+"";
+                        playerInfo[row][col] = jogadores.get(row).getId()+"";
                         break;
                     case 1:
-                        playerInfo[row][col] = jogadores.get(row).getProgrammerName();
+                        playerInfo[row][col] = jogadores.get(row).getName();
                         break;
                     case 2:
                         playerInfo[row][col] = jogadores.get(row).getProgrammerFavLan();
                         break;
                     case 3:
-                        playerInfo[row][col] = jogadores.get(row).getProgrammerColor().toString();
+                        playerInfo[row][col] = jogadores.get(row).getColor().toString();
                 }
             }
         }

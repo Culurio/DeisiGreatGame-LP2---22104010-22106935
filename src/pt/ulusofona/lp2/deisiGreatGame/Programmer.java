@@ -21,17 +21,8 @@ public class Programmer {
         this.corDoAvatar = corDoAvatar;
     }
 
-
-    String getProgrammerName(){
-        return nome;
-    }
-
     String getProgrammerFavLan(){
         return ((linguagensFavoritas.toString()).replace(',',';')).replace("[","").replace("]","");
-    }
-
-    int getProgrammerId(){
-        return id;
     }
 
     String getStatus(){
@@ -71,14 +62,21 @@ public class Programmer {
         return false;
     }
 
+    String getName(){
+        return nome;
+    }
 
-    ProgrammerColor getProgrammerColor(){
+    int getId(){
+        return id;
+    }
+
+    ProgrammerColor getColor(){
         return corDoAvatar;
     }
 
     @Override
     public String toString() {
-        return getProgrammerId() + " | " + getProgrammerName() + " | " + getPosition() + " | " + getProgrammerFavLan()
+        return getId() + " | " + getName() + " | " + getPosition() + " | " + getProgrammerFavLan()
                 + " | " + getStatus();
     }
 }

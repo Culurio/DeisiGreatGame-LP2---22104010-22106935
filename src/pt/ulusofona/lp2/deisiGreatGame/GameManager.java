@@ -9,6 +9,9 @@ public class GameManager {
     Posicao[] tabuleiro;
     Programmer jogadorAtual;
     ArrayList<Programmer> jogadores;
+    int numeroDeTurnos = 0;
+    ArrayList<String> podio = new ArrayList<String>();
+    ArrayList<String> resultadosDoJogo = new ArrayList<String>();
 
     GameManager(int boardSize){
         playerInfo = new String[jogadores.size()][4];
@@ -20,7 +23,7 @@ public class GameManager {
     }
 
     public boolean createInitialBoard(String[][] playerInfo, int boardSize){
-        if(jogadores.size()<2 || boardSize<2*jogadores.size()){
+        if(jogadores.size() < 2 || boardSize < 2 * jogadores.size()){
             return false;
         }
 
@@ -35,16 +38,16 @@ public class GameManager {
             for (int col = 0; col < playerInfo[row].length; col++) {
                 switch (col){
                     case 0:
-                        playerInfo[row][col] = jogadores.get(col).getProgrammerId()+"";
+                        playerInfo[row][col] = jogadores.get(col).getId()+"";
                         break;
                     case 1:
-                        playerInfo[row][col] = jogadores.get(col).getProgrammerName();
+                        playerInfo[row][col] = jogadores.get(col).getName();
                         break;
                     case 2:
                         playerInfo[row][col] = jogadores.get(col).getProgrammerFavLan();
                         break;
                     case 3:
-                        playerInfo[row][col] = jogadores.get(col).getProgrammerColor().toString();
+                        playerInfo[row][col] = jogadores.get(col).getColor().toString();
                 }
             }
         }
@@ -60,33 +63,39 @@ public class GameManager {
         return "";
     }
 
-    /*Devolve uma lista com todos os objectos Programmer que existem em jogo.*/
+    public String verVencedorESeguintes(){
+        Programmer joker;
+        for (int i = tabuleiro.length-1 ; i >= 0 ; i--){
+            if (tabuleiro[i].programmers != null){
+                tabuleiro[i].programmers[0]
+            }
+        }
+    }
+
+    public ArrayList<String> getGameResults(){
+        resultadosDoJogo.add("O GRANDE JOGO DO DEISI\n\n");
+        resultadosDoJogo.add("NR. DE TURNOS\n");
+        //VER COMO FAZER O NUMERO DE TURNOS
+        resultadosDoJogo.add("\n");
+        resultadosDoJogo.add("VENCEDOR\n");
+        resultadosDoJogo.add()
+    }
+
     public ArrayList<Programmer> getProgrammers(){
         return jogadores;
     }
 
-    //
-
-    /*Devolve uma lista com os objectos Programmer que se encontrem numa
-    determinada posição do tabuleiro.*/
-    /*Caso o position seja inválido ou caso não existam programadores na
-    posição indicada, a função deve devolver null.*/
     public ArrayList<Programmer> getProgrammers(int position){
-        if (position < 1 || position > tabuleiro.length - 1 || tabuleiro[position - 1] == null){
+        if (position < 1 || position > tabuleiro.length + 1 || tabuleiro[position + 1] == null){
             return null;
         }
         return tabuleiro[position - 1].programmers;
     }
 
-    /* Devolve o ID do programador que se encontra activo no turno actual.*/
     public int getCurrentPlayerID(){
         return jogadorAtual.id;
     }
 
-    /*Move o programador do turno actual tantas casas quantas as indicadas
-    no argumento nrPositions.*/
-    /*O argumento nrPositions não pode ser menor do que 1 ou maior do que 6,
-    porque o dado tem 6 lados*/
     public boolean moveCurrentPlayer(int nrPositions){
         if (nrPositions < 1 || nrPositions > 6){
             return false;
@@ -95,12 +104,6 @@ public class GameManager {
             return true;
         }
     }
-
-    public ArrayList<String> getGameResults(){
-
-        return null;
-    }
-
 
 }
 

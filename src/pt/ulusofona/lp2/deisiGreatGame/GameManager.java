@@ -14,6 +14,7 @@ public class GameManager {
     ArrayList<Programmer> podio = new ArrayList<Programmer>();
     ArrayList<Programmer> jogadores;
     ArrayList<String> resultadosDoJogo = new ArrayList<String>();
+    int numeroDeJogadas = 0;
 
     GameManager(int boardSize){
         playerInfo = new String[jogadores.size()][4];
@@ -86,6 +87,7 @@ public class GameManager {
         } else{
             jogadorAtual.value.position += nrPositions;
             jogadorAtual = jogadorAtual.nextNode;
+            numeroDeJogadas++;
             return true;
         }
     }
@@ -104,16 +106,15 @@ public class GameManager {
     public ArrayList<String> getGameResults(){
         resultadosDoJogo.add("O GRANDE JOGO DO DEISI\n\n");
         resultadosDoJogo.add("NR. DE TURNOS\n");
-        //VER COMO FAZER O NUMERO DE TURNOS
-        resultadosDoJogo.add("\n");
+        resultadosDoJogo.add(Integer.toString(numeroDeJogadas) + "\n\n");
         resultadosDoJogo.add("VENCEDOR\n");
-        resultadosDoJogo.add(podio.get(0).nome + "\n");
+        resultadosDoJogo.add(podio.get(0).nome + "\n\n");
         resultadosDoJogo.add("RESTANTES\n");
-        resultadosDoJogo.add(podio.get(1).nome + " 2");
+        resultadosDoJogo.add(podio.get(1).nome + " 2\n");
         if (jogadores.size() == 3){
-            resultadosDoJogo.add(podio.get(2).nome + " 3");
+            resultadosDoJogo.add(podio.get(2).nome + " 3\n");
             if (jogadores.size() == 4){
-                resultadosDoJogo.add(podio.get(3).nome + " 4");
+                resultadosDoJogo.add(podio.get(3).nome + " 4\n");
             }
         }
         return resultadosDoJogo;

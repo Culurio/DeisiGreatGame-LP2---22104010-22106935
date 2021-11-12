@@ -3,10 +3,10 @@ package pt.ulusofona.lp2.deisiGreatGame;
 import java.util.ArrayList;
 
 public class Programmer {
-
-    static int[] usedId = {-1,-1,-1,-1};
-    static ProgrammerColor[] usedColors = {ProgrammerColor.NONE,ProgrammerColor.NONE,ProgrammerColor.NONE,ProgrammerColor.NONE};
-
+    /*Pode ser util mais para a frente
+        static int[] usedId = {-1,-1,-1,-1};
+        static ProgrammerColor[] usedColors = {ProgrammerColor.NONE,ProgrammerColor.NONE,ProgrammerColor.NONE,ProgrammerColor.NONE};
+    */
     String nome;
     ArrayList<String> linguagensFavoritas;
     int id;
@@ -14,68 +14,74 @@ public class Programmer {
     boolean status; // Derrotado = false  em jogo = true
     ProgrammerColor corDoAvatar;
 
-     Programmer(String nome,int id, ArrayList<String> linguagensFavoritas, ProgrammerColor corDoAvatar){
+    Programmer(String nome, int id, ArrayList<String> linguagensFavoritas, ProgrammerColor corDoAvatar) {
         this.nome = nome;
         this.id = id;
         this.linguagensFavoritas = linguagensFavoritas;
-        this.id = (int)(Math.random()*(100+1)+0);
+        this.id = (int) (Math.random() * (100 + 1) + 0);
         this.corDoAvatar = corDoAvatar;
+        position = 1;
+
     }
 
-    void move(int posicoesParaAvancar){
+    Programmer(String nome) {
+        this.nome = nome;
+    }
+
+    public void move(int posicoesParaAvancar) {
         position += posicoesParaAvancar;
     }
 
-    String getProgrammerFavLan(){
-        return ((linguagensFavoritas.toString()).replace(',',';')).replace("[","").replace("]","");
+    public String getProgrammerFavLan() {
+        return ((linguagensFavoritas.toString()).replace(',', ';')).replace("[", "").replace("]", "");
     }
 
-    String getStatus(){
-        if(status)
-        return "Em Jogo";
+    public String getStatus() {
+        if (status)
+            return "Em Jogo";
         return "Derrotado";
     }
 
-    int getPosition(){
+    public int getPosition() {
         return position;
     }
 
-    boolean isNameValid(){
+    public boolean isNameValid() {
         return nome != null && !nome.isEmpty();
     }
 
-    boolean isIdUsed(){
+    /*boolean isIdUsed(){
         for (int num :usedId) {
             if (id == num){
                 return true;
             }
         }
         return false;
-    }
+    }*/
 
-    boolean colorExists(){
+    public boolean colorExists() {
         return corDoAvatar.toString().equals("Blue") || corDoAvatar.toString().equals("Green")
                 || corDoAvatar.toString().equals("Purple") || corDoAvatar.toString().equals("Brown");
     }
 
-    boolean isColorUsed(){
+    /*boolean isColorUsed(){
         for(ProgrammerColor color : usedColors){
             if(corDoAvatar == color){
                 return true;
             }
         }
         return false;
-    }
+    }*/
 
-    String getName(){
+    public String getName() {
         return nome;
     }
 
-    int getId(){
+    public int getId() {
         return id;
     }
 
-    ProgrammerColor getColor(){
+    ProgrammerColor getColor() {
         return corDoAvatar;
     }
 
@@ -83,6 +89,6 @@ public class Programmer {
     @Override
     public String toString() {
         return getId() + " | " + getName() + " | " + getPosition() + " | " + getProgrammerFavLan()
-                + " | " + getStatus();
+                + " | " + getStatus() + "\n";
     }
 }

@@ -17,7 +17,8 @@ public class TestGetProgrammers {
         GameManager teste = new GameManager();
 
         System.out.println(teste.createInitialBoard(playersInfo,20));
-        System.out.println(teste.getProgrammers());
+        System.out.println(teste.getProgrammers(1));
+        //System.out.println(teste.getCurrentPlayerID());
     }
 
 }

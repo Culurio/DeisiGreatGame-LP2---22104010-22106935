@@ -2,7 +2,10 @@ package pt.ulusofona.lp2.deisiGreatGame;
 
 public class Main {
     public static void main(String[] args) {
-        String[][]playersInfo = new String[2][4];
-        System.out.println(playersInfo.length);
+        CircularLinkedList teste = new CircularLinkedList();
+        Programmer teste1 = new Programmer("a");
+        teste.addNode(teste1);
+        teste.addNode(new Programmer("b"));
+        System.out.println(teste.head.value.getName());
     }
 }

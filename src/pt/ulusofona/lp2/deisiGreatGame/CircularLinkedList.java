@@ -5,6 +5,10 @@ public class CircularLinkedList {
     Node tail = null;
     Node current = null;
 
+    CircularLinkedList(){
+
+    }
+
     public void addNode(Programmer value) {
         Node newNode = new Node(value);
 

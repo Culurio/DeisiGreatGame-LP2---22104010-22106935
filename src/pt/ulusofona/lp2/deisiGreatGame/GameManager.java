@@ -6,7 +6,7 @@ public class GameManager {
 
     String[][] playerInfo;
     boolean gameStatus;//true quando está em jogo e false caso contrario
-    CircularLinkedList ordemDeJogada;
+    CircularLinkedList ordemDeJogada = new CircularLinkedList();
     int numberOfPlayer;
     int boardSize;
     Node jogadorAtual;
@@ -31,14 +31,14 @@ public class GameManager {
         ArrayList<Integer> usedInts = new ArrayList<>();
         numberOfPlayer=playerInfo.length;
         ArrayList<String> usedColor = new ArrayList<>();
-        String nome="";
-        ArrayList<String> linguagensFavoritas = new ArrayList<>();
-        int id=0;
-        ProgrammerColor corDoAvatar = ProgrammerColor.NONE;
         if(boardSize < 0 ||  boardSize < 2 * numberOfPlayer)
             return false;
 
-        for (int row = 0; row < numberOfPlayer-1; row++) {
+        for (int row = 0; row < numberOfPlayer; row++) {
+            String nome="";
+            ArrayList<String> linguagensFavoritas = new ArrayList<>();
+            int id=0;
+            ProgrammerColor corDoAvatar = ProgrammerColor.NONE;
             for (int col = 0; col < 4; col++) {
                 switch (col){
                     case 0:
@@ -65,12 +65,30 @@ public class GameManager {
                         if(usedColor.contains(playerInfo[row][col])){
                             return false;
                         }
-                        corDoAvatar = ProgrammerColor(playerInfo[row][col]);
+                        switch (playerInfo[row][col]){
+                            case "Blue":
+                                corDoAvatar = ProgrammerColor.BLUE;
+                                break;
+                            case "Brown":
+                                corDoAvatar = ProgrammerColor.BROWN;
+                                break;
+                            case "Green":
+                                corDoAvatar = ProgrammerColor.GREEN;
+                                break;
+                            case "Purple":
+                                corDoAvatar = ProgrammerColor.PURPLE;
+                                break;
+                            default:
+                                corDoAvatar = ProgrammerColor.NONE;
+                                break;
+                        }
                         usedColor.add(playerInfo[row][col]);
                 }
             }
-            Programmer programador = new Programmer(nome,id,linguagensFavoritas,corDoAvatar);
-            jogadores.add(programador);
+            Programmer player = new Programmer(nome,id,linguagensFavoritas,corDoAvatar);
+            jogadores.add(player);
+            ordemDeJogada.addNode(player);
+            jogadorAtual = ordemDeJogada.head;
         }
         return true;
     }
@@ -110,7 +128,6 @@ public class GameManager {
             return true;
         }
     }
-
 
     public ArrayList<String> getGameResults(){
         resultadosDoJogo.add("O GRANDE JOGO DO DEISI\n\n");

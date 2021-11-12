@@ -1,11 +1,12 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class GameManager {
 
     String[][] playerInfo;
-    boolean gameStatus;//true quando está em jogo e false caso contrario 
+    boolean gameStatus;//true quando está em jogo e false caso contrario
     Posicao[] tabuleiro;
     CircularLinkedList ordemDeJogada;
     Node jogadorAtual;
@@ -58,17 +59,16 @@ public class GameManager {
     /*Deve devolver o nome do ficheiro de imagem (formato PNG) que representa
     no tabuleiro a posição cujo número é dado pelo argumento position.*/
     public String getImagePng(int position){
-
-
-        return "";
+        if(position == tabuleiro.length ){
+            return "images/glory.png" ;
+        }
+        return "images/blank.pbg";
     }
 
     /*Devolve uma lista com todos os objectos Programmer que existem em jogo.*/
     public ArrayList<Programmer> getProgrammers(){
         return jogadores;
     }
-
-    //
 
     /*Devolve uma lista com os objectos Programmer que se encontrem numa
     determinada posição do tabuleiro.*/
@@ -100,11 +100,22 @@ public class GameManager {
         }
     }
 
+    public boolean gameIsOver(){
+        if (!tabuleiro[tabuleiro.length+1].programmers.isEmpty()){
+            gameStatus = false;
+            return true;
+        }
+        return false;
+    }
+
     public ArrayList<String> getGameResults(){
 
         return null;
     }
 
+    public JPanel getAuthorsPanel(){
+        return null;
+    }
 
 }
 

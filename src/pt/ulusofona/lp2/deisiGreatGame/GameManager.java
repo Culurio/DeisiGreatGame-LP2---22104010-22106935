@@ -9,6 +9,7 @@ public class GameManager {
     CircularLinkedList ordemDeJogada;
     Node jogadorAtual;
     int boardSize;
+    int numberOfPlayer;
     int numeroDeJogadas = 0;
     ArrayList<Programmer> podio = new ArrayList<>();
     ArrayList<Programmer> jogadores;
@@ -20,9 +21,12 @@ public class GameManager {
 
     public boolean createInitialBoard(String[][] playerInfo, int boardSize){
         ArrayList<Integer> usedInts = new ArrayList<>();
-        for (int row = 0; row < 4; row++) {
-            ordemDeJogada.addNode(jogadores.get(row));
-            jogadorAtual = ordemDeJogada.head;
+        ArrayList<String> usedColor = new ArrayList<>();
+
+        if(boardSize < 0 ||  boardSize < 2 * numberOfPlayer)
+            return false;
+
+        for (int row = 0; row < numberOfPlayer; row++) {
             for (int col = 0; col < 4; col++) {
                 switch (col){
                     case 0:
@@ -38,10 +42,12 @@ public class GameManager {
                         }
                         break;
                     case 2:
-                        playerInfo[row][col] = jogadores.get(row).getProgrammerFavLan();
                         break;
                     case 3:
-                        playerInfo[row][col] = jogadores.get(row).getColor().toString();
+                        if(usedColor.contains(playerInfo[row][col])){
+                            return false;
+                        }
+                        usedColor.add(playerInfo[row][col]);
                 }
             }
         }

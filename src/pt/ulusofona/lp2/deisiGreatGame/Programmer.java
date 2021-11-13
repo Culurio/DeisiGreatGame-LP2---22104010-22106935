@@ -89,7 +89,7 @@ public class Programmer {
     @Override
     public String toString() {
         return getId() + " | " + getName() + " | " + getPosition() + " | " + getProgrammerFavLan()
-                + " | " + getStatus() + "\n";
+                + " | " + getStatus();
     }
 
     public static class PositionComparator implements Comparator<Programmer> {

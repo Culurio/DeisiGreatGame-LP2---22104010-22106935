@@ -57,9 +57,7 @@ public class GameManager {
                         break;
                     case 2:
                         String[] guardar = playerInfo[row][col].split(";");
-                        for (String string : guardar) {
-                            linguagensFavoritas.add(string);
-                        }
+                        Collections.addAll(linguagensFavoritas, guardar);
                         break;
                     case 3:
                         if (usedColor.contains(playerInfo[row][col])) {
@@ -106,7 +104,7 @@ public class GameManager {
     }
 
     public ArrayList<Programmer> getProgrammers(int position) {
-        ArrayList<Programmer> jogadoresNaPosicao = new ArrayList<Programmer>();
+        ArrayList<Programmer> jogadoresNaPosicao = new ArrayList<>();
         for (Programmer jogador : jogadores) {
             if (jogador.getPosition() == position) {
                 jogadoresNaPosicao.add(jogador);
@@ -134,7 +132,7 @@ public class GameManager {
     }
 
     public boolean gameIsOver() {
-        Collections.sort(jogadores, new Programmer.PositionComparator());
+        jogadores.sort(new Programmer.PositionComparator());
         for (Programmer programmer : jogadores) {
             if (programmer.position == tamanhoDoTabuleiro) {
                 return true;
@@ -157,7 +155,7 @@ public class GameManager {
         panel.add(button2);
         button1.addActionListener(event -> {
             JLabel label = new JLabel("<html>Realizado por:<br/>Cláudio Costa<br/>Gonçalo Antunes</html>", SwingConstants.CENTER);
-            label.setFont(new Font("Verdana", 1, 20));
+            label.setFont(new Font("Verdana", Font.BOLD, 20));
             JLabel imageLabel = new JLabel();
             imageLabel.setBounds(20, 150, 50, 50);
             imageLabel.setIcon(new ImageIcon("D:\\LP2\\DeisiGreatGame\\src\\pt\\ulusofona\\lp2\\deisiGreatGame\\resources\\Cláudio.png"));

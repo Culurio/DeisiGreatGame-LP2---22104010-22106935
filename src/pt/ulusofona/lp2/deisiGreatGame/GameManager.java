@@ -182,14 +182,15 @@ public class GameManager {
         resultadosDoJogo.add(numeroDeJogadas + "\n\n");
         resultadosDoJogo.add("VENCEDOR");
         resultadosDoJogo.add("\n");
-        resultadosDoJogo.add(jogadores.get(0).nome + "\n");
+        resultadosDoJogo.add(jogadores.get(0).nome + "\n\n");
         resultadosDoJogo.add("Restantes");
         resultadosDoJogo.add("\n");
         for (Programmer programmer : jogadores) {
             if (programmer == jogadores.get(0)) {
-                break;
+
+            }else{
+                resultadosDoJogo.add(programmer.nome + " " + programmer.position + "\n");
             }
-            resultadosDoJogo.add(programmer.nome + " " + programmer.position + "\n");
         }
         return resultadosDoJogo;
     }

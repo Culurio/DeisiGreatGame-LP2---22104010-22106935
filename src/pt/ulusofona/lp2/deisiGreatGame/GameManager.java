@@ -86,6 +86,7 @@ public class GameManager {
                 }
             }
             Programmer player = new Programmer(nome, id, linguagensFavoritas, corDoAvatar);
+            Collections.sort(player.linguagensFavoritas);
             jogadores.add(player);
             ordemDeJogada.addNode(player);
             jogadorAtual = ordemDeJogada.head;
@@ -175,7 +176,8 @@ public class GameManager {
 
 
     public ArrayList<String> getGameResults() {
-        resultadosDoJogo.add("O GRANDE JOGO DO DEISI\n\n");
+        resultadosDoJogo.add("O GRANDE JOGO DO DEISI");
+        resultadosDoJogo.add("\n\n");
         resultadosDoJogo.add("NR. DE TURNOS\n");
         resultadosDoJogo.add(numeroDeJogadas + "\n\n");
         resultadosDoJogo.add("VENCEDOR\n");

@@ -1,6 +1,7 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Programmer {
     /*Pode ser util mais para a frente
@@ -18,8 +19,8 @@ public class Programmer {
         this.nome = nome;
         this.id = id;
         this.linguagensFavoritas = linguagensFavoritas;
-        this.id = (int) (Math.random() * (100 + 1) + 0);
         this.corDoAvatar = corDoAvatar;
+        status=true;
         position = 1;
 
     }
@@ -81,10 +82,21 @@ public class Programmer {
         return corDoAvatar;
     }
 
+    public void loseStatus() {
+        status=false;
+    }
 
     @Override
     public String toString() {
         return getId() + " | " + getName() + " | " + getPosition() + " | " + getProgrammerFavLan()
                 + " | " + getStatus() + "\n";
+    }
+
+    public static class PositionComparator implements Comparator<Programmer> {
+
+        @Override
+        public int compare(Programmer emp1, Programmer emp2) {
+            return emp2.getPosition() - emp1.getPosition();
+        }
     }
 }

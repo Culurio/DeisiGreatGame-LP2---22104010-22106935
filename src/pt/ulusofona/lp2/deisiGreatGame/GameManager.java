@@ -4,17 +4,14 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class GameManager {
-
-    String[][] playerInfo;
-    boolean gameOver;
     CircularLinkedList ordemDeJogada = new CircularLinkedList();
     int numberOfPlayer;
     int boardSize;
     Node jogadorAtual;
     int numeroDeJogadas = 0;
-    ArrayList<Programmer> podio = new ArrayList<Programmer>();
     ArrayList<Programmer> jogadores = new ArrayList<>();
     ArrayList<String> resultadosDoJogo = new ArrayList<>();
     int tamanhoDoTabuleiro;
@@ -136,13 +133,12 @@ public class GameManager {
     }
 
     public boolean gameIsOver(){
+        Collections.sort(jogadores, new Programmer.PositionComparator());
         for (Programmer programmer: jogadores) {
             if(programmer.position == tamanhoDoTabuleiro) {
-                gameOver = true;
                 return true;
             }
         }
-        gameOver = false;
         return false;
     }
 
@@ -176,19 +172,20 @@ public class GameManager {
         return panel;
     }
 
+
+
     public ArrayList<String> getGameResults(){
         resultadosDoJogo.add("O GRANDE JOGO DO DEISI\n\n");
         resultadosDoJogo.add("NR. DE TURNOS\n");
         resultadosDoJogo.add(numeroDeJogadas + "\n\n");
         resultadosDoJogo.add("VENCEDOR\n");
-        resultadosDoJogo.add(podio.get(0).nome + "\n");
-        resultadosDoJogo.add("RESTANTES\n");
-        resultadosDoJogo.add(podio.get(1).nome + " 2");
-        if (jogadores.size() == 3){
-            resultadosDoJogo.add(podio.get(2).nome + " 3");
-            if (jogadores.size() == 4){
-                resultadosDoJogo.add(podio.get(3).nome + " 4");
+        resultadosDoJogo.add(jogadores.get(0).nome + "\n");
+        resultadosDoJogo.add("Restantes\n");
+        for (Programmer programmer:jogadores) {
+            if (programmer == jogadores.get(0)){
+                break;
             }
+            resultadosDoJogo.add(programmer.nome);
         }
         return resultadosDoJogo;
     }

@@ -5,7 +5,7 @@ public class CircularLinkedList {
     Node tail = null;
     Node current = null;
 
-    CircularLinkedList(){
+    CircularLinkedList() {
 
     }
 

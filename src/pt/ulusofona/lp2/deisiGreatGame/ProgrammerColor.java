@@ -5,8 +5,8 @@ public enum ProgrammerColor {
     PURPLE("Purple"), BLUE("Blue"), GREEN("Green"), BROWN("Brown"), NONE("");
     String cor;
 
-    ProgrammerColor(String cor){
-        this.cor=cor;
+    ProgrammerColor(String cor) {
+        this.cor = cor;
     }
 
     @Override

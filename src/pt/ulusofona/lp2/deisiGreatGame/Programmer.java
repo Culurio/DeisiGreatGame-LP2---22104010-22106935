@@ -20,7 +20,7 @@ public class Programmer {
         this.id = id;
         this.linguagensFavoritas = linguagensFavoritas;
         this.corDoAvatar = corDoAvatar;
-        status=true;
+        status = true;
         position = 1;
 
     }
@@ -34,8 +34,9 @@ public class Programmer {
     }
 
     public String getStatus() {
-        if (status)
+        if (status) {
             return "Em Jogo";
+        }
         return "Derrotado";
     }
 
@@ -83,7 +84,7 @@ public class Programmer {
     }
 
     public void loseStatus() {
-        status=false;
+        status = false;
     }
 
     @Override

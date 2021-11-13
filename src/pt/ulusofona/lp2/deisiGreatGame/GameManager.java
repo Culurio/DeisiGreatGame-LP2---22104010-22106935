@@ -11,7 +11,7 @@ public class GameManager {
     int numberOfPlayer;
     int boardSize;
     Node jogadorAtual;
-    int numeroDeJogadas = 0;
+    int numeroDeJogadas = 1;
     ArrayList<Programmer> jogadores = new ArrayList<>();
     ArrayList<String> resultadosDoJogo = new ArrayList<>();
     int tamanhoDoTabuleiro;
@@ -32,7 +32,7 @@ public class GameManager {
         ArrayList<Integer> usedInts = new ArrayList<>();
         numberOfPlayer = playerInfo.length;
         ArrayList<String> usedColor = new ArrayList<>();
-        numeroDeJogadas = 0;
+        numeroDeJogadas = 1;
         ordemDeJogada = new CircularLinkedList();
         jogadorAtual = null;
         resultadosDoJogo.clear();

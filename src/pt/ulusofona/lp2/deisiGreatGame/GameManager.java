@@ -183,13 +183,13 @@ public class GameManager {
 
     public ArrayList<String> getGameResults() {
         resultadosDoJogo.add("O GRANDE JOGO DO DEISI");
-        resultadosDoJogo.add("\n\n");
+        resultadosDoJogo.add("");
         resultadosDoJogo.add("NR. DE TURNOS");
         resultadosDoJogo.add(numeroDeJogadas+"");
-        resultadosDoJogo.add("\n\n");
+        resultadosDoJogo.add("");
         resultadosDoJogo.add("VENCEDOR");
         resultadosDoJogo.add(jogadores.get(0).nome);
-        resultadosDoJogo.add("\n\n");
+        resultadosDoJogo.add("");
         resultadosDoJogo.add("RESTANTES");
         for (Programmer programmer : jogadores) {
             if (programmer == jogadores.get(0)) {
@@ -197,7 +197,6 @@ public class GameManager {
                 resultadosDoJogo.add(programmer.nome + " " + programmer.position + "\n");
             }
         }
-        resultadosDoJogo.add("\n");
         return resultadosDoJogo;
     }
 }

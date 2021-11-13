@@ -197,6 +197,7 @@ public class GameManager {
                 resultadosDoJogo.add(programmer.nome + " " + programmer.position + "\n");
             }
         }
+        resultadosDoJogo.add("\n");
         return resultadosDoJogo;
     }
 }

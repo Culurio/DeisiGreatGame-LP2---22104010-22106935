@@ -1,5 +1,9 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+import java.awt.*;
+import java.time.Period;
 import java.util.ArrayList;
 
 public class GameManager {
@@ -11,7 +15,7 @@ public class GameManager {
     int boardSize;
     Node jogadorAtual;
     int numeroDeJogadas = 0;
-    ArrayList<Programmer> podio = new ArrayList<>();
+    ArrayList<Programmer> podio = new ArrayList<Programmer>();
     ArrayList<Programmer> jogadores = new ArrayList<>();
     ArrayList<String> resultadosDoJogo = new ArrayList<>();
     int tamanhoDoTabuleiro;
@@ -21,7 +25,6 @@ public class GameManager {
         this.numberOfPlayer = numberOfPlayer;
         this.boardSize=boardSize;
     }
-
 
     public GameManager(){
 
@@ -118,7 +121,7 @@ public class GameManager {
         return jogadorAtual.value.getId();
     }
 
-    public boolean moveCurrentPlayer(int nrPositions){
+    public boolean moveCurrentPlayer(int nrPositions) {
         if (nrPositions < 1 || nrPositions > 6){
             return false;
         } else{
@@ -141,6 +144,32 @@ public class GameManager {
         }
         gameOver = false;
         return false;
+    }
+
+    public JPanel getAuthorsPanel(){
+        JFrame frame = new JFrame("Panel Example");
+        JPanel panel = new JPanel();
+        panel.setBounds(0,0,300,300);
+        panel.setBackground(Color.gray);
+        JButton botao1 = new JButton("Créditos");
+        botao1.setBounds(50,100,80,30);
+        botao1.setBackground(Color.white);
+        JButton botao2 = new JButton("Inspiração");
+        botao2.setBounds(100,100,80,30);
+        botao2.setBackground(Color.white);
+        panel.add(botao1); panel.add(botao2);
+        frame.add(panel);
+        frame.setSize(300,300);
+        frame.setLayout(null);
+        frame.setVisible(true);
+        botao1.addActionListener(event ->{
+            JLabel label = new JLabel("O Gonçoso fez isto");
+            label.setFont(new Font("Verdana",1,20));
+            panel.add(label);
+            panel.setBorder(new LineBorder(Color.BLACK));
+        });
+
+        return panel;
     }
 
     public ArrayList<String> getGameResults(){

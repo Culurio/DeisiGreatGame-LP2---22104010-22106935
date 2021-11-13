@@ -178,16 +178,14 @@ public class GameManager {
         resultadosDoJogo.add("O GRANDE JOGO DO DEISI");
         resultadosDoJogo.add("\n\n");
         resultadosDoJogo.add("NR. DE TURNOS");
-        resultadosDoJogo.add("\n");
-        resultadosDoJogo.add(numeroDeJogadas + "\n\n");
+        resultadosDoJogo.add(numeroDeJogadas+"");
+        resultadosDoJogo.add("\n\n");
         resultadosDoJogo.add("VENCEDOR");
-        resultadosDoJogo.add("\n");
-        resultadosDoJogo.add(jogadores.get(0).nome + "\n\n");
+        resultadosDoJogo.add(jogadores.get(0).nome);
+        resultadosDoJogo.add("\n\n");
         resultadosDoJogo.add("Restantes");
-        resultadosDoJogo.add("\n");
         for (Programmer programmer : jogadores) {
             if (programmer == jogadores.get(0)) {
-
             }else{
                 resultadosDoJogo.add(programmer.nome + " " + programmer.position + "\n");
             }

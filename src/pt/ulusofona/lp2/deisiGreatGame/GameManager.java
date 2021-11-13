@@ -194,7 +194,8 @@ public class GameManager {
         for (Programmer programmer : jogadores) {
             if (programmer == jogadores.get(0)) {
             }else{
-                resultadosDoJogo.add(programmer.nome + " " + programmer.position + "\n");
+                resultadosDoJogo.add(programmer.nome + " " + programmer.position);
+                resultadosDoJogo.add("");
             }
         }
         return resultadosDoJogo;

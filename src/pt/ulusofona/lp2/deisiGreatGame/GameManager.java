@@ -183,7 +183,7 @@ public class GameManager {
         resultadosDoJogo.add("VENCEDOR");
         resultadosDoJogo.add(jogadores.get(0).nome);
         resultadosDoJogo.add("\n\n");
-        resultadosDoJogo.add("Restantes");
+        resultadosDoJogo.add("RESTANTES");
         for (Programmer programmer : jogadores) {
             if (programmer == jogadores.get(0)) {
             }else{

@@ -45,4 +45,19 @@ public class TestGetProgrammers {
         Assert.assertEquals(playersTest.toString(), gameManager.jogadores.toString());
     }
 
+    @Test
+    public void TestCreateInitialBoard3() {
+        String[][] playersInfo = new String[2][4];
+        GameManager gameManager = new GameManager();
+        playersInfo[0][0] = "12";
+        playersInfo[0][1] = "Joao";
+        playersInfo[0][2] = "java";
+        playersInfo[0][3] = "Blue";
+        playersInfo[1][0] = "12";
+        playersInfo[1][1] = "gongas";
+        playersInfo[1][2] = "python;java";
+        playersInfo[1][3] = "Brown";
+        Assert.assertFalse(gameManager.createInitialBoard(playersInfo, 79));
+    }
+
 }

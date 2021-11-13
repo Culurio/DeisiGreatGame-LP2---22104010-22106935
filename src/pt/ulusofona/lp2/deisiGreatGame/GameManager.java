@@ -176,11 +176,14 @@ public class GameManager {
     public ArrayList<String> getGameResults() {
         resultadosDoJogo.add("O GRANDE JOGO DO DEISI");
         resultadosDoJogo.add("\n\n");
-        resultadosDoJogo.add("NR. DE TURNOS\n");
+        resultadosDoJogo.add("NR. DE TURNOS");
+        resultadosDoJogo.add("\n");
         resultadosDoJogo.add(numeroDeJogadas + "\n\n");
-        resultadosDoJogo.add("VENCEDOR\n");
+        resultadosDoJogo.add("VENCEDOR");
+        resultadosDoJogo.add("\n");
         resultadosDoJogo.add(jogadores.get(0).nome + "\n");
-        resultadosDoJogo.add("Restantes\n");
+        resultadosDoJogo.add("Restantes");
+        resultadosDoJogo.add("\n");
         for (Programmer programmer : jogadores) {
             if (programmer == jogadores.get(0)) {
                 break;

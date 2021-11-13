@@ -28,8 +28,8 @@ public class TestGetProgrammers {
         ArrayList<Programmer> playersTest = new ArrayList<>();
         ArrayList<String> languagesTest = new ArrayList<>();
         ArrayList<String> languagesTest2 = new ArrayList<>();
-        languagesTest2.add("python");
         languagesTest2.add("java");
+        languagesTest2.add("python");
         languagesTest.add("java");
         playersTest.add(new Programmer("Joao", 12, languagesTest, ProgrammerColor.BLUE));
         playersTest.add(new Programmer("gongas", 1, languagesTest2, ProgrammerColor.BROWN));

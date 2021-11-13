@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class GameManager {
 
     String[][] playerInfo;
-    boolean gameStatus;//true quando está em jogo e false caso contrario
+    boolean gameOver;
     CircularLinkedList ordemDeJogada = new CircularLinkedList();
     int numberOfPlayer;
     int boardSize;
@@ -95,9 +95,9 @@ public class GameManager {
 
     public String getImagePng(int position){
         if(position == tamanhoDoTabuleiro){
-            return "images/glory.png" ;
+            return "glory.png" ;
         }
-        return "images/blank.pbg";
+        return "blank.png";
     }
 
     public ArrayList<Programmer> getProgrammers(){
@@ -122,11 +122,25 @@ public class GameManager {
         if (nrPositions < 1 || nrPositions > 6){
             return false;
         } else{
+            if(nrPositions + jogadorAtual.value.getPosition() > tamanhoDoTabuleiro){
+                nrPositions=tamanhoDoTabuleiro - jogadorAtual.value.getPosition() - nrPositions;
+            }
             jogadorAtual.value.move(nrPositions);
             jogadorAtual = jogadorAtual.nextNode;
             numeroDeJogadas++;
             return true;
         }
+    }
+
+    public boolean gameIsOver(){
+        for (Programmer programmer: jogadores) {
+            if(programmer.position == tamanhoDoTabuleiro) {
+                gameOver = true;
+                return true;
+            }
+        }
+        gameOver = false;
+        return false;
     }
 
     public ArrayList<String> getGameResults(){

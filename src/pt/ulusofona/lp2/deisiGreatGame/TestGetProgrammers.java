@@ -18,6 +18,7 @@ public class TestGetProgrammers {
 
         System.out.println(teste.createInitialBoard(playersInfo,20));
         System.out.println(teste.getProgrammers(1));
+        teste.gameIsOver();
         //System.out.println(teste.getCurrentPlayerID());
     }
 

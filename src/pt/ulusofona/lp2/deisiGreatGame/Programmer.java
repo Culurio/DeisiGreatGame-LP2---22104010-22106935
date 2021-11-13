@@ -24,10 +24,6 @@ public class Programmer {
 
     }
 
-    Programmer(String nome) {
-        this.nome = nome;
-    }
-
     public void move(int posicoesParaAvancar) {
         position += posicoesParaAvancar;
     }

@@ -3,7 +3,6 @@ package pt.ulusofona.lp2.deisiGreatGame;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.time.Period;
 import java.util.ArrayList;
 
 public class GameManager {
@@ -31,6 +30,7 @@ public class GameManager {
     }
 
     public boolean createInitialBoard(String[][] playerInfo, int boardSize){
+        tamanhoDoTabuleiro = boardSize;
         ArrayList<Integer> usedInts = new ArrayList<>();
         numberOfPlayer=playerInfo.length;
         ArrayList<String> usedColor = new ArrayList<>();
@@ -147,28 +147,32 @@ public class GameManager {
     }
 
     public JPanel getAuthorsPanel(){
-        JFrame frame = new JFrame("Panel Example");
         JPanel panel = new JPanel();
         panel.setBounds(0,0,300,300);
         panel.setBackground(Color.gray);
-        JButton botao1 = new JButton("Créditos");
-        botao1.setBounds(50,100,80,30);
-        botao1.setBackground(Color.white);
-        JButton botao2 = new JButton("Inspiração");
-        botao2.setBounds(100,100,80,30);
-        botao2.setBackground(Color.white);
-        panel.add(botao1); panel.add(botao2);
-        frame.add(panel);
-        frame.setSize(300,300);
-        frame.setLayout(null);
-        frame.setVisible(true);
-        botao1.addActionListener(event ->{
-            JLabel label = new JLabel("O Gonçoso fez isto");
+        JButton button1 = new JButton("Créditos");
+        button1.setBounds(50,100,80,30);
+        button1.setBackground(Color.white);
+        JButton button2 = new JButton("Inspiração");
+        button2.setBounds(100,100,80,30);
+        button2.setBackground(Color.white);
+        panel.add(button1); panel.add(button2);
+        button1.addActionListener(event ->{
+            JLabel label = new JLabel("<html>Realizado por:<br/>Cláudio Costa<br/>Gonçalo Antunes</html>", SwingConstants.CENTER);
             label.setFont(new Font("Verdana",1,20));
+            JLabel imageLabel=new JLabel();
+            imageLabel.setBounds(20,150,50,50);
+            imageLabel.setIcon(new ImageIcon("D:\\LP2\\DeisiGreatGame\\src\\pt\\ulusofona\\lp2\\deisiGreatGame\\resources\\Cláudio.png"));
+            panel.add(imageLabel);
             panel.add(label);
             panel.setBorder(new LineBorder(Color.BLACK));
         });
-
+        button2.addActionListener(event ->{
+            JLabel imageLabel=new JLabel();
+            imageLabel.setIcon(new ImageIcon("D:\\LP2\\DeisiGreatGame\\src\\pt\\ulusofona\\lp2\\deisiGreatGame\\resources\\Ric.png"));
+            panel.add(imageLabel);
+            panel.setBorder(new LineBorder(Color.BLACK));
+        });
         return panel;
     }
 

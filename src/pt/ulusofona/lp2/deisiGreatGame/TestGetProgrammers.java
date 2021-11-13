@@ -60,4 +60,15 @@ public class TestGetProgrammers {
         Assert.assertFalse(gameManager.createInitialBoard(playersInfo, 79));
     }
 
+    @Test
+    public void TestCreateInitialBoard4() {
+        String[][] playersInfo = new String[1][4];
+        GameManager gameManager = new GameManager();
+        playersInfo[0][0] = "12";
+        playersInfo[0][1] = "Joao";
+        playersInfo[0][2] = "java";
+        playersInfo[0][3] = "Blue";
+        Assert.assertFalse(gameManager.createInitialBoard(playersInfo, 79));
+    }
+
 }

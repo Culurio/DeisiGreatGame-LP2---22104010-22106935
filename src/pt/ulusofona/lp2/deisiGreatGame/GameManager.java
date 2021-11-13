@@ -27,11 +27,12 @@ public class GameManager {
     }
 
     public boolean createInitialBoard(String[][] playerInfo, int boardSize) {
+        jogadores = new ArrayList<>();
         tamanhoDoTabuleiro = boardSize;
         ArrayList<Integer> usedInts = new ArrayList<>();
         numberOfPlayer = playerInfo.length;
         ArrayList<String> usedColor = new ArrayList<>();
-        if (boardSize < 0 || boardSize < 2 * numberOfPlayer) {
+        if (boardSize < 0 || boardSize < 2 * numberOfPlayer || numberOfPlayer<=1) {
             return false;
         }
         for (int row = 0; row < numberOfPlayer; row++) {

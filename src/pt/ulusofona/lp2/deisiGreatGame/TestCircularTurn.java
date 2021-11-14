@@ -56,8 +56,11 @@ public class TestCircularTurn {
     public void testCurrentId2() {
         GameManager gameManager = new GameManager();
         gameManager.createInitialBoard(createMatrix2Players(), 79);
+        long startTime = System.currentTimeMillis();
         gameManager.moveCurrentPlayer(2);
+        long elapsedTime =System.currentTimeMillis() - startTime;
         Assert.assertEquals(1, gameManager.getCurrentPlayerID());
+        System.out.println(elapsedTime);
     }
 
     @Test
@@ -73,12 +76,15 @@ public class TestCircularTurn {
     public void testCurrentPosition(){
         GameManager gameManager = new GameManager();
         gameManager.createInitialBoard(createMatrix4Players(), 79);
+        long startTime = System.currentTimeMillis();
         gameManager.moveCurrentPlayer(2);
         gameManager.moveCurrentPlayer(5);
         gameManager.moveCurrentPlayer(3);
         gameManager.moveCurrentPlayer(4);
         gameManager.moveCurrentPlayer(4);
+        long elapsedTime =System.currentTimeMillis() - startTime;
         Assert.assertEquals(12, gameManager.getProgrammers(7).get(0).id);
+        System.out.println(elapsedTime);
     }
     @Test
     public void testCurrentPosition2(){

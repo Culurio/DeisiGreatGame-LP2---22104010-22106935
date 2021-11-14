@@ -40,10 +40,14 @@ public class TestGetProgrammers {
         return playersInfo;
     }
 
+    //guardar os tempos para melhorar no futuro
     @Test
     public void TestCreateInitialBoard1() {
         GameManager gameManager = new GameManager();
+        long startTime = System.currentTimeMillis();
         Assert.assertTrue(gameManager.createInitialBoard(createMatrix2Players(), 79));
+        long elapsedTime =System.currentTimeMillis() - startTime;
+        System.out.println(elapsedTime);
     }
 
     @Test

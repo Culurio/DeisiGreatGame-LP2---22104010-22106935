@@ -26,7 +26,7 @@ public class Programmer {
     }
 
     public String getProgrammerFavLan() {
-        return ((linguagensFavoritas.toString()).replace("[", "").replace("]", ""));
+        return ((linguagensFavoritas.toString().replace(",",";")).replace("[", "").replace("]", ""));
     }
 
     public String getStatus() {

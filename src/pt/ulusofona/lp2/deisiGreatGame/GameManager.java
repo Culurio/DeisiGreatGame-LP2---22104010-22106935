@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class GameManager {
-    CircularLinkedList ordemDeJogada = new CircularLinkedList();
     int numberOfPlayer;
     int boardSize;
-    Node jogadorAtual;
+    int tamanhoDoTabuleiro;
     int numeroDeJogadas = 1;
     ArrayList<Programmer> jogadores = new ArrayList<>();
     ArrayList<String> resultadosDoJogo = new ArrayList<>();
-    int tamanhoDoTabuleiro;
+    CircularLinkedList ordemDeJogada = new CircularLinkedList();
+    Node jogadorAtual;
 
     public GameManager(int boardSize, ArrayList<Programmer> jogadores, int numberOfPlayer) {
         this.jogadores = jogadores;
@@ -26,6 +26,9 @@ public class GameManager {
 
     }
 
+    /*
+    A função createInitialBoard vai ler a matriz que contem a informação toda acerta dos jogadores que vão ser criados
+     */
     public boolean createInitialBoard(String[][] playerInfo, int boardSize) {
         jogadores.clear();
         tamanhoDoTabuleiro = boardSize;
@@ -149,6 +152,10 @@ public class GameManager {
         return false;
     }
 
+    /*
+    Função um pouco nojenta mas devido a termos feito o trabalho em cima da hora
+    não conseguimos fazer um painel melhor mas a ideia é esta
+     */
     public JPanel getAuthorsPanel() {
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 300, 300);
@@ -165,10 +172,12 @@ public class GameManager {
             JLabel label = new JLabel("<html>Realizado por:<br/>Cláudio Costa<br/>Gonçalo Antunes</html>", SwingConstants.CENTER);
             label.setFont(new Font("Verdana", Font.BOLD, 20));
             JLabel imageLabel = new JLabel();
-            imageLabel.setBounds(20, 150, 50, 50);
+            JLabel imageLabel2 = new JLabel();
             imageLabel.setIcon(new ImageIcon("D:\\LP2\\DeisiGreatGame\\src\\pt\\ulusofona\\lp2\\deisiGreatGame\\resources\\Cláudio.png"));
-            panel.add(imageLabel);
+            imageLabel2.setIcon(new ImageIcon("D:\\LP2\\DeisiGreatGame\\src\\pt\\ulusofona\\lp2\\deisiGreatGame\\resources\\Gonçalo.png"));
             panel.add(label);
+            panel.add(imageLabel);
+            panel.add(imageLabel2);
             panel.setBorder(new LineBorder(Color.BLACK));
         });
         button2.addActionListener(event -> {

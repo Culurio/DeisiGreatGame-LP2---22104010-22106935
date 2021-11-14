@@ -128,6 +128,9 @@ public class GameManager {
         return jogadorAtual.value.getId();
     }
 
+    /*
+    Faz com que o jogador se mova e dá next no jogador atual
+     */
     public boolean moveCurrentPlayer(int nrPositions) {
         if (nrPositions < 1 || nrPositions > 6) {
             return false;

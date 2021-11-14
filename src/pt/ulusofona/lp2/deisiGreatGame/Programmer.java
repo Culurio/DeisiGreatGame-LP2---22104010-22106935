@@ -25,12 +25,8 @@ public class Programmer {
 
     }
 
-    public void move(int posicoesParaAvancar) {
-        position += posicoesParaAvancar;
-    }
-
     public String getProgrammerFavLan() {
-        return ((linguagensFavoritas.toString()).replace(',', ';')).replace("[", "").replace("]", "");
+        return ((linguagensFavoritas.toString()).replace("[", "").replace("]", ""));
     }
 
     public String getStatus() {
@@ -43,6 +39,19 @@ public class Programmer {
     public int getPosition() {
         return position;
     }
+
+    public String getName() {
+        return nome;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public ProgrammerColor getColor() {
+        return corDoAvatar;
+    }
+
 
     public boolean isNameValid() {
         return nome != null && !nome.isEmpty();
@@ -57,11 +66,6 @@ public class Programmer {
         return false;
     }*/
 
-    public boolean colorExists() {
-        return corDoAvatar.toString().equals("Blue") || corDoAvatar.toString().equals("Green")
-                || corDoAvatar.toString().equals("Purple") || corDoAvatar.toString().equals("Brown");
-    }
-
     /*boolean isColorUsed(){
         for(ProgrammerColor color : usedColors){
             if(corDoAvatar == color){
@@ -71,20 +75,12 @@ public class Programmer {
         return false;
     }*/
 
-    public String getName() {
-        return nome;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public ProgrammerColor getColor() {
-        return corDoAvatar;
-    }
-
     public void loseStatus() {
         status = false;
+    }
+
+    public void move(int posicoesParaAvancar) {
+        position += posicoesParaAvancar;
     }
 
     @Override

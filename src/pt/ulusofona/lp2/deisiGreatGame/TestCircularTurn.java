@@ -77,7 +77,18 @@ public class TestCircularTurn {
         gameManager.moveCurrentPlayer(5);
         gameManager.moveCurrentPlayer(3);
         gameManager.moveCurrentPlayer(4);
-        System.out.println(gameManager.getProgrammers());
-        Assert.assertEquals(12, gameManager.getProgrammers(6).get(0).id);
+        gameManager.moveCurrentPlayer(4);
+        Assert.assertEquals(12, gameManager.getProgrammers(7).get(0).id);
+    }
+    @Test
+    public void testCurrentPosition2(){
+        GameManager gameManager = new GameManager();
+        gameManager.createInitialBoard(createMatrix4Players(), 79);
+        gameManager.moveCurrentPlayer(1);
+        gameManager.moveCurrentPlayer(2);
+        gameManager.moveCurrentPlayer(2);
+        gameManager.moveCurrentPlayer(2);
+        gameManager.moveCurrentPlayer(1);
+        Assert.assertEquals(gameManager.jogadores, gameManager.getProgrammers(3));
     }
 }

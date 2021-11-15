@@ -9,7 +9,7 @@ import java.util.Collections;
 public class GameManager {
     int numberOfPlayers;
     int boardSize;
-    int plays = 1;
+    int plays;
     int currentPlayer;
     ArrayList<Programmer> players = new ArrayList<>();
     ArrayList<String> gameResults = new ArrayList<>();

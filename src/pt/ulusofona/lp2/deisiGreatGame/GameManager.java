@@ -9,15 +9,14 @@ import java.util.Collections;
 public class GameManager {
     int numberOfPlayers;
     int boardSize;
-    int tamanhoDoTabuleiro;
     int plays = 1;
-    ArrayList<Programmer> jogadores = new ArrayList<>();
-    ArrayList<String> resultadosDoJogo = new ArrayList<>();
-    ArrayList<Programmer> ordemDeJogada = new ArrayList<>();
-    int jogadorAtual;
+    int currentPlayer;
+    ArrayList<Programmer> players = new ArrayList<>();
+    ArrayList<String> gameResults = new ArrayList<>();
+    ArrayList<Programmer> playOrder = new ArrayList<>();
 
-    public GameManager(int boardSize, ArrayList<Programmer> jogadores, int numberOfPlayer) {
-        this.jogadores = jogadores;
+    public GameManager(int boardSize, ArrayList<Programmer> players, int numberOfPlayer) {
+        this.players = players;
         this.numberOfPlayers = numberOfPlayer;
         this.boardSize = boardSize;
     }
@@ -31,15 +30,15 @@ public class GameManager {
      */
 
     public boolean createInitialBoard(String[][] playerInfo, int boardSize) {
-        jogadores.clear();
-        tamanhoDoTabuleiro = boardSize;
+        players.clear();
+        this.boardSize = boardSize;
         ArrayList<Integer> usedInts = new ArrayList<>();
         numberOfPlayers = playerInfo.length;
         ArrayList<String> usedColor = new ArrayList<>();
         plays = 1;
-        ordemDeJogada.clear();
-        jogadorAtual = 0;
-        resultadosDoJogo.clear();
+        playOrder.clear();
+        currentPlayer = 0;
+        gameResults.clear();
 
         //Resets feitos
 
@@ -47,10 +46,10 @@ public class GameManager {
             return false;
         }
         for (int row = 0; row < numberOfPlayers; row++) {
-            String nome = "";
-            ArrayList<String> linguagensFavoritas = new ArrayList<>();
-            int id = 0;
-            ProgrammerColor corDoAvatar = ProgrammerColor.NONE;
+            String name;
+            ArrayList<String> favoriteLanguages = new ArrayList<>();
+            int id;
+            ProgrammerColor corDoAvatar;
             /*
             Verificar se o Id é valido
              */
@@ -66,12 +65,12 @@ public class GameManager {
             if (playerInfo[row][1] == null || playerInfo[row][1].isEmpty()) {
                 return false;
             }
-            nome = playerInfo[row][1];
+            name = playerInfo[row][1];
             /*
             Guardar as linguagens favoritas
              */
-            String[] guardar = playerInfo[row][2].split(";");
-            Collections.addAll(linguagensFavoritas, guardar);
+            String[] save = playerInfo[row][2].split(";");
+            Collections.addAll(favoriteLanguages, save);
 
             /*
             Ver se a cor do jogador já foi utilizada e associar cor
@@ -98,29 +97,29 @@ public class GameManager {
             usedColor.add(playerInfo[row][3]);
 
 
-            Programmer player = new Programmer(nome, id, linguagensFavoritas, corDoAvatar);
-            Collections.sort(player.linguagensFavoritas);
-            jogadores.add(player);
-            ordemDeJogada.add(player);
-            jogadorAtual = 0;
+            Programmer player = new Programmer(name, id, favoriteLanguages, corDoAvatar);
+            Collections.sort(player.favoriteLanguages);
+            players.add(player);
+            playOrder.add(player);
+            currentPlayer = 0;
         }
         return true;
     }
 
     public String getImagePng(int position) {
-        if (position == tamanhoDoTabuleiro) {
+        if (position == boardSize) {
             return "glory.png";
         }
         return "blank.png";
     }
 
     public ArrayList<Programmer> getProgrammers() {
-        return jogadores;
+        return players;
     }
 
     public ArrayList<Programmer> getProgrammers(int position) {
         ArrayList<Programmer> jogadoresNaPosicao = new ArrayList<>();
-        for (Programmer jogador : jogadores) {
+        for (Programmer jogador : players) {
             if (jogador.getPosition() == position) {
                 jogadoresNaPosicao.add(jogador);
             }
@@ -129,7 +128,7 @@ public class GameManager {
     }
 
     public int getCurrentPlayerID() {
-        return jogadores.get(jogadorAtual).getId();
+        return players.get(currentPlayer).getId();
     }
 
     /*
@@ -139,21 +138,21 @@ public class GameManager {
         if (nrPositions < 1 || nrPositions > 6) {
             return false;
         } else {
-            Programmer programmer = jogadores.get(jogadorAtual);
-            if (nrPositions + programmer.getPosition() > tamanhoDoTabuleiro) {
-                nrPositions = tamanhoDoTabuleiro - programmer.getPosition() - nrPositions;
+            Programmer programmer = players.get(currentPlayer);
+            if (nrPositions + programmer.getPosition() > boardSize) {
+                nrPositions = boardSize - programmer.getPosition() - nrPositions;
             }
             programmer.move(nrPositions);
-            jogadorAtual = (jogadorAtual + 1) % numberOfPlayers;
+            currentPlayer = (currentPlayer + 1) % numberOfPlayers;
             plays++;
             return true;
         }
     }
 
     public boolean gameIsOver() {
-        jogadores.sort(new Programmer.PositionComparator());
-        for (Programmer programmer : jogadores) {
-            if (programmer.getPosition() == tamanhoDoTabuleiro) {
+        players.sort(new Programmer.PositionComparator());
+        for (Programmer programmer : players) {
+            if (programmer.getPosition() == boardSize) {
                 return true;
             }
         }
@@ -199,22 +198,22 @@ public class GameManager {
 
 
     public ArrayList<String> getGameResults() {
-        resultadosDoJogo.add("O GRANDE JOGO DO DEISI");
-        resultadosDoJogo.add("");
-        resultadosDoJogo.add("NR. DE TURNOS");
-        resultadosDoJogo.add(plays+"");
-        resultadosDoJogo.add("");
-        resultadosDoJogo.add("VENCEDOR");
-        resultadosDoJogo.add(jogadores.get(0).nome);
-        resultadosDoJogo.add("");
-        resultadosDoJogo.add("RESTANTES");
-        for (Programmer programmer : jogadores) {
-            if (programmer == jogadores.get(0)) {
+        gameResults.add("O GRANDE JOGO DO DEISI");
+        gameResults.add("");
+        gameResults.add("NR. DE TURNOS");
+        gameResults.add(plays+"");
+        gameResults.add("");
+        gameResults.add("VENCEDOR");
+        gameResults.add(players.get(0).getName());
+        gameResults.add("");
+        gameResults.add("RESTANTES");
+        for (Programmer programmer : players) {
+            if (programmer == players.get(0)) {
             }else{
-                resultadosDoJogo.add(programmer.nome + " " + programmer.getPosition());
+                gameResults.add(programmer.getName() + " " + programmer.getPosition());
             }
         }
-        return resultadosDoJogo;
+        return gameResults;
     }
 }
 

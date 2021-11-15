@@ -8,25 +8,25 @@ public class Programmer {
         static int[] usedId = {-1,-1,-1,-1};
         static ProgrammerColor[] usedColors = {ProgrammerColor.NONE,ProgrammerColor.NONE,ProgrammerColor.NONE,ProgrammerColor.NONE};
     */
-    String nome;
-    ArrayList<String> linguagensFavoritas;
+    String name;
+    ArrayList<String> favoriteLanguages;
     private int id;
     private int position;
     private boolean status; // Derrotado = false  em jogo = true
-    private ProgrammerColor corDoAvatar;
+    private ProgrammerColor avatarColor;
 
-    Programmer(String nome, int id, ArrayList<String> linguagensFavoritas, ProgrammerColor corDoAvatar) {
-        this.nome = nome;
+    Programmer(String name, int id, ArrayList<String> favoriteLanguages, ProgrammerColor avatarColor) {
+        this.name = name;
         this.id = id;
-        this.linguagensFavoritas = linguagensFavoritas;
-        this.corDoAvatar = corDoAvatar;
+        this.favoriteLanguages = favoriteLanguages;
+        this.avatarColor = avatarColor;
         status = true;
         position = 1;
 
     }
 
     public String getProgrammerFavLan() {
-        return ((linguagensFavoritas.toString().replace(",",";")).replace("[", "").replace("]", ""));
+        return ((favoriteLanguages.toString().replace(",",";")).replace("[", "").replace("]", ""));
     }
 
     public String getStatus() {
@@ -41,7 +41,7 @@ public class Programmer {
     }
 
     public String getName() {
-        return nome;
+        return name;
     }
 
     public int getId() {
@@ -49,12 +49,12 @@ public class Programmer {
     }
 
     public ProgrammerColor getColor() {
-        return corDoAvatar;
+        return avatarColor;
     }
 
 
     public boolean isNameValid() {
-        return nome != null && !nome.isEmpty();
+        return name != null && !name.isEmpty();
     }
 
     /*boolean isIdUsed(){

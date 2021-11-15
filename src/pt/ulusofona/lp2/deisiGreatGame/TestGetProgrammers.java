@@ -62,7 +62,7 @@ public class TestGetProgrammers {
         playersTest.add(new Programmer("Joao", 12, languagesTest, ProgrammerColor.BLUE));
         playersTest.add(new Programmer("gongas", 1, languagesTest2, ProgrammerColor.BROWN));
         gameManager.createInitialBoard(createMatrix2Players(), 79);
-        Assert.assertEquals(playersTest.toString(), gameManager.jogadores.toString());
+        Assert.assertEquals(playersTest.toString(), gameManager.players.toString());
     }
 
     @Test

@@ -95,6 +95,6 @@ public class TestCircularTurn {
         gameManager.moveCurrentPlayer(2);
         gameManager.moveCurrentPlayer(2);
         gameManager.moveCurrentPlayer(1);
-        Assert.assertEquals(gameManager.jogadores, gameManager.getProgrammers(3));
+        Assert.assertEquals(gameManager.players, gameManager.getProgrammers(3));
     }
 }

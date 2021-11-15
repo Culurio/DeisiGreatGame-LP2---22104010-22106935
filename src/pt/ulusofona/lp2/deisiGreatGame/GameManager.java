@@ -150,7 +150,6 @@ public class GameManager {
     }
 
     public boolean gameIsOver() {
-        players.sort(new Programmer.PositionComparator());
         for (Programmer programmer : players) {
             if (programmer.getPosition() == boardSize) {
                 return true;
@@ -198,6 +197,7 @@ public class GameManager {
 
 
     public ArrayList<String> getGameResults() {
+        players.sort(new Programmer.PositionComparator());
         gameResults.add("O GRANDE JOGO DO DEISI");
         gameResults.add("");
         gameResults.add("NR. DE TURNOS");

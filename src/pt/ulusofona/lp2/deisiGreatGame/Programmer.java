@@ -10,10 +10,10 @@ public class Programmer {
     */
     String nome;
     ArrayList<String> linguagensFavoritas;
-    int id;
-    int position;
-    boolean status; // Derrotado = false  em jogo = true
-    ProgrammerColor corDoAvatar;
+    private int id;
+    private int position;
+    private boolean status; // Derrotado = false  em jogo = true
+    private ProgrammerColor corDoAvatar;
 
     Programmer(String nome, int id, ArrayList<String> linguagensFavoritas, ProgrammerColor corDoAvatar) {
         this.nome = nome;

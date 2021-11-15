@@ -7,18 +7,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class GameManager {
-    int numberOfPlayer;
+    int numberOfPlayers;
     int boardSize;
     int tamanhoDoTabuleiro;
     int numeroDeJogadas = 1;
     ArrayList<Programmer> jogadores = new ArrayList<>();
     ArrayList<String> resultadosDoJogo = new ArrayList<>();
-    CircularLinkedList ordemDeJogada = new CircularLinkedList();
-    Node jogadorAtual;
+    ArrayList<Programmer> ordemDeJogada = new ArrayList<>();
+    int jogadorAtual;
 
     public GameManager(int boardSize, ArrayList<Programmer> jogadores, int numberOfPlayer) {
         this.jogadores = jogadores;
-        this.numberOfPlayer = numberOfPlayer;
+        this.numberOfPlayers = numberOfPlayer;
         this.boardSize = boardSize;
     }
 
@@ -33,72 +33,75 @@ public class GameManager {
         jogadores.clear();
         tamanhoDoTabuleiro = boardSize;
         ArrayList<Integer> usedInts = new ArrayList<>();
-        numberOfPlayer = playerInfo.length;
+        numberOfPlayers = playerInfo.length;
         ArrayList<String> usedColor = new ArrayList<>();
         numeroDeJogadas = 1;
-        ordemDeJogada = new CircularLinkedList();
-        jogadorAtual = null;
+        ordemDeJogada.clear();
+        jogadorAtual = 0;
         resultadosDoJogo.clear();
 
         //Resets feitos
 
-        if (boardSize < 0 || boardSize < 2 * numberOfPlayer || numberOfPlayer<=1) {
+        if (boardSize < 0 || boardSize < 2 * numberOfPlayers || numberOfPlayers<=1) {
             return false;
         }
-        for (int row = 0; row < numberOfPlayer; row++) {
+        for (int row = 0; row < numberOfPlayers; row++) {
             String nome = "";
             ArrayList<String> linguagensFavoritas = new ArrayList<>();
             int id = 0;
             ProgrammerColor corDoAvatar = ProgrammerColor.NONE;
-            for (int col = 0; col < 4; col++) {
-                switch (col) {
-                    case 0:
-                        if (Integer.parseInt(playerInfo[row][col].trim()) < 0 ||
-                                usedInts.contains(Integer.parseInt(playerInfo[row][col].trim()))) {
-                            return false;
-                        }
-                        id = Integer.parseInt(playerInfo[row][col].trim());
-                        usedInts.add(Integer.parseInt(playerInfo[row][col].trim()));
-                        break;
-                    case 1:
-                        if (playerInfo[row][col] == null || playerInfo[row][col].isEmpty()) {
-                            return false;
-                        }
-                        nome = playerInfo[row][col];
-                        break;
-                    case 2:
-                        String[] guardar = playerInfo[row][col].split(";");
-                        Collections.addAll(linguagensFavoritas, guardar);
-                        break;
-                    case 3:
-                        if (usedColor.contains(playerInfo[row][col])) {
-                            return false;
-                        }
-                        switch (playerInfo[row][col]) {
-                            case "Blue":
-                                corDoAvatar = ProgrammerColor.BLUE;
-                                break;
-                            case "Brown":
-                                corDoAvatar = ProgrammerColor.BROWN;
-                                break;
-                            case "Green":
-                                corDoAvatar = ProgrammerColor.GREEN;
-                                break;
-                            case "Purple":
-                                corDoAvatar = ProgrammerColor.PURPLE;
-                                break;
-                            default:
-                                corDoAvatar = ProgrammerColor.NONE;
-                                break;
-                        }
-                        usedColor.add(playerInfo[row][col]);
-                }
+            /*
+            Verificar se o Id é valido
+             */
+            if (Integer.parseInt(playerInfo[row][0].trim()) < 0 ||
+                    usedInts.contains(Integer.parseInt(playerInfo[row][0].trim()))) {
+                return false;
             }
+            id = Integer.parseInt(playerInfo[row][0].trim());
+            usedInts.add(Integer.parseInt(playerInfo[row][0].trim()));
+            /*
+            Verificar se o nome está vazio ou é null
+             */
+            if (playerInfo[row][1] == null || playerInfo[row][1].isEmpty()) {
+                return false;
+            }
+            nome = playerInfo[row][1];
+            /*
+            Guardar as linguagens favoritas
+             */
+            String[] guardar = playerInfo[row][2].split(";");
+            Collections.addAll(linguagensFavoritas, guardar);
+
+            /*
+            Ver se a cor do jogador já foi utilizada e associar cor
+             */
+            if (usedColor.contains(playerInfo[row][3])) {
+                return false;
+            }
+            switch (playerInfo[row][3]) {
+                case "Blue":
+                    corDoAvatar = ProgrammerColor.BLUE;
+                    break;
+                case "Brown":
+                    corDoAvatar = ProgrammerColor.BROWN;
+                    break;
+                case "Green":
+                    corDoAvatar = ProgrammerColor.GREEN;
+                    break;
+                case "Purple":
+                    corDoAvatar = ProgrammerColor.PURPLE;
+                    break;
+                default:
+                    corDoAvatar = ProgrammerColor.NONE;
+            }
+            usedColor.add(playerInfo[row][3]);
+
+
             Programmer player = new Programmer(nome, id, linguagensFavoritas, corDoAvatar);
             Collections.sort(player.linguagensFavoritas);
             jogadores.add(player);
-            ordemDeJogada.addNode(player);
-            jogadorAtual = ordemDeJogada.head;
+            ordemDeJogada.add(player);
+            jogadorAtual = 0;
         }
         return true;
     }
@@ -125,7 +128,7 @@ public class GameManager {
     }
 
     public int getCurrentPlayerID() {
-        return jogadorAtual.value.getId();
+        return jogadores.get(jogadorAtual).getId();
     }
 
     /*
@@ -135,11 +138,12 @@ public class GameManager {
         if (nrPositions < 1 || nrPositions > 6) {
             return false;
         } else {
-            if (nrPositions + jogadorAtual.value.getPosition() > tamanhoDoTabuleiro) {
-                nrPositions = tamanhoDoTabuleiro - jogadorAtual.value.getPosition() - nrPositions;
+            Programmer programmer = jogadores.get(jogadorAtual);
+            if (nrPositions + programmer.getPosition() > tamanhoDoTabuleiro) {
+                nrPositions = tamanhoDoTabuleiro - programmer.getPosition() - nrPositions;
             }
-            jogadorAtual.value.move(nrPositions);
-            jogadorAtual = jogadorAtual.nextNode;
+            programmer.move(nrPositions);
+            jogadorAtual = (jogadorAtual + 1) % numberOfPlayers;
             numeroDeJogadas++;
             return true;
         }
@@ -148,7 +152,7 @@ public class GameManager {
     public boolean gameIsOver() {
         jogadores.sort(new Programmer.PositionComparator());
         for (Programmer programmer : jogadores) {
-            if (programmer.position == tamanhoDoTabuleiro) {
+            if (programmer.getPosition() == tamanhoDoTabuleiro) {
                 return true;
             }
         }
@@ -176,8 +180,8 @@ public class GameManager {
             label.setFont(new Font("Verdana", Font.BOLD, 20));
             JLabel imageLabel = new JLabel();
             JLabel imageLabel2 = new JLabel();
-            imageLabel.setIcon(new ImageIcon("D:\\LP2\\DeisiGreatGame\\src\\pt\\ulusofona\\lp2\\deisiGreatGame\\resources\\Cláudio.png"));
-            imageLabel2.setIcon(new ImageIcon("D:\\LP2\\DeisiGreatGame\\src\\pt\\ulusofona\\lp2\\deisiGreatGame\\resources\\Gonçalo.png"));
+            imageLabel.setIcon(new ImageIcon("src\\pt\\ulusofona\\lp2\\deisiGreatGame\\resources\\Cláudio.png"));
+            imageLabel2.setIcon(new ImageIcon("src\\pt\\ulusofona\\lp2\\deisiGreatGame\\resources\\Gonçalo.png"));
             panel.add(label);
             panel.add(imageLabel);
             panel.add(imageLabel2);
@@ -185,7 +189,7 @@ public class GameManager {
         });
         button2.addActionListener(event -> {
             JLabel imageLabel = new JLabel();
-            imageLabel.setIcon(new ImageIcon("D:\\LP2\\DeisiGreatGame\\src\\pt\\ulusofona\\lp2\\deisiGreatGame\\resources\\Ric.png"));
+            imageLabel.setIcon(new ImageIcon("src\\pt\\ulusofona\\lp2\\deisiGreatGame\\resources\\Ric.png"));
             panel.add(imageLabel);
             panel.setBorder(new LineBorder(Color.BLACK));
         });
@@ -206,7 +210,7 @@ public class GameManager {
         for (Programmer programmer : jogadores) {
             if (programmer == jogadores.get(0)) {
             }else{
-                resultadosDoJogo.add(programmer.nome + " " + programmer.position);
+                resultadosDoJogo.add(programmer.nome + " " + programmer.getPosition());
             }
         }
         return resultadosDoJogo;

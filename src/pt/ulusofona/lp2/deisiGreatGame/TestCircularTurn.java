@@ -83,7 +83,7 @@ public class TestCircularTurn {
         gameManager.moveCurrentPlayer(4);
         gameManager.moveCurrentPlayer(4);
         long elapsedTime =System.currentTimeMillis() - startTime;
-        Assert.assertEquals(12, gameManager.getProgrammers(7).get(0).id);
+        Assert.assertEquals(12, gameManager.getProgrammers(7).get(0).getId());
         System.out.println(elapsedTime);
     }
     @Test

@@ -10,7 +10,7 @@ public class GameManager {
     int numberOfPlayers;
     int boardSize;
     int tamanhoDoTabuleiro;
-    int numeroDeJogadas = 1;
+    int plays = 1;
     ArrayList<Programmer> jogadores = new ArrayList<>();
     ArrayList<String> resultadosDoJogo = new ArrayList<>();
     ArrayList<Programmer> ordemDeJogada = new ArrayList<>();
@@ -29,13 +29,14 @@ public class GameManager {
     /*
     A função createInitialBoard vai ler a matriz que contem a informação toda acerta dos jogadores que vão ser criados
      */
+
     public boolean createInitialBoard(String[][] playerInfo, int boardSize) {
         jogadores.clear();
         tamanhoDoTabuleiro = boardSize;
         ArrayList<Integer> usedInts = new ArrayList<>();
         numberOfPlayers = playerInfo.length;
         ArrayList<String> usedColor = new ArrayList<>();
-        numeroDeJogadas = 1;
+        plays = 1;
         ordemDeJogada.clear();
         jogadorAtual = 0;
         resultadosDoJogo.clear();
@@ -144,7 +145,7 @@ public class GameManager {
             }
             programmer.move(nrPositions);
             jogadorAtual = (jogadorAtual + 1) % numberOfPlayers;
-            numeroDeJogadas++;
+            plays++;
             return true;
         }
     }
@@ -201,7 +202,7 @@ public class GameManager {
         resultadosDoJogo.add("O GRANDE JOGO DO DEISI");
         resultadosDoJogo.add("");
         resultadosDoJogo.add("NR. DE TURNOS");
-        resultadosDoJogo.add(numeroDeJogadas+"");
+        resultadosDoJogo.add(plays+"");
         resultadosDoJogo.add("");
         resultadosDoJogo.add("VENCEDOR");
         resultadosDoJogo.add(jogadores.get(0).nome);

@@ -29,6 +29,10 @@ public class Programmer {
         return ((favoriteLanguages.toString().replace(",",";")).replace("[", "").replace("]", ""));
     }
 
+    public ArrayList<String> getProgrammerFavLanList() {
+        return favoriteLanguages;
+    }
+
     public String getStatus() {
         if (status) {
             return "Em Jogo";
@@ -79,8 +83,8 @@ public class Programmer {
         status = false;
     }
 
-    public void move(int posicoesParaAvancar) {
-        position += posicoesParaAvancar;
+    public void move(int moves) {
+        position += moves;
     }
 
     @Override

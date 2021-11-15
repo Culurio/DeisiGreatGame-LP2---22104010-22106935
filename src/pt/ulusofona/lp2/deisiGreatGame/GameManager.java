@@ -49,7 +49,7 @@ public class GameManager {
             String name;
             ArrayList<String> favoriteLanguages = new ArrayList<>();
             int id;
-            ProgrammerColor corDoAvatar;
+            ProgrammerColor avatarColor;
             /*
             Verificar se o Id é valido
              */
@@ -80,25 +80,25 @@ public class GameManager {
             }
             switch (playerInfo[row][3]) {
                 case "Blue":
-                    corDoAvatar = ProgrammerColor.BLUE;
+                    avatarColor = ProgrammerColor.BLUE;
                     break;
                 case "Brown":
-                    corDoAvatar = ProgrammerColor.BROWN;
+                    avatarColor = ProgrammerColor.BROWN;
                     break;
                 case "Green":
-                    corDoAvatar = ProgrammerColor.GREEN;
+                    avatarColor = ProgrammerColor.GREEN;
                     break;
                 case "Purple":
-                    corDoAvatar = ProgrammerColor.PURPLE;
+                    avatarColor = ProgrammerColor.PURPLE;
                     break;
                 default:
-                    corDoAvatar = ProgrammerColor.NONE;
+                    avatarColor = ProgrammerColor.NONE;
             }
             usedColor.add(playerInfo[row][3]);
 
 
-            Programmer player = new Programmer(name, id, favoriteLanguages, corDoAvatar);
-            Collections.sort(player.favoriteLanguages);
+            Programmer player = new Programmer(name, id, favoriteLanguages, avatarColor);
+            Collections.sort(player.getProgrammerFavLanList());
             players.add(player);
             playOrder.add(player);
             currentPlayer = 0;
@@ -118,13 +118,13 @@ public class GameManager {
     }
 
     public ArrayList<Programmer> getProgrammers(int position) {
-        ArrayList<Programmer> jogadoresNaPosicao = new ArrayList<>();
-        for (Programmer jogador : players) {
-            if (jogador.getPosition() == position) {
-                jogadoresNaPosicao.add(jogador);
+        ArrayList<Programmer> playerOnPosition = new ArrayList<>();
+        for (Programmer player : players) {
+            if (player.getPosition() == position) {
+                playerOnPosition.add(player);
             }
         }
-        return jogadoresNaPosicao;
+        return playerOnPosition;
     }
 
     public int getCurrentPlayerID() {

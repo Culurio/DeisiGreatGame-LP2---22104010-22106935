@@ -96,8 +96,8 @@ public class Programmer {
     public static class PositionComparator implements Comparator<Programmer> {
 
         @Override
-        public int compare(Programmer emp1, Programmer emp2) {
-            return emp2.getPosition() - emp1.getPosition();
+        public int compare(Programmer prog1, Programmer prog2) {
+            return prog2.getPosition() - prog1.getPosition();
         }
     }
 }

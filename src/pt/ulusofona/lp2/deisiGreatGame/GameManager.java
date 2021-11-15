@@ -13,7 +13,6 @@ public class GameManager {
     int currentPlayer;
     ArrayList<Programmer> players = new ArrayList<>();
     ArrayList<String> gameResults = new ArrayList<>();
-    ArrayList<Programmer> playOrder = new ArrayList<>();
 
     public GameManager(int boardSize, ArrayList<Programmer> players, int numberOfPlayer) {
         this.players = players;
@@ -36,7 +35,6 @@ public class GameManager {
         numberOfPlayers = playerInfo.length;
         ArrayList<String> usedColor = new ArrayList<>();
         plays = 1;
-        playOrder.clear();
         currentPlayer = 0;
         gameResults.clear();
 
@@ -100,7 +98,6 @@ public class GameManager {
             Programmer player = new Programmer(name, id, favoriteLanguages, avatarColor);
             Collections.sort(player.getProgrammerFavLanList());
             players.add(player);
-            playOrder.add(player);
             currentPlayer = 0;
         }
         return true;

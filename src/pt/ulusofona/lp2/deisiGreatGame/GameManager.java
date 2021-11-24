@@ -29,9 +29,9 @@ public class GameManager {
     A função createInitialBoard vai ler a matriz que contem a informação toda acerta dos jogadores que vão ser criados
      */
 
-    public boolean createInitialBoard(String[][] playerInfo, int boardSize) {
+    public boolean createInitialBoard(String[][] playerInfo, int worldSize) {
         players.clear();
-        this.boardSize = boardSize;
+        this.boardSize = worldSize;
         ArrayList<Integer> usedInts = new ArrayList<>();
         numberOfPlayers = playerInfo.length;
         ArrayList<String> usedColor = new ArrayList<>();
@@ -42,7 +42,7 @@ public class GameManager {
 
         //Resets feitos
 
-        if (boardSize < 0 || boardSize < 2 * numberOfPlayers || numberOfPlayers<=1) {
+        if (worldSize < 0 || worldSize < 2 * numberOfPlayers || numberOfPlayers<=1) {
             return false;
         }
         for (int row = 0; row < numberOfPlayers; row++) {
@@ -104,6 +104,14 @@ public class GameManager {
             currentPlayer = 0;
         }
         return true;
+    }
+
+    boolean createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools){
+        if(createInitialBoard(playerInfo,worldSize)){
+
+            return  true;
+        }
+        return false;
     }
 
     public String getImagePng(int position) {

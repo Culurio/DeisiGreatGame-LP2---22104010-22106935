@@ -29,6 +29,10 @@ public class Programmer {
         return ((favoriteLanguages.toString().replace(",",";")).replace("[", "").replace("]", ""));
     }
 
+    public ArrayList<String> getProgrammerFavLanList() {
+        return favoriteLanguages;
+    }
+
     public String getStatus() {
         if (status) {
             return "Em Jogo";
@@ -79,8 +83,8 @@ public class Programmer {
         status = false;
     }
 
-    public void move(int posicoesParaAvancar) {
-        position += posicoesParaAvancar;
+    public void move(int moves) {
+        position += moves;
     }
 
     @Override
@@ -92,8 +96,8 @@ public class Programmer {
     public static class PositionComparator implements Comparator<Programmer> {
 
         @Override
-        public int compare(Programmer emp1, Programmer emp2) {
-            return emp2.getPosition() - emp1.getPosition();
+        public int compare(Programmer prog1, Programmer prog2) {
+            return prog2.getPosition() - prog1.getPosition();
         }
     }
 }

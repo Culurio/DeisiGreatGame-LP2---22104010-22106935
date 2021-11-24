@@ -3,14 +3,14 @@ package pt.ulusofona.lp2.deisiGreatGame;
 public enum ProgrammerColor {
 
     PURPLE("Purple"), BLUE("Blue"), GREEN("Green"), BROWN("Brown"), NONE("");
-    String cor;
+    String color;
 
-    ProgrammerColor(String cor) {
-        this.cor = cor;
+    ProgrammerColor(String color) {
+        this.color = color;
     }
 
     @Override
     public String toString() {
-        return cor;
+        return color;
     }
 }

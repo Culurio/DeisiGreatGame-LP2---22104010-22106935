@@ -9,11 +9,10 @@ import java.util.Collections;
 public class GameManager {
     int numberOfPlayers;
     int boardSize;
-    int plays = 1;
+    int plays;
     int currentPlayer;
     ArrayList<Programmer> players = new ArrayList<>();
     ArrayList<String> gameResults = new ArrayList<>();
-    ArrayList<Programmer> playOrder = new ArrayList<>();
 
     public GameManager(int boardSize, ArrayList<Programmer> players, int numberOfPlayer) {
         this.players = players;
@@ -36,7 +35,6 @@ public class GameManager {
         numberOfPlayers = playerInfo.length;
         ArrayList<String> usedColor = new ArrayList<>();
         plays = 1;
-        playOrder.clear();
         currentPlayer = 0;
         gameResults.clear();
 
@@ -49,7 +47,7 @@ public class GameManager {
             String name;
             ArrayList<String> favoriteLanguages = new ArrayList<>();
             int id;
-            ProgrammerColor corDoAvatar;
+            ProgrammerColor avatarColor;
             /*
             Verificar se o Id é valido
              */
@@ -80,27 +78,26 @@ public class GameManager {
             }
             switch (playerInfo[row][3]) {
                 case "Blue":
-                    corDoAvatar = ProgrammerColor.BLUE;
+                    avatarColor = ProgrammerColor.BLUE;
                     break;
                 case "Brown":
-                    corDoAvatar = ProgrammerColor.BROWN;
+                    avatarColor = ProgrammerColor.BROWN;
                     break;
                 case "Green":
-                    corDoAvatar = ProgrammerColor.GREEN;
+                    avatarColor = ProgrammerColor.GREEN;
                     break;
                 case "Purple":
-                    corDoAvatar = ProgrammerColor.PURPLE;
+                    avatarColor = ProgrammerColor.PURPLE;
                     break;
                 default:
-                    corDoAvatar = ProgrammerColor.NONE;
+                    avatarColor = ProgrammerColor.NONE;
             }
             usedColor.add(playerInfo[row][3]);
 
 
-            Programmer player = new Programmer(name, id, favoriteLanguages, corDoAvatar);
-            Collections.sort(player.favoriteLanguages);
+            Programmer player = new Programmer(name, id, favoriteLanguages, avatarColor);
+            Collections.sort(player.getProgrammerFavLanList());
             players.add(player);
-            playOrder.add(player);
             currentPlayer = 0;
         }
         return true;
@@ -126,13 +123,13 @@ public class GameManager {
     }
 
     public ArrayList<Programmer> getProgrammers(int position) {
-        ArrayList<Programmer> jogadoresNaPosicao = new ArrayList<>();
-        for (Programmer jogador : players) {
-            if (jogador.getPosition() == position) {
-                jogadoresNaPosicao.add(jogador);
+        ArrayList<Programmer> playerOnPosition = new ArrayList<>();
+        for (Programmer player : players) {
+            if (player.getPosition() == position) {
+                playerOnPosition.add(player);
             }
         }
-        return jogadoresNaPosicao;
+        return playerOnPosition;
     }
 
     public int getCurrentPlayerID() {
@@ -158,7 +155,6 @@ public class GameManager {
     }
 
     public boolean gameIsOver() {
-        players.sort(new Programmer.PositionComparator());
         for (Programmer programmer : players) {
             if (programmer.getPosition() == boardSize) {
                 return true;
@@ -206,6 +202,7 @@ public class GameManager {
 
 
     public ArrayList<String> getGameResults() {
+        players.sort(new Programmer.PositionComparator());
         gameResults.add("O GRANDE JOGO DO DEISI");
         gameResults.add("");
         gameResults.add("NR. DE TURNOS");

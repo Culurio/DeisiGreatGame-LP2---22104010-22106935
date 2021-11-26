@@ -40,6 +40,10 @@ public class Programmer {
         return "Derrotado";
     }
 
+    public boolean getStatusBool() {
+        return status;
+    }
+
     public int getPosition() {
         return position;
     }

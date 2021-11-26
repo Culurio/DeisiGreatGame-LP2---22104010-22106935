@@ -3,18 +3,18 @@ package pt.ulusofona.lp2.deisiGreatGame;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
+import java.util.List;
 
 public class GameManager {
     int numberOfPlayers;
     int boardSize;
     int plays;
     int currentPlayer;
-    ArrayList<Programmer> players = new ArrayList<>();
+    List<Programmer> players = new ArrayList<>();
     ArrayList<String> gameResults = new ArrayList<>();
 
-    public GameManager(int boardSize, ArrayList<Programmer> players, int numberOfPlayer) {
+    public GameManager(int boardSize, List<Programmer> players, int numberOfPlayer) {
         this.players = players;
         this.numberOfPlayers = numberOfPlayer;
         this.boardSize = boardSize;
@@ -118,12 +118,22 @@ public class GameManager {
         return "blank.png";
     }
 
-    public ArrayList<Programmer> getProgrammers() {
+    public List<Programmer> getProgrammers() {
         return players;
     }
 
-    public ArrayList<Programmer> getProgrammers(int position) {
-        ArrayList<Programmer> playerOnPosition = new ArrayList<>();
+    public List<Programmer> getProgrammers(boolean includeDefeated) {
+        List<Programmer> playersIncludeDefeated = new ArrayList<Programmer>();
+        for (Programmer player : players) {
+            if (!player.getStatusBool()) {
+                playersIncludeDefeated.add(player);
+            }
+        }
+        return playersIncludeDefeated;
+    }
+
+    public List<Programmer> getProgrammers(int position) {
+        List<Programmer> playerOnPosition = new ArrayList<Programmer>();
         for (Programmer player : players) {
             if (player.getPosition() == position) {
                 playerOnPosition.add(player);

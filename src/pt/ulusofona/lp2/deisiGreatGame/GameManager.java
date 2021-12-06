@@ -11,8 +11,8 @@ public class GameManager {
     int boardSize;
     int plays;
     int currentPlayer;
-    List<Programmer> players = new ArrayList<>();
-    ArrayList<String> gameResults = new ArrayList<>();
+    List<Programmer> players = new ArrayList<Programmer>();
+    List<String> gameResults = new ArrayList<String>();
 
     public GameManager(int boardSize, List<Programmer> players, int numberOfPlayer) {
         this.players = players;
@@ -157,7 +157,7 @@ public class GameManager {
             if (nrPositions + programmer.getPosition() > boardSize) {
                 nrPositions = boardSize - programmer.getPosition() - nrPositions;
             }
-            programmer.move(nrPositions);
+            programmer.avancar(nrPositions);
             currentPlayer = (currentPlayer + 1) % numberOfPlayers;
             plays++;
             return true;
@@ -211,7 +211,7 @@ public class GameManager {
     }
 
 
-    public ArrayList<String> getGameResults() {
+    public List<String> getGameResults() {
         players.sort(new Programmer.PositionComparator());
         gameResults.add("O GRANDE JOGO DO DEISI");
         gameResults.add("");

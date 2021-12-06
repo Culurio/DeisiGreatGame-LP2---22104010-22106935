@@ -12,8 +12,9 @@ public class Programmer {
     ArrayList<String> favoriteLanguages;
     private int id;
     private int position;
-    private boolean status; // Derrotado = false  em jogo = true
+    private boolean status; //Derrotado = false ; em jogo = true
     private ProgrammerColor avatarColor;
+    ArrayList<Integer> percursoDeCasas = new ArrayList<>();
 
     Programmer(String name, int id, ArrayList<String> favoriteLanguages, ProgrammerColor avatarColor) {
         this.name = name;
@@ -87,8 +88,31 @@ public class Programmer {
         status = false;
     }
 
-    public void move(int moves) {
+    public void avancar(int moves) {
         position += moves;
+    }
+
+    public void recuar(int moves){
+        position -= moves;
+    }
+
+    int retornarUltimaCasa(){
+        return percursoDeCasas.get(percursoDeCasas.size() - 1);
+    }
+
+    void voltarParaAPrimeiraCasa(){
+        position = 1;
+    }
+
+    void recuarParaCasasAnteriores(int opcao){
+        switch (opcao){
+            case 0:
+                recuar(percursoDeCasas.get(percursoDeCasas.size() - 1));
+                break;
+            case 1:
+                recuar(percursoDeCasas.get(percursoDeCasas.size() - 2));
+                break;
+        }
     }
 
     @Override

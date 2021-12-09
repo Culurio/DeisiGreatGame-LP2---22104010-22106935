@@ -2,6 +2,7 @@ package pt.ulusofona.lp2.deisiGreatGame;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 public class    Programmer {
     /*Pode ser util mais para a frente
@@ -15,6 +16,7 @@ public class    Programmer {
     private boolean status; //Derrotado = false ; em jogo = true
     private final ProgrammerColor avatarColor;
     ArrayList<Integer> percursoDeCasas = new ArrayList<>();
+    List<Tool> tools = new ArrayList<>();
 
     Programmer(String name, int id, ArrayList<String> favoriteLanguages, ProgrammerColor avatarColor) {
         this.name = name;

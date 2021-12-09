@@ -13,6 +13,7 @@ public class GameManager {
     int currentPlayer;
     List<Programmer> players = new ArrayList<Programmer>();
     List<String> gameResults = new ArrayList<String>();
+    List<Position> gameBoard = new ArrayList<>();
 
     public GameManager(int boardSize, List<Programmer> players, int numberOfPlayer) {
         this.players = players;
@@ -157,7 +158,6 @@ public class GameManager {
             if (nrPositions + programmer.getPosition() > boardSize) {
                 nrPositions = boardSize - programmer.getPosition() - nrPositions;
             }
-            programmer.
             currentPlayer = (currentPlayer + 1) % numberOfPlayers;
             plays++;
             return true;
@@ -173,11 +173,37 @@ public class GameManager {
         return false;
     }
 
-    /*
-    String getTitle(int position){
-        return Position.name;
+
+    String getTitle(int target){
+        return gameBoard.get(target - 1).getName();
     }
-     */
+
+    String getInfoIndividual(int arrayNum){
+        String ferramentas = "";
+
+        if (players.get(arrayNum).tools.size() == 0 || players.get(arrayNum).tools == null){
+            ferramentas = "No tools";
+        } else{
+            for (int i = 0; i < players.get(arrayNum).tools.size(); i++){
+                ferramentas += players.get(arrayNum).tools.get(i).getName() + ";";
+            }
+            ferramentas.substring(ferramentas.length() - 1);
+        }
+
+        return players.get(arrayNum).getName() + " : " + ferramentas;
+    }
+
+    String getProgrammersInfo(){
+        String information = "";
+
+        for (int i = 0; i < players.size(); i++){
+            information += getInfoIndividual(i) + " | ";
+        }
+
+        information.substring(information.length() - 3);
+
+        return information;
+    }
 
     /*
     Função um pouco nojenta mas devido a termos feito o trabalho em cima da hora

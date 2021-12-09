@@ -3,17 +3,17 @@ package pt.ulusofona.lp2.deisiGreatGame;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class Programmer {
+public class    Programmer {
     /*Pode ser util mais para a frente
         static int[] usedId = {-1,-1,-1,-1};
         static ProgrammerColor[] usedColors = {ProgrammerColor.NONE,ProgrammerColor.NONE,ProgrammerColor.NONE,ProgrammerColor.NONE};
     */
     String name;
     ArrayList<String> favoriteLanguages;
-    private int id;
-    private int position;
+    private final int id;
+    private Position position;
     private boolean status; //Derrotado = false ; em jogo = true
-    private ProgrammerColor avatarColor;
+    private final ProgrammerColor avatarColor;
     ArrayList<Integer> percursoDeCasas = new ArrayList<>();
 
     Programmer(String name, int id, ArrayList<String> favoriteLanguages, ProgrammerColor avatarColor) {
@@ -22,7 +22,6 @@ public class Programmer {
         this.favoriteLanguages = favoriteLanguages;
         this.avatarColor = avatarColor;
         status = true;
-        position = 1;
 
     }
 
@@ -46,7 +45,7 @@ public class Programmer {
     }
 
     public int getPosition() {
-        return position;
+        return getId();
     }
 
     public String getName() {
@@ -88,29 +87,21 @@ public class Programmer {
         status = false;
     }
 
-    public void avancar(int moves) {
-        position += moves;
-    }
-
-    public void recuar(int moves){
-        position -= moves;
-    }
-
     int retornarUltimaCasa(){
         return percursoDeCasas.get(percursoDeCasas.size() - 1);
     }
 
-    void voltarParaAPrimeiraCasa(){
-        position = 1;
+    void blueScreen(){
+
     }
 
     void recuarParaCasasAnteriores(int opcao){
         switch (opcao){
             case 0:
-                recuar(percursoDeCasas.get(percursoDeCasas.size() - 1));
+                position.recuar(percursoDeCasas.get(percursoDeCasas.size() - 1));
                 break;
             case 1:
-                recuar(percursoDeCasas.get(percursoDeCasas.size() - 2));
+                position.recuar(percursoDeCasas.get(percursoDeCasas.size() - 2));
                 break;
         }
     }

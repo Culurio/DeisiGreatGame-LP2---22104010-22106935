@@ -157,7 +157,7 @@ public class GameManager {
             if (nrPositions + programmer.getPosition() > boardSize) {
                 nrPositions = boardSize - programmer.getPosition() - nrPositions;
             }
-            programmer.avancar(nrPositions);
+            programmer.
             currentPlayer = (currentPlayer + 1) % numberOfPlayers;
             plays++;
             return true;
@@ -172,6 +172,12 @@ public class GameManager {
         }
         return false;
     }
+
+    /*
+    String getTitle(int position){
+        return Position.name;
+    }
+     */
 
     /*
     Função um pouco nojenta mas devido a termos feito o trabalho em cima da hora

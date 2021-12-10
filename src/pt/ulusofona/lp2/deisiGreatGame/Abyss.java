@@ -80,4 +80,9 @@ public class Abyss extends Effect {
                 break;
         }
     }
+
+    @Override
+    String getName() {
+        return name;
+    }
 }

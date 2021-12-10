@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class    Programmer {
+public class Programmer {
     String name;
     ArrayList<String> favoriteLanguages;
     private final int id;
-    private Position position;
+    private int position;
     private boolean status; //Derrotado = false ; em jogo = true
     private final ProgrammerColor avatarColor;
     ArrayList<Integer> percursoDeCasas = new ArrayList<>();
@@ -20,7 +20,7 @@ public class    Programmer {
         this.favoriteLanguages = favoriteLanguages;
         this.avatarColor = avatarColor;
         status = true;
-        position = new Position();
+        position = 1;
     }
 
     public String getProgrammerFavLan() {
@@ -59,7 +59,7 @@ public class    Programmer {
     }
 
     public void move(int moves){
-        position.move(moves);
+        position += moves;
     }
 
     public boolean isNameValid() {

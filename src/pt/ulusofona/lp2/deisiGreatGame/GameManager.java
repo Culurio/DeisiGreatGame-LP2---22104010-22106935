@@ -11,9 +11,10 @@ public class GameManager {
     int boardSize;
     int plays;
     int currentPlayer;
+    List<Effect> effects = new ArrayList<>();
     List<Programmer> players = new ArrayList<>();
     List<String> gameResults = new ArrayList<>();
-    List<Position> gameBoard = new ArrayList<>();
+
 
     public GameManager(int boardSize, List<Programmer> players, int numberOfPlayer) {
         this.players = players;
@@ -32,7 +33,6 @@ public class GameManager {
     public boolean createInitialBoard(String[][] playerInfo, int worldSize) {
         players.clear();
         this.boardSize = worldSize;
-        gameBoard = new ArrayList<>();
         ArrayList<Integer> usedInts = new ArrayList<>();
         numberOfPlayers = playerInfo.length;
         ArrayList<String> usedColor = new ArrayList<>();
@@ -106,12 +106,14 @@ public class GameManager {
     }
 
     boolean createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools){
+        effects.clear();
         if(createInitialBoard(playerInfo,worldSize)){
             for (int row = 0; row < abyssesAndTools.length; row++) {
-                if(abyssesAndTools[row][0] == null || !abyssesAndTools[row][0].equals('1') ||
-                        !abyssesAndTools[row][0].equals('0')){
+                if(abyssesAndTools[row][0] == null || !(abyssesAndTools[row][0].equals("1") ||
+                        abyssesAndTools[row][0].equals("0"))){
                     return false;
                 }
+
             }
             return  true;
         }

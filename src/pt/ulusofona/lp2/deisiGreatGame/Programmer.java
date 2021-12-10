@@ -5,10 +5,6 @@ import java.util.Comparator;
 import java.util.List;
 
 public class    Programmer {
-    /*Pode ser util mais para a frente
-        static int[] usedId = {-1,-1,-1,-1};
-        static ProgrammerColor[] usedColors = {ProgrammerColor.NONE,ProgrammerColor.NONE,ProgrammerColor.NONE,ProgrammerColor.NONE};
-    */
     String name;
     ArrayList<String> favoriteLanguages;
     private final int id;
@@ -24,7 +20,7 @@ public class    Programmer {
         this.favoriteLanguages = favoriteLanguages;
         this.avatarColor = avatarColor;
         status = true;
-
+        position = new Position();
     }
 
     public String getProgrammerFavLan() {
@@ -62,28 +58,13 @@ public class    Programmer {
         return avatarColor;
     }
 
+    public void move(int moves){
+        position.move(moves);
+    }
 
     public boolean isNameValid() {
         return name != null && !name.isEmpty();
     }
-
-    /*boolean isIdUsed(){
-        for (int num :usedId) {
-            if (id == num){
-                return true;
-            }
-        }
-        return false;
-    }*/
-
-    /*boolean isColorUsed(){
-        for(ProgrammerColor color : usedColors){
-            if(corDoAvatar == color){
-                return true;
-            }
-        }
-        return false;
-    }*/
 
     public void loseStatus() {
         status = false;
@@ -95,17 +76,6 @@ public class    Programmer {
 
     void blueScreen(){
 
-    }
-
-    void recuarParaCasasAnteriores(int opcao){
-        switch (opcao){
-            case 0:
-                position.recuar(percursoDeCasas.get(percursoDeCasas.size() - 1));
-                break;
-            case 1:
-                position.recuar(percursoDeCasas.get(percursoDeCasas.size() - 2));
-                break;
-        }
     }
 
     @Override

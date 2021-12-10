@@ -1,6 +1,6 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class Tool extends Position {
+public class Tool extends Effect {
     @Override
     void effect() {
         switch (id) {

@@ -9,10 +9,12 @@ public class Programmer {
     ArrayList<String> favoriteLanguages;
     private final int id;
     private int position;
+    private int dice;
     private boolean status; //Derrotado = false ; em jogo = true
+    private boolean stuck; //preso = true ; em jogo false;
     private final ProgrammerColor avatarColor;
-    ArrayList<Integer> percursoDeCasas = new ArrayList<>();
-    List<Tool> tools = new ArrayList<>();
+    private ArrayList<Integer> percursoDeCasas = new ArrayList<>();
+    private List<Effect> effects = new ArrayList<>();
 
     Programmer(String name, int id, ArrayList<String> favoriteLanguages, ProgrammerColor avatarColor) {
         this.name = name;
@@ -38,6 +40,14 @@ public class Programmer {
         return "Derrotado";
     }
 
+    public void setDice(int dice) {
+        this.dice = dice;
+    }
+
+    public int getDice() {
+        return dice;
+    }
+
     public boolean getStatusBool() {
         return status;
     }
@@ -58,6 +68,10 @@ public class Programmer {
         return avatarColor;
     }
 
+    public void setInitialPosition(){
+        position = 1;
+    }
+
     public void move(int moves){
         position += moves;
     }
@@ -66,16 +80,40 @@ public class Programmer {
         return name != null && !name.isEmpty();
     }
 
-    public void loseStatus() {
+    public void lose() {
         status = false;
     }
 
-    int retornarUltimaCasa(){
+    public void stuck() {
+        status = true;
+    }
+
+    public void save() {
+        status = false;
+    }
+
+    public boolean isStuck(){
+        return stuck;
+    }
+
+    public int retornarUltimaCasa(){
         return percursoDeCasas.get(percursoDeCasas.size() - 1);
     }
 
-    void blueScreen(){
+    public void addEffect(Effect effect){
+        effects.add(effect);
+    }
 
+    public String programmerTools(){
+        StringBuilder toolsString = new StringBuilder();
+        if(effects.size() == 0){
+            return name +" : No tools";
+        }
+        for (Effect effect : effects){
+            toolsString.append(effect.getName()).append(";");
+        }
+        toolsString.deleteCharAt(toolsString.toString().length()-1);
+        return name + " : " + toolsString.toString();
     }
 
     @Override

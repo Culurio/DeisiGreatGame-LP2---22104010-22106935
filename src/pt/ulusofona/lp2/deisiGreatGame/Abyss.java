@@ -1,15 +1,58 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 public class Abyss extends Effect {
+
+
+    Abyss(int id, int position) {
+        super(id, position);
+        switch (id){
+            case 0:
+                name = "Erro de sintaxe";
+                break;
+            case 1:
+                name = "Erro de lógica";
+                break;
+            case 2:
+                name = "Exception";
+                break;
+            case 3:
+                name = "File Not Found";
+                break;
+            case 4:
+                name = "Crash (aka Rebentanço)";
+                break;
+            case 5:
+                name = "Duplicated Code";
+                break;
+            case 6:
+                name = "Efeitos secundários";
+                break;
+            case 7:
+                name = "Blue Screen of Death";
+                break;
+            case 8:
+                name = "Ciclo infinito";
+                break;
+            case 9:
+                name = "Segmentation Fault";
+                break;
+        }
+    }
+
     @Override
-    void effect() {
+    int getType() {
+        return 0;
+    }
+
+    @Override
+    String effect(Programmer programmer) {
         switch (id){
             case 0:
                 /*
                 Erro de sintaxe O programador recua 1 casa.
                  */
-                name = "Erro de sintaxe";
-                break;
+                programmer.move(-1);
+                return "i'm not as think as you drunk i am\n";
             case 1:
                 /*
                 Erro de lógica O programador recua N casas, sendo N metade do
@@ -17,44 +60,43 @@ public class Abyss extends Effect {
                 Por exemplo, se o dado deu 6, o programador recua 3
                 casas. Se o dado deu 3, o programador recua 1 casa.
                  */
-                name = "Erro de lógica";
-                break;
+                int moves = programmer.getDice() / 2;
+                programmer.move(moves);
+                return "Benfica > Barcelona ou seja Portimonense > Barcelona\n";
             case 2:
                 /*
                 Exception O programador recua 2 casas.
                  */
-                name = "Exception";
-                break;
+                programmer.move(-2);
+                return "Vais ter de recuar :C\n";
             case 3:
                 /*
                 File Not Found Exception O programador recua 3 casas.
                  */
-                name = "File Not Found";
-                break;
+                programmer.move(-3);
+                return "Vais ter de recuar ainda mais:C\n";
             case 4:
                 /*
                 Crash (aka Rebentanço) O programador volta à primeira casa do jogo.
                  */
-                name = "Crash (aka Rebentanço)";
-                break;
+                programmer.setInitialPosition();
+                return "Ahhhh *bolas* Here We Go Again\n";
             case 5:
                 /*
                 Duplicated Code O programador recua até à casa onde estava antes de chegar a esta casa.
                  */
-                name = "Duplicated Code";
-                break;
+                return "Duplicated Code\nDuplicated Code\n";
             case 6:
                 /*
                 Efeitos secundários O programador recua para a posição onde estava há 2 movimentos atrás.
                 */
-                name = "Efeitos secundários";
-                break;
+                return "Chernobyl\n";
             case 7:
                 /*
                 Blue Screen of Death O programador perde imediatamente o jogo.
                  */
-                name = "Blue Screen of Death";
-                break;
+                programmer.lose();
+                return "#$(/&)&/)#$(/&)&/)&%#)&/)&%##$(/&)&/)&%#\n";
             case 8:
                 /*
                 Ciclo infinito O programador fica preso na casa onde está até que
@@ -66,8 +108,8 @@ public class Abyss extends Effect {
                 fica preso mas também já não liberta o programador
                 que lá estava.
                  */
-                name = "Ciclo infinito";
-                break;
+                programmer.stuck();
+                return "sadasdasd\nsdsdfsdf\nasdasdasd\nfsdfsdfdfg\netc...\n";
             case 9:
                 /*
                 Segmentation Fault Este Abismo apenas é activado caso existam dois ou
@@ -76,13 +118,43 @@ public class Abyss extends Effect {
                 Caso apenas esteja um programador neste Abismo,
                 então não existe nenhum efeito a aplicar.
                  */
-                name = "Segmentation Fault";
-                break;
+                programmer.move(-3);
+                return "segmentation fault (core dumped)";
+            default:
+                return "";
         }
     }
 
     @Override
     String getName() {
         return name;
+    }
+
+    @Override
+    String getPng() {
+        switch (id){
+            case 0:
+                return "syntax.png";
+            case 1:
+                return "logic.png";
+            case 2:
+                return "exception.png";
+            case 3:
+                return "file-not-found.png";
+            case 4:
+                return "crash.png";
+            case 5:
+                return "duplicated-code.png";
+            case 6:
+                return "secondary-effects.png";
+            case 7:
+                return "bsod.png";
+            case 8:
+                return "infinite-loop.png";
+            case 9:
+                return "core-dumped.png";
+            default:
+                return null;
+        }
     }
 }

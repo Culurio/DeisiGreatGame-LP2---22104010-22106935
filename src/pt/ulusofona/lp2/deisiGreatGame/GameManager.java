@@ -107,13 +107,36 @@ public class GameManager {
 
     boolean createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools){
         effects.clear();
+        int effectId;
+        Effect effect = null;
+        String type;
+        int effectPosition;
         if(createInitialBoard(playerInfo,worldSize)){
             for (int row = 0; row < abyssesAndTools.length; row++) {
-                if(abyssesAndTools[row][0] == null || !(abyssesAndTools[row][0].equals("1") ||
-                        abyssesAndTools[row][0].equals("0"))){
+                type = abyssesAndTools[row][0];
+                effectId = Integer.parseInt(abyssesAndTools[row][1]);
+                effectPosition = Integer.parseInt(abyssesAndTools[row][2]);
+
+                if(type == null || !type.equals("1") && !type.equals("0")){
                     return false;
                 }
 
+                if(effectId < 0 || (effectId > 9 && type.equals("0") || (effectId > 5 && type.equals("1")))){
+                    return false;
+                }
+
+                if (effectPosition < 0 || effectPosition > worldSize) {
+                    return false;
+                }
+
+                if (type.equals("1")){
+                    effect = new Tool(effectId,effectPosition);
+                }
+
+                if(type.equals("0")){
+                    effect = new Abyss(effectId,effectPosition);
+                }
+                effects.add(effect);
             }
             return  true;
         }
@@ -124,21 +147,34 @@ public class GameManager {
         if (position == boardSize) {
             return "glory.png";
         }
-        return "blank.png";
+        for (Effect effect: effects) {
+            if(effect.position == position){
+                return effect.getPng();
+            }
+        }
+        return null;
     }
 
-    public List<Programmer> getProgrammers() {
-        return players;
+    String getTitle(int position){
+        for (Effect effect: effects) {
+            if(effect.position == position){
+                return effect.getName();
+            }
+        }
+        return null;
     }
 
     public List<Programmer> getProgrammers(boolean includeDefeated) {
-        List<Programmer> playersIncludeDefeated = new ArrayList<Programmer>();
-        for (Programmer player : players) {
-            if (!player.getStatusBool()) {
-                playersIncludeDefeated.add(player);
+        List<Programmer> playersAlive = new ArrayList<Programmer>();
+        if(includeDefeated){
+            return players;
+        }
+        for (Programmer player: players) {
+            if (player.getStatusBool()){
+                playersAlive.add(player);
             }
         }
-        return playersIncludeDefeated;
+        return playersAlive;
     }
 
     public List<Programmer> getProgrammers(int position) {
@@ -151,6 +187,15 @@ public class GameManager {
         return playerOnPosition;
     }
 
+    public String getProgrammersInfo(){
+        StringBuilder info = new StringBuilder();
+        for (Programmer programmer : players) {
+            info.append(programmer.programmerTools()).append(" | ");
+        }
+        info.deleteCharAt(info.toString().length()-2);
+        return info.toString();
+    }
+
     public int getCurrentPlayerID() {
         return players.get(currentPlayer).getId();
     }
@@ -158,19 +203,34 @@ public class GameManager {
     /*
     Faz com que o jogador se mova e dá next no jogador atual
      */
-    public boolean moveCurrentPlayer(int nrPositions) {
-        if (nrPositions < 1 || nrPositions > 6) {
+    public boolean moveCurrentPlayer(int nrSpaces) {
+        Programmer programmer = players.get(currentPlayer);
+        programmer.setDice(nrSpaces);
+        if (nrSpaces < 1 || nrSpaces > 6 || !programmer.getStatusBool() || programmer.isStuck()) {
             return false;
         } else {
-            Programmer programmer = players.get(currentPlayer);
-            if (nrPositions + programmer.getPosition() > boardSize) {
-                nrPositions = boardSize - programmer.getPosition() - nrPositions;
+            if (nrSpaces + programmer.getPosition() > boardSize) {
+                nrSpaces = boardSize - programmer.getPosition() - nrSpaces;
             }
-            programmer.move(nrPositions);
+            programmer.move(nrSpaces);
             currentPlayer = (currentPlayer + 1) % numberOfPlayers;
             plays++;
             return true;
         }
+    }
+
+    public String reactToAbyssOrTool(){
+        Programmer programmer = players.get(currentPlayer);
+        for (Effect effect : effects) {
+            if(programmer.getPosition() == effect.getPosition()){
+                if (effect.getType() == 0){
+                    return effect.effect(programmer);
+                }else {
+                    programmer.addEffect(effect);
+                }
+            }
+        }
+        return "";
     }
 
     public boolean gameIsOver() {
@@ -180,38 +240,6 @@ public class GameManager {
             }
         }
         return false;
-    }
-
-
-    String getTitle(int target){
-        return "";
-    }
-
-    String getInfoIndividual(int arrayNum){
-        String ferramentas = "";
-
-        if (players.get(arrayNum).tools.size() == 0 || players.get(arrayNum).tools == null){
-            ferramentas = "No tools";
-        } else{
-            for (int i = 0; i < players.get(arrayNum).tools.size(); i++){
-                ferramentas += players.get(arrayNum).tools.get(i).getName() + ";";
-            }
-            ferramentas.substring(ferramentas.length() - 1);
-        }
-
-        return players.get(arrayNum).getName() + " : " + ferramentas;
-    }
-
-    String getProgrammersInfo(){
-        String information = "";
-
-        for (int i = 0; i < players.size(); i++){
-            information += getInfoIndividual(i) + " | ";
-        }
-
-        information.substring(information.length() - 3);
-
-        return information;
     }
 
     /*

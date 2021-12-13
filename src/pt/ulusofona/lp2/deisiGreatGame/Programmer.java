@@ -1,8 +1,6 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class Programmer {
     String name;
@@ -14,7 +12,7 @@ public class Programmer {
     private boolean stuck; //preso = true ; em jogo false;
     private final ProgrammerColor avatarColor;
     private ArrayList<Integer> percursoDeCasas = new ArrayList<>();
-    private List<Effect> effects = new ArrayList<>();
+    private HashMap<String,Effect> effects = new HashMap<>();
 
     Programmer(String name, int id, ArrayList<String> favoriteLanguages, ProgrammerColor avatarColor) {
         this.name = name;
@@ -101,8 +99,11 @@ public class Programmer {
     }
 
     public void addEffect(Effect effect){
-        effects.add(effect);
+        effects.put(effect.getName(),effect);
+        effect.effect();
     }
+
+    public HashMap get
 
     public String programmerTools(){
         StringBuilder toolsString = new StringBuilder();

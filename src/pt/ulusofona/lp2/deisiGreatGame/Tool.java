@@ -42,6 +42,7 @@ public class Tool extends Effect {
                 Herança Evita os efeitos de:
                 - Duplicated Code
                  */
+                programmer.addEffect(this);
                 return "Incesto :o";
             case 1:
                 /*

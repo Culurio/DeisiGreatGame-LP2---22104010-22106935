@@ -51,6 +51,7 @@ public class Abyss extends Effect {
                 /*
                 Erro de sintaxe O programador recua 1 casa.
                  */
+                if(programmer.)
                 programmer.move(-1);
                 return "i'm not as think as you drunk i am\n";
             case 1:

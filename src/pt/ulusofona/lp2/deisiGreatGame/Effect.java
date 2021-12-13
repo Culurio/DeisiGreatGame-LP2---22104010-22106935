@@ -20,6 +20,8 @@ abstract class Effect {
 
     abstract String effect(Programmer programmer);
 
+    abstract int getId();
+
     abstract String getName();
 
     abstract String getPng();

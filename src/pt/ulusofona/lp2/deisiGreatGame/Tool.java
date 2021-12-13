@@ -25,9 +25,7 @@ public class Tool extends Effect {
                 name = "Ajuda Do Professor";
                 break;
         }
-    }
-
-
+    }  
 
     @Override
     int getType() {
@@ -43,6 +41,7 @@ public class Tool extends Effect {
                 - Duplicated Code
                  */
                 programmer.addEffect(this);
+
                 return "Incesto :o";
             case 1:
                 /*
@@ -89,6 +88,10 @@ public class Tool extends Effect {
         return name;
     }
 
+    @Override
+    int getId(){
+        return id;
+    }
 
     @Override
     String getPng() {

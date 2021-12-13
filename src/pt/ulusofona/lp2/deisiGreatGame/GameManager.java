@@ -50,6 +50,7 @@ public class GameManager {
             ArrayList<String> favoriteLanguages = new ArrayList<>();
             int id;
             ProgrammerColor avatarColor;
+
             /*
             Verificar se o Id é valido
              */
@@ -59,6 +60,7 @@ public class GameManager {
             }
             id = Integer.parseInt(playerInfo[row][0].trim());
             usedInts.add(Integer.parseInt(playerInfo[row][0].trim()));
+
             /*
             Verificar se o nome está vazio ou é null
              */
@@ -66,6 +68,7 @@ public class GameManager {
                 return false;
             }
             name = playerInfo[row][1];
+
             /*
             Guardar as linguagens favoritas
              */
@@ -78,6 +81,7 @@ public class GameManager {
             if (usedColor.contains(playerInfo[row][3])) {
                 return false;
             }
+
             switch (playerInfo[row][3]) {
                 case "Blue":
                     avatarColor = ProgrammerColor.BLUE;
@@ -96,12 +100,12 @@ public class GameManager {
             }
             usedColor.add(playerInfo[row][3]);
 
-
             Programmer player = new Programmer(name, id, favoriteLanguages, avatarColor);
             Collections.sort(player.getProgrammerFavLanList());
             players.add(player);
             currentPlayer = 0;
         }
+
         return true;
     }
 
@@ -111,6 +115,7 @@ public class GameManager {
         Effect effect = null;
         String type;
         int effectPosition;
+
         if(createInitialBoard(playerInfo,worldSize)){
             for (int row = 0; row < abyssesAndTools.length; row++) {
                 type = abyssesAndTools[row][0];
@@ -147,11 +152,13 @@ public class GameManager {
         if (position == boardSize) {
             return "glory.png";
         }
+
         for (Effect effect: effects) {
             if(effect.position == position){
                 return effect.getPng();
             }
         }
+
         return null;
     }
 
@@ -161,6 +168,7 @@ public class GameManager {
                 return effect.getName();
             }
         }
+
         return null;
     }
 
@@ -169,30 +177,37 @@ public class GameManager {
         if(includeDefeated){
             return players;
         }
+
         for (Programmer player: players) {
             if (player.getStatusBool()){
                 playersAlive.add(player);
             }
         }
+
         return playersAlive;
     }
 
     public List<Programmer> getProgrammers(int position) {
         List<Programmer> playerOnPosition = new ArrayList<Programmer>();
+
         for (Programmer player : players) {
             if (player.getPosition() == position) {
                 playerOnPosition.add(player);
             }
         }
+
         return playerOnPosition;
     }
 
     public String getProgrammersInfo(){
         StringBuilder info = new StringBuilder();
+
         for (Programmer programmer : players) {
             info.append(programmer.programmerTools()).append(" | ");
         }
+
         info.deleteCharAt(info.toString().length()-2);
+
         return info.toString();
     }
 
@@ -206,31 +221,41 @@ public class GameManager {
     public boolean moveCurrentPlayer(int nrSpaces) {
         Programmer programmer = players.get(currentPlayer);
         programmer.setDice(nrSpaces);
+
         if (nrSpaces < 1 || nrSpaces > 6 || !programmer.getStatusBool() || programmer.isStuck()) {
             return false;
         } else {
             if (nrSpaces + programmer.getPosition() > boardSize) {
                 nrSpaces = boardSize - programmer.getPosition() - nrSpaces;
             }
+
             programmer.move(nrSpaces);
             currentPlayer = (currentPlayer + 1) % numberOfPlayers;
             plays++;
+
             return true;
         }
     }
 
     public String reactToAbyssOrTool(){
         Programmer programmer = players.get(currentPlayer);
+
         for (Effect effect : effects) {
             if(programmer.getPosition() == effect.getPosition()){
                 if (effect.getType() == 0){
                     return effect.effect(programmer);
                 }else {
-                    programmer.addEffect(effect);
+                    return effect.effect(programmer);
                 }
             }
         }
         return "";
+    }
+
+    public void stuckPlayer(){
+        Programmer current = players.get(currentPlayer);
+
+        if (!current.isStuck() )
     }
 
     public boolean gameIsOver() {
@@ -239,6 +264,7 @@ public class GameManager {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -250,14 +276,18 @@ public class GameManager {
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 300, 300);
         panel.setBackground(Color.gray);
+
         JButton button1 = new JButton("Créditos");
         button1.setBounds(50, 100, 80, 30);
         button1.setBackground(Color.white);
+
         JButton button2 = new JButton("Inspiração");
         button2.setBounds(100, 100, 80, 30);
         button2.setBackground(Color.white);
+
         panel.add(button1);
         panel.add(button2);
+
         button1.addActionListener(event -> {
             JLabel label = new JLabel("<html>Realizado por:<br/>Cláudio Costa<br/>Gonçalo Antunes</html>", SwingConstants.CENTER);
             label.setFont(new Font("Verdana", Font.BOLD, 20));
@@ -270,12 +300,14 @@ public class GameManager {
             panel.add(imageLabel2);
             panel.setBorder(new LineBorder(Color.BLACK));
         });
+
         button2.addActionListener(event -> {
             JLabel imageLabel = new JLabel();
             imageLabel.setIcon(new ImageIcon("src\\pt\\ulusofona\\lp2\\deisiGreatGame\\resources\\Ric.png"));
             panel.add(imageLabel);
             panel.setBorder(new LineBorder(Color.BLACK));
         });
+
         return panel;
     }
 

@@ -1,5 +1,6 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
+import java.awt.event.PaintEvent;
 import java.util.*;
 
 public class Programmer {
@@ -12,7 +13,7 @@ public class Programmer {
     private boolean stuck; //preso = true ; em jogo false;
     private final ProgrammerColor avatarColor;
     private ArrayList<Integer> percursoDeCasas = new ArrayList<>();
-    private HashMap<String,Effect> effects = new HashMap<>();
+    private HashMap<Integer, Tool> tools = new HashMap<>();
 
     Programmer(String name, int id, ArrayList<String> favoriteLanguages, ProgrammerColor avatarColor) {
         this.name = name;
@@ -36,6 +37,16 @@ public class Programmer {
             return "Em Jogo";
         }
         return "Derrotado";
+    }
+
+    boolean verifyTool(int id){
+        for (Tool tool : tools.values()){
+            if (tool.getId() == id){
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public void setDice(int dice) {
@@ -83,35 +94,40 @@ public class Programmer {
     }
 
     public void stuck() {
-        status = true;
+        stuck = true;
     }
 
     public void save() {
-        status = false;
+        stuck = false;
     }
 
     public boolean isStuck(){
         return stuck;
     }
 
-    public int retornarUltimaCasa(){
-        return percursoDeCasas.get(percursoDeCasas.size() - 1);
+    public int diferencaAteAUltimaCasa(){
+        return position - percursoDeCasas.get(percursoDeCasas.size() - 1);
     }
 
-    public void addEffect(Effect effect){
-        effects.put(effect.getName(),effect);
-        effect.effect();
+    public int diferencaAtePenultimaCasa(){
+        return position - percursoDeCasas.get(percursoDeCasas.size() - 2);
     }
 
-    public HashMap get
+    public void addEffect(Tool tool){
+        tools.put(tool.getId(),tool);
+    }
+
+    /*public Effect getEffect(){
+        return effects.get()
+    }*/
 
     public String programmerTools(){
         StringBuilder toolsString = new StringBuilder();
-        if(effects.size() == 0){
+        if(tools.size() == 0){
             return name +" : No tools";
         }
-        for (Effect effect : effects){
-            toolsString.append(effect.getName()).append(";");
+        for (Tool tool : tools.values()){
+            toolsString.append(tool.getName()).append(";");
         }
         toolsString.deleteCharAt(toolsString.toString().length()-1);
         return name + " : " + toolsString.toString();

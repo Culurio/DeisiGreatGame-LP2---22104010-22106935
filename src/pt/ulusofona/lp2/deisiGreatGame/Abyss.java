@@ -49,54 +49,90 @@ public class Abyss extends Effect {
         switch (id){
             case 0:
                 /*
-                Erro de sintaxe O programador recua 1 casa.
+                Erro de sintaxe - O programador recua 1 casa.
                  */
-                if(programmer.)
-                programmer.move(-1);
+                name = "Erro de sintaxe";
+
+                if(programmer.verifyTool(4) || programmer.verifyTool(5)){
+                    programmer.move(-1);
+                }
+
                 return "i'm not as think as you drunk i am\n";
             case 1:
                 /*
-                Erro de lógica O programador recua N casas, sendo N metade do
+                Erro de lógica - O programador recua N casas, sendo N metade do
                 valor que tiver saído no dado, arredondado para baixo.
                 Por exemplo, se o dado deu 6, o programador recua 3
                 casas. Se o dado deu 3, o programador recua 1 casa.
                  */
-                int moves = programmer.getDice() / 2;
-                programmer.move(moves);
+                name = "Erro de lógica";
+
+                if (programmer.verifyTool(2) || programmer.verifyTool(5)){
+                    int moves = programmer.getDice() / 2;
+                    programmer.move(moves);
+                }
+
                 return "Benfica > Barcelona ou seja Portimonense > Barcelona\n";
             case 2:
                 /*
-                Exception O programador recua 2 casas.
+                Exception - O programador recua 2 casas.
                  */
-                programmer.move(-2);
+                name = "Exception";
+
+                if (programmer.verifyTool(3) || programmer.verifyTool(5)){
+                    programmer.move(-2);
+                }
+
                 return "Vais ter de recuar :C\n";
             case 3:
                 /*
-                File Not Found Exception O programador recua 3 casas.
+                File Not Found Exception - O programador recua 3 casas.
                  */
-                programmer.move(-3);
-                return "Vais ter de recuar ainda mais:C\n";
+                name = "File Not found Exception";
+
+                if (programmer.verifyTool(3)){
+                    programmer.move(-3);
+                }
+
+                return "Vais ter de recuar ainda mais :C\n";
             case 4:
                 /*
-                Crash (aka Rebentanço) O programador volta à primeira casa do jogo.
+                Crash (aka Rebentanço) - O programador volta à primeira casa do jogo.
                  */
+                name = "Crash (aka Rebentanço)";
+
                 programmer.setInitialPosition();
+
                 return "Ahhhh *bolas* Here We Go Again\n";
             case 5:
                 /*
-                Duplicated Code O programador recua até à casa onde estava antes de chegar a esta casa.
+                Duplicated Code - O programador recua até à casa onde estava antes de chegar a esta casa.
                  */
+                name = "Duplicated Code";
+
+                if (programmer.verifyTool(0) || programmer.verifyTool(1)){
+                    programmer.move(-programmer.diferencaAteAUltimaCasa());
+                }
+
                 return "Duplicated Code\nDuplicated Code\n";
             case 6:
                 /*
                 Efeitos secundários O programador recua para a posição onde estava há 2 movimentos atrás.
                 */
+                name = "Efeitos secundários";
+
+                if (programmer.verifyTool(1)){
+                    programmer.move(-programmer.diferencaAtePenultimaCasa());
+                }
+
                 return "Chernobyl\n";
             case 7:
                 /*
                 Blue Screen of Death O programador perde imediatamente o jogo.
                  */
+
                 programmer.lose();
+
                 return "#$(/&)&/)#$(/&)&/)&%#)&/)&%##$(/&)&/)&%#\n";
             case 8:
                 /*
@@ -109,7 +145,9 @@ public class Abyss extends Effect {
                 fica preso mas também já não liberta o programador
                 que lá estava.
                  */
+
                 programmer.stuck();
+
                 return "sadasdasd\nsdsdfsdf\nasdasdasd\nfsdfsdfdfg\netc...\n";
             case 9:
                 /*
@@ -119,11 +157,18 @@ public class Abyss extends Effect {
                 Caso apenas esteja um programador neste Abismo,
                 então não existe nenhum efeito a aplicar.
                  */
+
                 programmer.move(-3);
+
                 return "segmentation fault (core dumped)";
             default:
                 return "";
         }
+    }
+
+    @Override
+    int getId(){
+        return id;
     }
 
     @Override

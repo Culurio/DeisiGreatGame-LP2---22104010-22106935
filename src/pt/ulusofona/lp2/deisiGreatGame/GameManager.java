@@ -11,10 +11,10 @@ public class GameManager {
     private int boardSize;
     private int plays;
     private int currentPlayer;
-    private List<Tool> tools = new ArrayList<>();
-    private List<Abyss> abysses = new ArrayList<>();
+    private final List<Tool> tools = new ArrayList<>();
+    private final List<Abyss> abysses = new ArrayList<>();
     private List<Programmer> players = new ArrayList<>();
-    private List<String> gameResults = new ArrayList<>();
+    private final List<String> gameResults = new ArrayList<>();
 
 
     public GameManager(int boardSize, List<Programmer> players, int numberOfPlayer) {
@@ -282,7 +282,7 @@ public class GameManager {
             info.append(programmer.programmerTools()).append(" | ");
         }
 
-        return info.toString().substring(0,info.length()-3);
+        return info.substring(0,info.length()-3);
     }
 
     public int getCurrentPlayerID() {
@@ -330,11 +330,6 @@ public class GameManager {
         return "Casa Vazia";
     }
 
-    public void stuckPlayer(){
-        Programmer current = players.get(currentPlayer);
-
-        if (!current.isStuck() );
-    }
 
     public boolean gameIsOver() {
         for (Programmer programmer : players) {

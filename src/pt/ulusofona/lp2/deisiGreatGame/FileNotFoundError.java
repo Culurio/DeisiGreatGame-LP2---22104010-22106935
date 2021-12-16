@@ -1,5 +1,7 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
+import java.util.List;
+
 public class FileNotFoundError extends Abyss {
     FileNotFoundError(int id, int position) {
         super(id, position);
@@ -7,7 +9,7 @@ public class FileNotFoundError extends Abyss {
     }
 
     @Override
-    String effect(Programmer programmer) {
+    String effect(Programmer programmer, List<Programmer> programmers) {
         /*
                 File Not Found Exception - O programador recua 3 casas.
         */

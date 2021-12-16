@@ -1,5 +1,7 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
+import java.util.List;
+
 public class SecundaryEffects extends Abyss{
     SecundaryEffects(int id, int position) {
         super(id, position);
@@ -7,7 +9,7 @@ public class SecundaryEffects extends Abyss{
     }
 
     @Override
-    String effect(Programmer programmer) {
+    String effect(Programmer programmer, List<Programmer> programmers) {
         /*
                 Efeitos secundários O programador recua para a posição onde estava há 2 movimentos atrás.
         */

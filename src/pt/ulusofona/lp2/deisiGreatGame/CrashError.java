@@ -1,5 +1,7 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
+import java.util.List;
+
 public class CrashError extends Abyss {
     CrashError(int id, int position) {
         super(id, position);
@@ -7,7 +9,7 @@ public class CrashError extends Abyss {
     }
 
     @Override
-    String effect(Programmer programmer) {
+    String effect(Programmer programmer, List<Programmer> programmers) {
         /*
                 Crash (aka Rebentanço) - O programador volta à primeira casa do jogo.
          */

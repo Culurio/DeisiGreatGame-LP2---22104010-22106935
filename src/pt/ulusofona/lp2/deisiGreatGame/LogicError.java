@@ -1,5 +1,7 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
+import java.util.List;
+
 public class LogicError extends Abyss {
     LogicError(int id, int position) {
         super(id, position);
@@ -7,7 +9,7 @@ public class LogicError extends Abyss {
     }
 
     @Override
-    String effect(Programmer programmer) {
+    String effect(Programmer programmer, List<Programmer> programmers) {
         /*
                 Erro de lógica - O programador recua N casas, sendo N metade do
                 valor que tiver saído no dado, arredondado para baixo.

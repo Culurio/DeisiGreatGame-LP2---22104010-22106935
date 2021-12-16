@@ -1,5 +1,7 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
+import java.util.List;
+
 public class SegmentationFault extends Abyss{
     SegmentationFault(int id, int position) {
         super(id, position);
@@ -7,7 +9,7 @@ public class SegmentationFault extends Abyss{
     }
 
     @Override
-    String effect(Programmer programmer) {
+    String effect(Programmer programmer, List<Programmer> programmers) {
         /*
                 Segmentation Fault Este Abismo apenas é activado caso existam dois ou
                 mais programadores na mesma casa.

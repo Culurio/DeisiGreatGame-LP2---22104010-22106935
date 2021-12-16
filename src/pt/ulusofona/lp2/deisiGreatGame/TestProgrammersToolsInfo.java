@@ -38,8 +38,8 @@ public class TestProgrammersToolsInfo {
         ArrayList<String> lan = new ArrayList<>();
         GameManager gameManager = new GameManager();
         gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix());
-        Tool tool = gameManager.tools.get(0);
-        gameManager.players.get(0).addTool(tool);
+        Tool tool = gameManager.getTools().get(0);
+        gameManager.getPlayers().get(0).addTool(tool);
         Assert.assertEquals("Joao : Tratamento de Excepções | gongas : No tools", gameManager.getProgrammersInfo());
     }
 
@@ -64,17 +64,48 @@ public class TestProgrammersToolsInfo {
         ArrayList<String> lan = new ArrayList<>();
         GameManager gameManager = new GameManager();
         gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix2());
-        gameManager.moveCurrentPlayer(6);
-        gameManager.reactToAbyssOrTool();
-        gameManager.moveCurrentPlayer(6);
-        gameManager.reactToAbyssOrTool();
-        System.out.println(gameManager.players.get(gameManager.currentPlayer).toString());
+
         gameManager.moveCurrentPlayer(1);
         gameManager.reactToAbyssOrTool();
+        System.out.println(gameManager.getPlayers().get(0));
+        gameManager.setCurrentPlayer(0);
         gameManager.moveCurrentPlayer(1);
-        System.out.println(gameManager.players.get(gameManager.currentPlayer).toString());
         gameManager.reactToAbyssOrTool();
-        System.out.println(gameManager.players.get(gameManager.currentPlayer).toString());
-        Assert.assertEquals("Joao","");
+        System.out.println(gameManager.getAbysses().get(0).name);
+        System.out.println(gameManager.getAbysses().get(0).id);
+        System.out.println(gameManager.getPlayers().get(0).toString());
+
+        Assert.assertEquals("Ciclo infinito",gameManager.getAbysses().get(0).name);
+    }
+
+    @Test
+    public void testProgrammerTools6(){
+        TestCreateMatrix m1 = new TestCreateMatrix();
+        ArrayList<String> lan = new ArrayList<>();
+        GameManager gameManager = new GameManager();
+        gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix2());
+
+        gameManager.moveCurrentPlayer(1);
+        gameManager.reactToAbyssOrTool();
+
+        System.out.println(gameManager.getPlayers().get(gameManager.getCurrentPlayer()).toString());
+        gameManager.moveCurrentPlayer(1);
+        gameManager.reactToAbyssOrTool();
+
+        System.out.println(gameManager.getPlayers().get(gameManager.getCurrentPlayer()).toString());
+        gameManager.moveCurrentPlayer(1);
+        gameManager.reactToAbyssOrTool();
+
+        System.out.println(gameManager.getPlayers().get(gameManager.getCurrentPlayer()).toString());
+        gameManager.moveCurrentPlayer(1);
+        gameManager.reactToAbyssOrTool();
+
+        System.out.println(gameManager.getPlayers().get(gameManager.getCurrentPlayer()).toString());
+        gameManager.moveCurrentPlayer(1);
+        gameManager.reactToAbyssOrTool();
+
+        System.out.println(gameManager.getPlayers().get(gameManager.getCurrentPlayer()).toString());
+
+        Assert.assertEquals(true,gameManager.getPlayers().get(1).isStuck());
     }
 }

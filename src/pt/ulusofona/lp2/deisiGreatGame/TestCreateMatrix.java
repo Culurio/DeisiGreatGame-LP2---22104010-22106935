@@ -47,8 +47,8 @@ public class TestCreateMatrix {
     public String [][]createEffectsMatrix2(){
         String[][] effects = new String[2][4];
         effects[0][0] = "0";
-        effects[0][1] = "3";
-        effects[0][2] = "8";
+        effects[0][1] = "8";
+        effects[0][2] = "2";
         effects[1][0] = "0";
         effects[1][1] = "8";
         effects[1][2] = "5";

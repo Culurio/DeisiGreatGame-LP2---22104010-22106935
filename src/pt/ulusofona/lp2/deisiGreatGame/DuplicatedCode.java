@@ -1,5 +1,7 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
+import java.util.List;
+
 public class DuplicatedCode extends Abyss {
     DuplicatedCode(int id, int position) {
         super(id, position);
@@ -7,7 +9,7 @@ public class DuplicatedCode extends Abyss {
     }
 
     @Override
-    String effect(Programmer programmer) {
+    String effect(Programmer programmer, List<Programmer> programmers) {
         /*
                 Duplicated Code - O programador recua até à casa onde estava antes de chegar a esta casa.
         */

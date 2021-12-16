@@ -1,5 +1,7 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
+import java.util.List;
+
 abstract public class Abyss{
 
     protected int id;
@@ -11,7 +13,7 @@ abstract public class Abyss{
         this.position = position;
     }
 
-    abstract String effect(Programmer programmer);
+    abstract String effect(Programmer programmer, List<Programmer> players);
 
     abstract String getPng();
 

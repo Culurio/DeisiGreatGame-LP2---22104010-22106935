@@ -58,6 +58,7 @@ public class TestCircularTurn {
         gameManager.createInitialBoard(createMatrix2Players(), 79);
         long startTime = System.currentTimeMillis();
         gameManager.moveCurrentPlayer(2);
+        gameManager.reactToAbyssOrTool();
         long elapsedTime =System.currentTimeMillis() - startTime;
         Assert.assertEquals(1, gameManager.getCurrentPlayerID());
         System.out.println(elapsedTime);
@@ -81,10 +82,15 @@ public class TestCircularTurn {
         gameManager.createInitialBoard(createMatrix4Players(), 79);
         long startTime = System.currentTimeMillis();
         gameManager.moveCurrentPlayer(2);
+        gameManager.reactToAbyssOrTool();
         gameManager.moveCurrentPlayer(5);
+        gameManager.reactToAbyssOrTool();
         gameManager.moveCurrentPlayer(3);
+        gameManager.reactToAbyssOrTool();
         gameManager.moveCurrentPlayer(4);
+        gameManager.reactToAbyssOrTool();
         gameManager.moveCurrentPlayer(4);
+        gameManager.reactToAbyssOrTool();
         long elapsedTime =System.currentTimeMillis() - startTime;
         Assert.assertEquals(12, gameManager.getProgrammers(7).get(0).getId());
         System.out.println(elapsedTime);
@@ -94,10 +100,15 @@ public class TestCircularTurn {
         GameManager gameManager = new GameManager();
         gameManager.createInitialBoard(createMatrix4Players(), 79);
         gameManager.moveCurrentPlayer(1);
+        gameManager.reactToAbyssOrTool();
         gameManager.moveCurrentPlayer(2);
+        gameManager.reactToAbyssOrTool();
         gameManager.moveCurrentPlayer(2);
+        gameManager.reactToAbyssOrTool();
         gameManager.moveCurrentPlayer(2);
+        gameManager.reactToAbyssOrTool();
         gameManager.moveCurrentPlayer(1);
-        Assert.assertEquals(gameManager.players, gameManager.getProgrammers(3));
+        gameManager.reactToAbyssOrTool();
+        Assert.assertEquals(gameManager.getPlayers(), gameManager.getProgrammers(3));
     }
 }

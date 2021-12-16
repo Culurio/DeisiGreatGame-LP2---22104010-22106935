@@ -7,20 +7,52 @@ import java.util.*;
 import java.util.List;
 
 public class GameManager {
-    int numberOfPlayers;
-    int boardSize;
-    int plays;
-    int currentPlayer;
-    List<Tool> tools = new ArrayList<>();
-    List<Abyss> abysses = new ArrayList<>();
-    List<Programmer> players = new ArrayList<>();
-    List<String> gameResults = new ArrayList<>();
+    private int numberOfPlayers;
+    private int boardSize;
+    private int plays;
+    private int currentPlayer;
+    private List<Tool> tools = new ArrayList<>();
+    private List<Abyss> abysses = new ArrayList<>();
+    private List<Programmer> players = new ArrayList<>();
+    private List<String> gameResults = new ArrayList<>();
 
 
     public GameManager(int boardSize, List<Programmer> players, int numberOfPlayer) {
         this.players = players;
         this.numberOfPlayers = numberOfPlayer;
         this.boardSize = boardSize;
+    }
+
+    public void setCurrentPlayer(int currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
+
+    public int getNumberOfPlayers() {
+        return numberOfPlayers;
+    }
+
+    public int getBoardSize() {
+        return boardSize;
+    }
+
+    public int getPlays() {
+        return plays;
+    }
+
+    public int getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public List<Tool> getTools() {
+        return tools;
+    }
+
+    public List<Abyss> getAbysses() {
+        return abysses;
+    }
+
+    public List<Programmer> getPlayers() {
+        return players;
     }
 
     public GameManager() {
@@ -285,7 +317,7 @@ public class GameManager {
 
         for (Abyss abyss: abysses) {
             if(programmer.getPosition() == abyss.getPosition()){
-                return abyss.effect(programmer);
+                return abyss.effect(programmer,players);
             }
         }
 
@@ -295,7 +327,7 @@ public class GameManager {
                 return tool.getName();
             }
         }
-        return "Cona";
+        return "Casa Vazia";
     }
 
     public void stuckPlayer(){

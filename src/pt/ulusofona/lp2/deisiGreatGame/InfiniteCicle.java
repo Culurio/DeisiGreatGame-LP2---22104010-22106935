@@ -1,5 +1,7 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
+import java.util.List;
+
 public class InfiniteCicle extends Abyss{
     InfiniteCicle(int id, int position) {
         super(id, position);
@@ -7,7 +9,7 @@ public class InfiniteCicle extends Abyss{
     }
 
     @Override
-    String effect(Programmer programmer) {
+    String effect(Programmer programmer, List<Programmer> programmers) {
         /*
                 Ciclo infinito O programador fica preso na casa onde está até que
                 lá apareça outro programador para o ajudar.
@@ -18,6 +20,14 @@ public class InfiniteCicle extends Abyss{
                 fica preso mas também já não liberta o programador
                 que lá estava.
         */
+        for (Programmer programmer1: programmers) {
+            if(programmer1.getPosition() == programmer.getPosition() && programmer != programmer1){
+                programmer1.save();
+                programmer.stuck();
+                return "foste Salvo hehehehe obrigado Idiota";
+            }
+        }
+
 
         programmer.stuck();
 

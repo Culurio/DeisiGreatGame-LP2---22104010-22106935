@@ -4,14 +4,14 @@ import java.awt.event.PaintEvent;
 import java.util.*;
 
 public class Programmer {
-    String name;
-    ArrayList<String> favoriteLanguages;
+    private String name;
     private final int id;
     private int position;
     private int dice;
     private boolean status; //Derrotado = false ; em jogo = true
     private boolean stuck; //preso = true ; em jogo false;
     private final ProgrammerColor avatarColor;
+    private ArrayList<String> favoriteLanguages;
     private ArrayList<Integer> percursoDeCasas = new ArrayList<>();
     private HashMap<Integer, Tool> tools = new HashMap<>();
 

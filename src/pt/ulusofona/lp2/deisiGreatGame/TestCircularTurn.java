@@ -68,8 +68,11 @@ public class TestCircularTurn {
         GameManager gameManager = new GameManager();
         gameManager.createInitialBoard(createMatrix4Players(), 79);
         gameManager.moveCurrentPlayer(2);//ID 12 vai para ID 1
+        gameManager.reactToAbyssOrTool();
         gameManager.moveCurrentPlayer(5);//ID 1 vai para ID 28
+        gameManager.reactToAbyssOrTool();
         gameManager.moveCurrentPlayer(3);//ID 28 vai para ID 69
+        gameManager.reactToAbyssOrTool();
         Assert.assertEquals(69, gameManager.getCurrentPlayerID());
     }
     @Test

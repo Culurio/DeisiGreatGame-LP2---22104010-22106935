@@ -1,10 +1,15 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class Tool extends Effect {
+public class Tool {
 
+    protected int id;
+    protected String name;
+    protected int position;
 
-    Tool(int id, int position) {
-        super(id, position);
+    public Tool(int id, int position) {
+        this.id = id;
+        this.position = position;
+
         switch (id){
             case 0:
                 name = "Herança";
@@ -25,76 +30,25 @@ public class Tool extends Effect {
                 name = "Ajuda Do Professor";
                 break;
         }
-    }  
-
-    @Override
-    int getType() {
-        return 1;
     }
 
-    @Override
-    String effect(Programmer programmer) {
-        switch (id) {
-            case 0:
-                /*
-                Herança Evita os efeitos de:
-                - Duplicated Code
-                 */
-                programmer.addEffect(this);
-
-                return "Incesto :o";
-            case 1:
-                /*
-                Programação funcional Evita os efeitos de:
-                - Duplicated Code
-                - Efeitos secundários
-                 */
-                return "Programação funcional ha ha ha(Não sei o que dizer)";
-            case 2:
-                /*
-                Testes unitários Evita os efeitos de:
-                - Erro de lógica
-                 */
-                return "Para de testar as coisas na Main O.o";
-            case 3:
-                /*
-                Tratamento de Excepções Evita os efeitos de:
-                - Exception
-                - File Not Found Exception
-                 */
-                return "hehehe Vamos tratar dessas excepções";
-            case 4:
-                /*
-                IDE Evita os efeitos de:
-                - Erro de sintaxe
-                 */
-                return "Para de usar o bloco de notas >:(";
-            case 5:
-                /*
-                Ajuda Do Professor Evita os efeitos de:
-                - Erro de Sintaxe
-                - Erro de Lógica
-                - Exception
-                - File Not Found Exception
-                 */
-                return "Toma aí uma ajudinha heheheh";
-            default:
-                return "";
-        }
+    public void giveTool(Programmer programmer){
+        programmer.addTool(this);
     }
 
-    @Override
-    String getName() {
-        return name;
-    }
-
-    @Override
-    int getId(){
+    public int getId() {
         return id;
     }
 
-    @Override
-    String getPng() {
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public String getPng() {
         switch (id){
             case 0:
                 return "inheritance.png";
@@ -112,4 +66,5 @@ public class Tool extends Effect {
                 return null;
         }
     }
+
 }

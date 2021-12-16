@@ -11,7 +11,8 @@ public class GameManager {
     int boardSize;
     int plays;
     int currentPlayer;
-    List<Effect> effects = new ArrayList<>();
+    List<Tool> tools = new ArrayList<>();
+    List<Abyss> abysses = new ArrayList<>();
     List<Programmer> players = new ArrayList<>();
     List<String> gameResults = new ArrayList<>();
 
@@ -109,10 +110,10 @@ public class GameManager {
         return true;
     }
 
-    boolean createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools){
-        effects.clear();
+    public boolean createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools){
+        tools.clear();
         int effectId;
-        Effect effect = null;
+        Abyss abyss = null;
         String type;
         int effectPosition;
 
@@ -135,13 +136,44 @@ public class GameManager {
                 }
 
                 if (type.equals("1")){
-                    effect = new Tool(effectId,effectPosition);
+                    tools.add(new Tool(effectId,effectPosition));
                 }
 
                 if(type.equals("0")){
-                    effect = new Abyss(effectId,effectPosition);
+                    switch (effectId){
+                        case 0:
+                            abyss = new SyntaxError(effectId,effectPosition);
+                        break;
+                        case 1:
+                            abyss = new LogicError(effectId,effectPosition);
+                        break;
+                        case 2:
+                            abyss = new ExceptionError(effectId, effectPosition);
+                        break;
+                        case 3:
+                            abyss = new FileNotFoundError(effectId,effectPosition);
+                        break;
+                        case 4:
+                            abyss = new CrashError(effectId,effectPosition);
+                        break;
+                        case 5:
+                            abyss = new DuplicatedCode(effectId,effectPosition);
+                        break;
+                        case 6:
+                            abyss = new SecundaryEffects(effectId,effectPosition);
+                        break;
+                        case 7:
+                            abyss = new BlueScreenError(effectId,effectPosition);
+                        break;
+                        case 8:
+                            abyss = new InfiniteCicle(effectId,effectPosition);
+                            break;
+                        case 9:
+                            abyss = new SegmentationFault(effectId,effectPosition);
+                            break;
+                    }
+                    abysses.add(abyss);
                 }
-                effects.add(effect);
             }
             return  true;
         }
@@ -153,19 +185,31 @@ public class GameManager {
             return "glory.png";
         }
 
-        for (Effect effect: effects) {
-            if(effect.position == position){
-                return effect.getPng();
+        for (Abyss abyss: abysses) {
+            if(abyss.position == position){
+                return abyss.getPng();
+            }
+        }
+
+        for (Tool tool: tools) {
+            if(tool.position == position){
+                return tool.getPng();
             }
         }
 
         return null;
     }
 
-    String getTitle(int position){
-        for (Effect effect: effects) {
-            if(effect.position == position){
-                return effect.getName();
+    public String getTitle(int position){
+        for (Abyss abyss: abysses) {
+            if(abyss.position == position){
+                return abyss.getName();
+            }
+        }
+
+        for (Tool tool: tools) {
+            if(tool.position == position){
+                return tool.getName();
             }
         }
 
@@ -206,9 +250,7 @@ public class GameManager {
             info.append(programmer.programmerTools()).append(" | ");
         }
 
-        info.deleteCharAt(info.toString().length()-2);
-
-        return info.toString();
+        return info.toString().substring(0,info.length()-3);
     }
 
     public int getCurrentPlayerID() {
@@ -230,32 +272,36 @@ public class GameManager {
             }
 
             programmer.move(nrSpaces);
-            currentPlayer = (currentPlayer + 1) % numberOfPlayers;
-            plays++;
 
             return true;
         }
     }
 
     public String reactToAbyssOrTool(){
-        Programmer programmer = players.get(currentPlayer);
+        int staticCurrent = currentPlayer;
+        Programmer programmer = players.get(staticCurrent);
+        currentPlayer = (currentPlayer + 1) % numberOfPlayers;
+        plays++;
 
-        for (Effect effect : effects) {
-            if(programmer.getPosition() == effect.getPosition()){
-                if (effect.getType() == 0){
-                    return effect.effect(programmer);
-                }else {
-                    return effect.effect(programmer);
-                }
+        for (Abyss abyss: abysses) {
+            if(programmer.getPosition() == abyss.getPosition()){
+                return abyss.effect(programmer);
             }
         }
-        return "";
+
+        for (Tool tool: tools) {
+            if(programmer.getPosition() == tool.getPosition()){
+                tool.giveTool(programmer);
+                return tool.getName();
+            }
+        }
+        return "Cona";
     }
 
     public void stuckPlayer(){
         Programmer current = players.get(currentPlayer);
 
-        if (!current.isStuck() )
+        if (!current.isStuck() );
     }
 
     public boolean gameIsOver() {

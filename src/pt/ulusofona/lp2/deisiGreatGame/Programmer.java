@@ -62,7 +62,7 @@ public class Programmer {
     }
 
     public int getPosition() {
-        return getId();
+        return position;
     }
 
     public String getName() {
@@ -113,13 +113,9 @@ public class Programmer {
         return position - percursoDeCasas.get(percursoDeCasas.size() - 2);
     }
 
-    public void addEffect(Tool tool){
+    public void addTool(Tool tool){
         tools.put(tool.getId(),tool);
     }
-
-    /*public Effect getEffect(){
-        return effects.get()
-    }*/
 
     public String programmerTools(){
         StringBuilder toolsString = new StringBuilder();

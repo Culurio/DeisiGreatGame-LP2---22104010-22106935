@@ -20,6 +20,10 @@ public class InfiniteCicle extends Abyss{
                 fica preso mas também já não liberta o programador
                 que lá estava.
         */
+        if(programmer.verifyTool(2)){
+            return "Usaste a tool e agora estás safo hehehe";
+        }
+
         for (Programmer programmer1: programmers) {
             if(programmer1.getPosition() == programmer.getPosition() && programmer != programmer1){
                 programmer1.save();

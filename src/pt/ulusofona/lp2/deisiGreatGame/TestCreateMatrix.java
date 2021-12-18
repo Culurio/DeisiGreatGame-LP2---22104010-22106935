@@ -86,4 +86,15 @@ public class TestCreateMatrix {
         effects[1][2] = "9";
         return effects;
     }
+
+    public String [][]createEffectsMatrix6(){
+        String[][] effects = new String[2][4];
+        effects[0][0] = "1";
+        effects[0][1] = "2";
+        effects[0][2] = "3";
+        effects[1][0] = "0";
+        effects[1][1] = "8";
+        effects[1][2] = "4";
+        return effects;
+    }
 }

@@ -109,4 +109,27 @@ public class TestProgrammersToolsInfo {
         Assert.assertEquals(true,gameManager.getPlayers().get(1).isStuck());
     }
 
+    @Test
+    public void testProgrammerTools7(){
+        TestCreateMatrix m1 = new TestCreateMatrix();
+        GameManager gameManager = new GameManager();
+        gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix6());
+
+        gameManager.moveCurrentPlayer(2);
+        gameManager.reactToAbyssOrTool();
+
+        gameManager.moveCurrentPlayer(3);
+        gameManager.reactToAbyssOrTool();
+
+        System.out.println(gameManager.getPlayers().get(0).getTools());
+
+        gameManager.moveCurrentPlayer(1);
+        gameManager.reactToAbyssOrTool();
+
+
+        System.out.println(gameManager.getPlayers().get(0).getTools());
+
+        Assert.assertEquals(false,gameManager.moveCurrentPlayer(1));
+    }
+
 }

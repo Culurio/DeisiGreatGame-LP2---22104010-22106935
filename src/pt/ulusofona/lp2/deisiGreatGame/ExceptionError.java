@@ -11,15 +11,15 @@ public class ExceptionError extends Abyss {
     @Override
     String effect(Programmer programmer, List<Programmer> programmers) {
         /*
-                File Not Found Exception - O programador recua 3 casas.
+                File Not Found Exception - O programador recua 2 casas.
         */
 
-        if (programmer.verifyTool(2)){
+        if (programmer.verifyTool(3) || programmer.verifyTool(5) ){
             return "UFAA SAFASTE TE DESSA agora não vais recuar";
         }
 
         programmer.move(-2);
-        return "Vais ter de recuar ainda mais :C\n";
+        return "Vais ter de recuar :C\n";
     }
 
     @Override

@@ -14,7 +14,7 @@ public class FileNotFoundError extends Abyss {
                 File Not Found Exception - O programador recua 3 casas.
         */
 
-        if (programmer.verifyTool(3)){
+        if (programmer.verifyTool(3) || programmer.verifyTool(5)){
             return "Estás Safo >:)";
         }
         programmer.move(-3);
@@ -23,6 +23,6 @@ public class FileNotFoundError extends Abyss {
 
     @Override
     String getPng() {
-        return "exception.png";
+        return "file-not-found-exception.png";
     }
 }

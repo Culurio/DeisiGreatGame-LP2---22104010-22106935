@@ -136,6 +136,8 @@ public class GameManager {
             Programmer player = new Programmer(name, id, favoriteLanguages, avatarColor);
             Collections.sort(player.getProgrammerFavLanList());
             players.add(player);
+            players.sort(new Programmer.IDComparator());
+            Collections.reverse(players);
             currentPlayer = 0;
         }
 

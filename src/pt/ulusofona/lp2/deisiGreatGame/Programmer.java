@@ -82,7 +82,11 @@ public class Programmer {
     }
 
     public void move(int moves){
-        position += moves;
+        if(position + moves < 1){
+            this.position = 1;
+        }else {
+            position += moves;
+        }
     }
 
     public boolean isNameValid() {
@@ -105,12 +109,11 @@ public class Programmer {
         return stuck;
     }
 
-    public int diferencaAteAUltimaCasa(){
-        return position - percursoDeCasas.get(percursoDeCasas.size() - 1);
-    }
-
-    public int diferencaAtePenultimaCasa(){
-        return position - percursoDeCasas.get(percursoDeCasas.size() - 2);
+    public int goBackXTurns(int numTurns){
+        if(percursoDeCasas.size() < numTurns){
+            return 1;
+        }
+        return position - percursoDeCasas.get(percursoDeCasas.size() - numTurns);//deu bigode
     }
 
     public void addTool(Tool tool){
@@ -140,6 +143,13 @@ public class Programmer {
         @Override
         public int compare(Programmer prog1, Programmer prog2) {
             return prog2.getPosition() - prog1.getPosition();
+        }
+    }
+    public static class IDComparator implements Comparator<Programmer> {
+
+        @Override
+        public int compare(Programmer prog1, Programmer prog2) {
+            return prog2.getId() - prog1.getId();
         }
     }
 }

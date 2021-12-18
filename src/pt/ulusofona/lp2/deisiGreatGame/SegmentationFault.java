@@ -1,5 +1,6 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SegmentationFault extends Abyss{
@@ -17,14 +18,31 @@ public class SegmentationFault extends Abyss{
                 Caso apenas esteja um programador neste Abismo,
                 então não existe nenhum efeito a aplicar.
          */
-
-        programmer.move(-3);
-
-        return "segmentation fault (core dumped)";
+        boolean ativar = false;//Ativar um loop para recuarem todos os jogadores
+        ArrayList<Programmer> sameTileProgrammers = new ArrayList<>();
+        sameTileProgrammers.add(programmer);
+        /*
+        Vai fazer um loop em todos os programadores da lista
+        se a posição for igual vai ativar o trigger para recuar
+        e adiciona os jogadores
+         */
+        for (Programmer programmer1:programmers) {
+            if (programmer.getPosition() == programmer1.getPosition()){
+                sameTileProgrammers.add(programmer1);
+                ativar = true;
+            }
+        }
+        if (ativar){
+            for (Programmer programmer1:sameTileProgrammers) {
+                programmer1.move(-3);
+            }
+            return "COVID SENHORES QUERO DISTANCIA";
+        }
+        return "FIXE ESTÁS SOZINHO";
     }
 
     @Override
     String getPng() {
-        return "secondary-effects.png";
+        return "core-dumped.png";
     }
 }

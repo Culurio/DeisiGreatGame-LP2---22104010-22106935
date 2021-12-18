@@ -18,7 +18,7 @@ public class DuplicatedCode extends Abyss {
             return ":) Boa poupaste umas boas linhas";
         }
 
-        programmer.move(-programmer.diferencaAteAUltimaCasa());
+        programmer.move(-programmer.goBackXTurns(1));
         return "Duplicated Code\nDuplicated Code\n";
     }
 

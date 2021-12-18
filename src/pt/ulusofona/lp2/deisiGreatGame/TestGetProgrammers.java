@@ -22,42 +22,69 @@ public class TestGetProgrammers {
     public void TestCreateInitialBoard2() {
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        ArrayList<Programmer> playersTest = new ArrayList<>();
-        ArrayList<String> languagesTest = new ArrayList<>();
-        ArrayList<String> languagesTest2 = new ArrayList<>();
-        languagesTest2.add("java");
-        languagesTest2.add("python");
-        languagesTest.add("java");
-        playersTest.add(new Programmer("Joao", 12, languagesTest, ProgrammerColor.BLUE));
-        playersTest.add(new Programmer("gongas", 1, languagesTest2, ProgrammerColor.BROWN));
         gameManager.createInitialBoard(m1.createMatrix2Players(), 79);
-        Assert.assertEquals(playersTest.toString(), gameManager.getPlayers().toString());
+        Assert.assertEquals("[1 | gongas | 1 | java; python | Em Jogo, 12 | Joao | 1 | java | Em Jogo]"
+                , gameManager.getPlayers().toString());
     }
 
     @Test
-    public void TestCreateInvalidInitialBoard() {
-        String[][] playersInfo = new String[2][4];
+    public void TestGetProgrammers() {
+        TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        playersInfo[0][0] = "12";
-        playersInfo[0][1] = "Joao";
-        playersInfo[0][2] = "java";
-        playersInfo[0][3] = "Blue";
-        playersInfo[1][0] = "12";
-        playersInfo[1][1] = "gongas";
-        playersInfo[1][2] = "python;java";
-        playersInfo[1][3] = "Brown";
-        Assert.assertFalse(gameManager.createInitialBoard(playersInfo, 79));
+        gameManager.createInitialBoard(m1.createMatrix2Players(), 79);
+        System.out.println(gameManager.getProgrammers(1));
+        Assert.assertEquals("[1 | gongas | 1 | java; python | Em Jogo, 12 | Joao | 1 | java | Em Jogo]"
+                , gameManager.getProgrammers(1).toString());
     }
 
     @Test
-    public void TestCreateInvalidInitialBoard2() {
-        String[][] playersInfo = new String[1][4];
+    public void TestGetProgrammers2
+            () {
+        TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        playersInfo[0][0] = "12";
-        playersInfo[0][1] = "Joao";
-        playersInfo[0][2] = "java";
-        playersInfo[0][3] = "Blue";
-        Assert.assertFalse(gameManager.createInitialBoard(playersInfo, 79));
+        gameManager.createInitialBoard(m1.createMatrix2Players(),15,m1.createEffectsMatrix3());
+        gameManager.moveCurrentPlayer(2);
+        gameManager.reactToAbyssOrTool();
+        System.out.println(gameManager.getProgrammers(1));
+        Assert.assertEquals("[12 | Joao | 1 | java | Em Jogo]"
+                , gameManager.getProgrammers(1).toString());
     }
+
+    @Test
+    public void TestGetProgrammersInfo() {
+        TestCreateMatrix m1 = new TestCreateMatrix();
+        GameManager gameManager = new GameManager();
+        gameManager.createInitialBoard(m1.createMatrix2Players(), 79);
+        System.out.println(gameManager.getProgrammers(1));
+        Assert.assertEquals("gongas : No tools | Joao : No tools"
+                , gameManager.getProgrammersInfo());
+    }
+
+    @Test
+    public void TestGetProgrammersInfo2() {
+        TestCreateMatrix m1 = new TestCreateMatrix();
+        GameManager gameManager = new GameManager();
+        gameManager.createInitialBoard(m1.createMatrix2Players(),15,m1.createEffectsMatrix3());
+        System.out.println(gameManager.getPlayers().get(0).getPosition());
+        gameManager.moveCurrentPlayer(1);
+        gameManager.reactToAbyssOrTool();
+        System.out.println(gameManager.getPlayers().get(0).getPosition());
+        Assert.assertEquals("gongas : Ajuda Do Professor | Joao : No tools"
+                , gameManager.getProgrammersInfo());
+    }
+
+    @Test
+    public void TestGetProgrammersInfo3() {
+        TestCreateMatrix m1 = new TestCreateMatrix();
+        GameManager gameManager = new GameManager();
+        gameManager.createInitialBoard(m1.createMatrix2Players(),15,m1.createEffectsMatrix3());
+
+        gameManager.moveCurrentPlayer(1);
+        gameManager.reactToAbyssOrTool();
+
+        Assert.assertEquals("gongas : No tools | Joao : No tools"
+                , gameManager.getProgrammersInfo());
+    }
+
 
 }

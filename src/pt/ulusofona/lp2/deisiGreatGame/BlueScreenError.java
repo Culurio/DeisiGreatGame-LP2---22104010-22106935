@@ -10,13 +10,13 @@ public class BlueScreenError extends Abyss {
 
     @Override
     String effect(Programmer programmer, List<Programmer> programmers) {
-        /*
-                Crash (aka Rebentanço) - O programador volta à primeira casa do jogo.
-        */
+         /*
+                Blue Screen of Death O programador perde imediatamente o jogo.
+          */
+        name = "Blue Screen of Death";
+        programmer.lose();
 
-        programmer.setInitialPosition();
-
-        return "Ahhhh *bolas* Here We Go Again\n";
+        return "Perdeu PlayBoy";
     }
 
     @Override

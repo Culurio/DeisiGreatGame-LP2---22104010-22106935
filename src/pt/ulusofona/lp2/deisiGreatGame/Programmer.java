@@ -112,8 +112,9 @@ public class Programmer {
     }
 
     public void goBackXTurns(int numTurns){
-        if(percursoDeCasas.size() < numTurns){
+        if(percursoDeCasas.size()-1 < numTurns){
             position = 1;
+            return;
         }
         position = percursoDeCasas.get((percursoDeCasas.size()-1) - numTurns);//deu bigode
     }

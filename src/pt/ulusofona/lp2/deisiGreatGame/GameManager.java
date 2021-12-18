@@ -334,9 +334,13 @@ public class GameManager {
 
 
     public boolean gameIsOver() {
+        int contador=0;
         for (Programmer programmer : players) {
-            if (programmer.getPosition() == boardSize) {
+            if (programmer.getPosition() == boardSize || contador == numberOfPlayers) {
                 return true;
+            }
+            if (!programmer.getStatusBool()){
+                contador++;
             }
         }
 

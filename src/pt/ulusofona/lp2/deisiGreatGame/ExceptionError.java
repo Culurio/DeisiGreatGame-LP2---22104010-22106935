@@ -14,11 +14,11 @@ public class ExceptionError extends Abyss {
                 File Not Found Exception - O programador recua 3 casas.
         */
 
-        if (programmer.verifyTool(3)){
+        if (programmer.verifyTool(2)){
             return "UFAA SAFASTE TE DESSA agora não vais recuar";
         }
 
-        programmer.move(-3);
+        programmer.move(-2);
         return "Vais ter de recuar ainda mais :C\n";
     }
 

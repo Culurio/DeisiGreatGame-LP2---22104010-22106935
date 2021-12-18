@@ -15,10 +15,10 @@ public class Tool {
                 name = "Herança";
                 break;
             case 1:
-                name = "Programação funcional";
+                name = "Programação Funcional";
                 break;
             case 2:
-                name = "Testes unitários";
+                name = "Testes Unitários";
                 break;
             case 3:
                 name = "Tratamento de Excepções";

@@ -20,7 +20,7 @@ public class InfiniteCicle extends Abyss{
                 fica preso mas também já não liberta o programador
                 que lá estava.
         */
-        if(programmer.verifyTool(2)){
+        if(programmer.verifyTool(1)){
             return "Usaste a tool e agora estás safo hehehe";
         }
 

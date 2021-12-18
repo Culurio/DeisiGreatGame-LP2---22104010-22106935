@@ -14,7 +14,9 @@ public class BlueScreenError extends Abyss {
                 Blue Screen of Death O programador perde imediatamente o jogo.
           */
         name = "Blue Screen of Death";
-        programmer.lose();
+        if(programmer.getStatusBool()){
+            programmer.lose();
+        }
 
         return "Perdeu PlayBoy";
     }

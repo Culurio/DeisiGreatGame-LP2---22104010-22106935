@@ -13,6 +13,19 @@ public class TestCreateMatrix {
         playersInfo[1][3] = "Brown";
         return playersInfo;
     }
+
+    public String [][]createMatrix2Players2(){
+        String[][] playersInfo = new String[2][4];
+        playersInfo[0][0] = "12";
+        playersInfo[0][1] = "Aoao";
+        playersInfo[0][2] = "java";
+        playersInfo[0][3] = "Blue";
+        playersInfo[1][0] = "1";
+        playersInfo[1][1] = "Bongas";
+        playersInfo[1][2] = "python;java";
+        playersInfo[1][3] = "Brown";
+        return playersInfo;
+    }
     public String [][]createMatrix4Players(){
         String[][] playersInfo = new String[4][4];
         playersInfo[0][0] = "12";

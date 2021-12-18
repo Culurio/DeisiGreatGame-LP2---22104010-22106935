@@ -85,23 +85,7 @@ public class TestProgrammerAbyss {
         gameManager.moveCurrentPlayer(1);
         gameManager.reactToAbyssOrTool();
 
-        gameManager.moveCurrentPlayer(1);
-        gameManager.reactToAbyssOrTool();
-
-        gameManager.moveCurrentPlayer(1);
-        gameManager.reactToAbyssOrTool();
-
-        gameManager.moveCurrentPlayer(1);
-        gameManager.reactToAbyssOrTool();
-
-        gameManager.moveCurrentPlayer(1);
-        gameManager.reactToAbyssOrTool();
-
-        gameManager.moveCurrentPlayer(1);
-        gameManager.reactToAbyssOrTool();
-
-        gameManager.moveCurrentPlayer(1);
-        gameManager.reactToAbyssOrTool();
+        System.out.println(gameManager.getCurrentPlayerID());
 
         Assert.assertEquals("gongas : No tools",gameManager.getProgrammersInfo());
 

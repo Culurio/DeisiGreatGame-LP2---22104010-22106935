@@ -311,7 +311,6 @@ public class GameManager {
             }
 
             programmer.move(nrSpaces);
-
             return true;
         }
     }
@@ -321,7 +320,6 @@ public class GameManager {
         Programmer programmer = players.get(staticCurrent);
         currentPlayer = (currentPlayer + 1) % numberOfPlayers;
         plays++;
-
         for (Abyss abyss: abysses) {
             if(programmer.getPosition() == abyss.getPosition() && programmer.getStatusBool()){
                 return abyss.effect(programmer,players);
@@ -341,12 +339,15 @@ public class GameManager {
     public boolean gameIsOver() {
         int contador=0;
         for (Programmer programmer : players) {
-            if (programmer.getPosition() == boardSize || contador == numberOfPlayers) {
+            if (programmer.getPosition() == boardSize) {
                 return true;
             }
             if (!programmer.getStatusBool()){
                 contador++;
             }
+        }
+        if(contador == numberOfPlayers - 1){
+            return true;
         }
 
         return false;
@@ -407,9 +408,8 @@ public class GameManager {
         gameResults.add(players.get(0).getName());
         gameResults.add("");
         gameResults.add("RESTANTES");
-        players.sort(new Programmer.PositionComparator());
         for (Programmer programmer : players) {
-            if (programmer == players.get(0) || !programmer.getStatusBool()) {
+            if (programmer == players.get(0)) {
             }else{
                 gameResults.add(programmer.getName() + " " + programmer.getPosition());
             }

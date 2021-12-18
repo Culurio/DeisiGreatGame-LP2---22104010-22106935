@@ -182,16 +182,16 @@ public class Programmer {
     public static class PostionThenName implements Comparator<Programmer> {
         public int compare(Programmer prog1, Programmer prog2) {
 
-            Integer x1 = prog1.getPosition();
-            Integer x2 = prog2.getPosition();
+            String x1 = prog1.getName();
+            String x2 = prog2.getName();
             int sComp = x1.compareTo(x2);
 
             if (sComp != 0) {
                 return sComp;
             }
 
-            String y1 = prog1.getName();
-            String y2 = prog2.getName();
+            Integer y1 = prog1.getPosition();
+            Integer y2 = prog2.getId();
             return y1.compareTo(y2);
         }
     }

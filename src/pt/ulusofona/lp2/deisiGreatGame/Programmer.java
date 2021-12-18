@@ -6,14 +6,14 @@ import java.util.*;
 public class Programmer {
     private final String name;
     private final int id;
-    private int position;
-    private int dice;
-    private boolean status; //Derrotado = false ; em jogo = true
-    private boolean stuck; //preso = true ; em jogo false;
     private final ProgrammerColor avatarColor;
     private final ArrayList<String> favoriteLanguages;
     private final ArrayList<Integer> percursoDeCasas = new ArrayList<>();
     private final HashMap<Integer, Tool> tools = new HashMap<>();
+    private int position;
+    private int dice;
+    private boolean status; //Derrotado = false ; em jogo = true
+    private boolean stuck; //preso = true ; em jogo false;
 
     Programmer(String name, int id, ArrayList<String> favoriteLanguages, ProgrammerColor avatarColor) {
         this.name = name;
@@ -25,7 +25,7 @@ public class Programmer {
     }
 
     public String getProgrammerFavLan() {
-        return ((favoriteLanguages.toString().replace(",",";")).replace("[", "").replace("]", ""));
+        return ((favoriteLanguages.toString().replace(",", ";")).replace("[", "").replace("]", ""));
     }
 
     public ArrayList<String> getProgrammerFavLanList() {
@@ -39,9 +39,9 @@ public class Programmer {
         return "Derrotado";
     }
 
-    boolean verifyTool(int id){
-        for (Tool tool : tools.values()){
-            if (tool.getId() == id){
+    boolean verifyTool(int id) {
+        for (Tool tool : tools.values()) {
+            if (tool.getId() == id) {
                 tools.remove(id);
                 return true;
             }
@@ -50,12 +50,12 @@ public class Programmer {
         return false;
     }
 
-    public void setDice(int dice) {
-        this.dice = dice;
-    }
-
     public int getDice() {
         return dice;
+    }
+
+    public void setDice(int dice) {
+        this.dice = dice;
     }
 
     public boolean getStatusBool() {
@@ -78,14 +78,14 @@ public class Programmer {
         return avatarColor;
     }
 
-    public void setInitialPosition(){
+    public void setInitialPosition() {
         position = 1;
     }
 
-    public void move(int moves){
-        if(position + moves < 1){
+    public void move(int moves) {
+        if (position + moves < 1) {
             this.position = 1;
-        }else {
+        } else {
             position += moves;
             percursoDeCasas.add(position);
         }
@@ -107,43 +107,43 @@ public class Programmer {
         stuck = false;
     }
 
-    public boolean isStuck(){
+    public boolean isStuck() {
         return stuck;
     }
 
-    public void goBackXTurns(int numTurns){
-        if(percursoDeCasas.size()-1 < numTurns){
+    public void goBackXTurns(int numTurns) {
+        if (percursoDeCasas.size() - 1 < numTurns) {
             position = 1;
             return;
         }
-        position = percursoDeCasas.get((percursoDeCasas.size()-1) - numTurns);//deu bigode
+        position = percursoDeCasas.get((percursoDeCasas.size() - 1) - numTurns);//deu bigode
     }
 
-    public void addTool(Tool tool){
-        tools.put(tool.getId(),tool);
+    public void addTool(Tool tool) {
+        tools.put(tool.getId(), tool);
     }
 
-    public String programmerTools(){
+    public String programmerTools() {
         StringBuilder toolsString = new StringBuilder();
-        if(tools.size() == 0){
+        if (tools.size() == 0) {
             return name + " : " + getTools();
         }
-        for (Tool tool : tools.values()){
+        for (Tool tool : tools.values()) {
             toolsString.append(tool.getName()).append(";");
         }
-        toolsString.deleteCharAt(toolsString.toString().length()-1);
+        toolsString.deleteCharAt(toolsString.toString().length() - 1);
         return name + " : " + getTools();
     }
 
-    public String getTools(){
+    public String getTools() {
         StringBuilder toolsString = new StringBuilder();
-        if(tools.size() == 0){
+        if (tools.size() == 0) {
             return "No tools";
         }
-        for (Tool tool : tools.values()){
+        for (Tool tool : tools.values()) {
             toolsString.append(tool.getName()).append(";");
         }
-        toolsString.deleteCharAt(toolsString.toString().length()-1);
+        toolsString.deleteCharAt(toolsString.toString().length() - 1);
         return toolsString.toString();
     }
 
@@ -151,7 +151,7 @@ public class Programmer {
     public String toString() {
 
 
-        return getId() + " | " + getName() + " | " + getPosition() + " | "+ getTools() + " | "+ getProgrammerFavLan()
+        return getId() + " | " + getName() + " | " + getPosition() + " | " + getTools() + " | " + getProgrammerFavLan()
                 + " | " + getStatus();
     }
 
@@ -162,6 +162,7 @@ public class Programmer {
             return prog2.getPosition() - prog1.getPosition();
         }
     }
+
     public static class IDComparator implements Comparator<Programmer> {
 
         @Override
@@ -175,6 +176,23 @@ public class Programmer {
         @Override
         public int compare(Programmer prog1, Programmer prog2) {
             return prog1.getName().compareTo(prog2.getName());
+        }
+    }
+
+    public static class PostionThenName implements Comparator<Programmer> {
+        public int compare(Programmer prog1, Programmer prog2) {
+
+            Integer x1 = prog1.getPosition();
+            Integer x2 = prog2.getPosition();
+            int sComp = x1.compareTo(x2);
+
+            if (sComp != 0) {
+                return sComp;
+            }
+
+            String y1 = prog1.getName();
+            String y2 = prog2.getName();
+            return y1.compareTo(y2);
         }
     }
 }

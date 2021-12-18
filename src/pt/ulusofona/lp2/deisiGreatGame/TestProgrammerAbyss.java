@@ -100,6 +100,9 @@ public class TestProgrammerAbyss {
         gameManager.moveCurrentPlayer(1);
         gameManager.reactToAbyssOrTool();
 
+        gameManager.moveCurrentPlayer(1);
+        gameManager.reactToAbyssOrTool();
+
         Assert.assertEquals("gongas : No tools",gameManager.getProgrammersInfo());
 
     }

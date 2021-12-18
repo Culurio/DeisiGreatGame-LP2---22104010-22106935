@@ -323,13 +323,13 @@ public class GameManager {
         plays++;
 
         for (Abyss abyss: abysses) {
-            if(programmer.getPosition() == abyss.getPosition()){
+            if(programmer.getPosition() == abyss.getPosition() && programmer.getStatusBool()){
                 return abyss.effect(programmer,players);
             }
         }
 
         for (Tool tool: tools) {
-            if(programmer.getPosition() == tool.getPosition()){
+            if(programmer.getPosition() == tool.getPosition() && programmer.getStatusBool()){
                 tool.giveTool(programmer);
                 return tool.getName();
             }
@@ -407,6 +407,7 @@ public class GameManager {
         gameResults.add(players.get(0).getName());
         gameResults.add("");
         gameResults.add("RESTANTES");
+        players.sort(new Programmer.PositionComparator());
         for (Programmer programmer : players) {
             if (programmer == players.get(0) || !programmer.getStatusBool()) {
             }else{

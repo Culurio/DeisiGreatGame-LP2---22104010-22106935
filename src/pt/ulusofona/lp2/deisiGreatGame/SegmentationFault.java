@@ -27,6 +27,9 @@ public class SegmentationFault extends Abyss{
         e adiciona os jogadores
          */
         for (Programmer programmer1:programmers) {
+            if (programmer.getColor() == programmer1.getColor()){
+                continue;
+            }
             if (programmer.getPosition() == programmer1.getPosition()){
                 sameTileProgrammers.add(programmer1);
                 ativar = true;

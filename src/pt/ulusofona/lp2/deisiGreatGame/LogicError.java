@@ -22,7 +22,7 @@ public class LogicError extends Abyss {
         }
 
         int moves = programmer.getDice() / 2;
-        programmer.move(moves);
+        programmer.move(-moves);
         return "Benfica > Barcelona ou seja Portimonense > Barcelona\n";
     }
 

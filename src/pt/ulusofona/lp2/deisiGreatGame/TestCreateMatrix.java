@@ -65,4 +65,14 @@ public class TestCreateMatrix {
         effects[1][2] = "5";
         return effects;
     }
+    public String [][]createEffectsMatrix4(){
+        String[][] effects = new String[2][4];
+        effects[0][0] = "0";
+        effects[0][1] = "9";
+        effects[0][2] = "7";
+        effects[1][0] = "0";
+        effects[1][1] = "1";
+        effects[1][2] = "3";
+        return effects;
+    }
 }

@@ -123,18 +123,32 @@ public class Programmer {
     public String programmerTools(){
         StringBuilder toolsString = new StringBuilder();
         if(tools.size() == 0){
-            return name +" : No tools";
+            return name + " : " + getTools();
         }
         for (Tool tool : tools.values()){
             toolsString.append(tool.getName()).append(";");
         }
         toolsString.deleteCharAt(toolsString.toString().length()-1);
-        return name + " : " + toolsString.toString();
+        return name + " : " + getTools();
+    }
+
+    public String getTools(){
+        StringBuilder toolsString = new StringBuilder();
+        if(tools.size() == 0){
+            return "No tools";
+        }
+        for (Tool tool : tools.values()){
+            toolsString.append(tool.getName()).append(";");
+        }
+        toolsString.deleteCharAt(toolsString.toString().length()-1);
+        return toolsString.toString();
     }
 
     @Override
     public String toString() {
-        return getId() + " | " + getName() + " | " + getPosition() + " | " + getProgrammerFavLan()
+
+
+        return getId() + " | " + getName() + " | " + getPosition() + " | "+ getTools() + " | "+ getProgrammerFavLan()
                 + " | " + getStatus();
     }
 

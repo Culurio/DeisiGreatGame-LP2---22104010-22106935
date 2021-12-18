@@ -40,7 +40,7 @@ public class TestProgrammersToolsInfo {
         gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix());
         Tool tool = gameManager.getTools().get(0);
         gameManager.getPlayers().get(0).addTool(tool);
-        Assert.assertEquals("Joao : Tratamento de Excepções | gongas : No tools", gameManager.getProgrammersInfo());
+        Assert.assertEquals("gongas : Tratamento de Excepções | Joao : No tools", gameManager.getProgrammersInfo());
     }
 
     @Test
@@ -55,7 +55,7 @@ public class TestProgrammersToolsInfo {
         gameManager.reactToAbyssOrTool();
         gameManager.moveCurrentPlayer(1);
         gameManager.reactToAbyssOrTool();
-        Assert.assertEquals("Joao : Tratamento de Excepções | gongas : No tools", gameManager.getProgrammersInfo());
+        Assert.assertEquals("gongas : Tratamento de Excepções | Joao : No tools", gameManager.getProgrammersInfo());
     }
 
     @Test

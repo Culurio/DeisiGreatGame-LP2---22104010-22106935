@@ -23,18 +23,8 @@ public class TestGetProgrammers {
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
         gameManager.createInitialBoard(m1.createMatrix2Players(), 79);
-        Assert.assertEquals("[1 | gongas | 1 | java; python | Em Jogo, 12 | Joao | 1 | java | Em Jogo]"
+        Assert.assertEquals("[1 | gongas | 1 | No tools | java; python | Em Jogo, 12 | Joao | 1 | No tools | java | Em Jogo]"
                 , gameManager.getPlayers().toString());
-    }
-
-    @Test
-    public void TestGetProgrammers() {
-        TestCreateMatrix m1 = new TestCreateMatrix();
-        GameManager gameManager = new GameManager();
-        gameManager.createInitialBoard(m1.createMatrix2Players(), 79);
-        System.out.println(gameManager.getProgrammers(1));
-        Assert.assertEquals("[1 | gongas | 1 | java; python | Em Jogo, 12 | Joao | 1 | java | Em Jogo]"
-                , gameManager.getProgrammers(1).toString());
     }
 
     @Test
@@ -46,7 +36,7 @@ public class TestGetProgrammers {
         gameManager.moveCurrentPlayer(2);
         gameManager.reactToAbyssOrTool();
         System.out.println(gameManager.getProgrammers(1));
-        Assert.assertEquals("[12 | Joao | 1 | java | Em Jogo]"
+        Assert.assertEquals("[12 | Joao | 1 | No tools | java | Em Jogo]"
                 , gameManager.getProgrammers(1).toString());
     }
 
@@ -69,7 +59,7 @@ public class TestGetProgrammers {
         gameManager.moveCurrentPlayer(1);
         gameManager.reactToAbyssOrTool();
         System.out.println(gameManager.getPlayers().get(0).getPosition());
-        Assert.assertEquals("gongas : Ajuda Do Professor | Joao : No tools"
+        Assert.assertEquals("gongas : No tools | Joao : No tools"
                 , gameManager.getProgrammersInfo());
     }
 

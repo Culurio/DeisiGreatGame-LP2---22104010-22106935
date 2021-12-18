@@ -5,48 +5,15 @@ import org.junit.Test;
 
 public class TestCircularTurn {
 
-    public String [][]createMatrix2Players(){
-        String[][] playersInfo = new String[2][4];
-        playersInfo[0][0] = "12";
-        playersInfo[0][1] = "Joao";
-        playersInfo[0][2] = "java";
-        playersInfo[0][3] = "Blue";
-        playersInfo[1][0] = "1";
-        playersInfo[1][1] = "gongas";
-        playersInfo[1][2] = "python;java";
-        playersInfo[1][3] = "Brown";
-        return playersInfo;
-    }
-
-    public String [][]createMatrix4Players(){
-        String[][] playersInfo = new String[4][4];
-        playersInfo[0][0] = "12";
-        playersInfo[0][1] = "Joao";
-        playersInfo[0][2] = "java";
-        playersInfo[0][3] = "Blue";
-        playersInfo[1][0] = "1";
-        playersInfo[1][1] = "gongas";
-        playersInfo[1][2] = "python;java";
-        playersInfo[1][3] = "Brown";
-        playersInfo[2][0] = "28";
-        playersInfo[2][1] = "Claudio";
-        playersInfo[2][2] = "GoLang;Lua;Rust";
-        playersInfo[2][3] = "Purple";
-        playersInfo[3][0] = "69";
-        playersInfo[3][1] = "Jovane";
-        playersInfo[3][2] = "C;C++;C#";
-        playersInfo[3][3] = "Green";
-        return playersInfo;
-    }
-
     /*
     O primeiro turno é do jogador que está na primeira linha da matriz
      */
     @Test
     public void testCurrentId() {
+        TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        gameManager.createInitialBoard(createMatrix2Players(), 79);
-        Assert.assertEquals(12, gameManager.getCurrentPlayerID());
+        gameManager.createInitialBoard(m1.createMatrix2Players(), 79);
+        Assert.assertEquals(1, gameManager.getCurrentPlayerID());
     }
 
     /*
@@ -54,23 +21,25 @@ public class TestCircularTurn {
      */
     @Test
     public void testCurrentId2() {
+        TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        gameManager.createInitialBoard(createMatrix2Players(), 79);
+        gameManager.createInitialBoard(m1.createMatrix2Players(), 79);
         long startTime = System.currentTimeMillis();
         gameManager.moveCurrentPlayer(2);
         gameManager.reactToAbyssOrTool();
         long elapsedTime =System.currentTimeMillis() - startTime;
-        Assert.assertEquals(1, gameManager.getCurrentPlayerID());
+        Assert.assertEquals(12, gameManager.getCurrentPlayerID());
         System.out.println(elapsedTime);
     }
 
     @Test
     public void testCurrentId3() {
+        TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        gameManager.createInitialBoard(createMatrix4Players(), 79);
-        gameManager.moveCurrentPlayer(2);//ID 12 vai para ID 1
+        gameManager.createInitialBoard(m1.createMatrix4Players(), 79);
+        gameManager.moveCurrentPlayer(2);//ID 1 vai para ID 12
         gameManager.reactToAbyssOrTool();
-        gameManager.moveCurrentPlayer(5);//ID 1 vai para ID 28
+        gameManager.moveCurrentPlayer(5);//ID 12 vai para ID 28
         gameManager.reactToAbyssOrTool();
         gameManager.moveCurrentPlayer(3);//ID 28 vai para ID 69
         gameManager.reactToAbyssOrTool();
@@ -78,8 +47,9 @@ public class TestCircularTurn {
     }
     @Test
     public void testCurrentPosition(){
+        TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        gameManager.createInitialBoard(createMatrix4Players(), 79);
+        gameManager.createInitialBoard(m1.createMatrix4Players(), 79);
         long startTime = System.currentTimeMillis();
         gameManager.moveCurrentPlayer(2);
         gameManager.reactToAbyssOrTool();
@@ -92,13 +62,14 @@ public class TestCircularTurn {
         gameManager.moveCurrentPlayer(4);
         gameManager.reactToAbyssOrTool();
         long elapsedTime =System.currentTimeMillis() - startTime;
-        Assert.assertEquals(12, gameManager.getProgrammers(7).get(0).getId());
+        Assert.assertEquals(1, gameManager.getProgrammers(7).get(0).getId());
         System.out.println(elapsedTime);
     }
     @Test
     public void testCurrentPosition2(){
+        TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        gameManager.createInitialBoard(createMatrix4Players(), 79);
+        gameManager.createInitialBoard(m1.createMatrix4Players(), 79);
         gameManager.moveCurrentPlayer(1);
         gameManager.reactToAbyssOrTool();
         gameManager.moveCurrentPlayer(2);

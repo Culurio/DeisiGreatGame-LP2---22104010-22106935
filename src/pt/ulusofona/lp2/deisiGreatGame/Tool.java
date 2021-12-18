@@ -18,7 +18,7 @@ public class Tool {
                 name = "Programação Funcional";
                 break;
             case 2:
-                name = "Testes Unitários";
+                name = "Testes unitários";
                 break;
             case 3:
                 name = "Tratamento de Excepções";

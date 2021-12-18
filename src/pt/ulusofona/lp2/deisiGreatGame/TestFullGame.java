@@ -25,7 +25,8 @@ public class TestFullGame {
         System.out.println(gameManager.getPlayers().get(0).getName());
         System.out.println(gameManager.getPlayers().get(1).getPosition());
 
-        Assert.assertEquals("gongas : No tools",gameManager.getGameResults());
+        Assert.assertEquals("[O GRANDE JOGO DO DEISI, , NR. DE TURNOS, 4, , VENCEDOR, Bongas, , RESTANTES, Aoao 4]"
+                ,gameManager.getGameResults().toString());
 
     }
 }

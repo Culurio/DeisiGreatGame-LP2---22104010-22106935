@@ -399,22 +399,51 @@ public class GameManager {
 
     public List<String> getGameResults() {
         players.sort(new Programmer.PositionComparator());
+        String vencedor = players.get(0).getName();
         gameResults.add("O GRANDE JOGO DO DEISI");
         gameResults.add("");
         gameResults.add("NR. DE TURNOS");
         gameResults.add(plays+"");
         gameResults.add("");
         gameResults.add("VENCEDOR");
-        gameResults.add(players.get(0).getName());
+        gameResults.add(vencedor);
         gameResults.add("");
         gameResults.add("RESTANTES");
+        if(samePosition()){
+            players.sort(new Programmer.PositionComparator());
+            for (Programmer programmer : players) {
+                if (vencedor.equals(players.get(0).getName())) {
+                }else{
+                    gameResults.add(programmer.getName() + " " + programmer.getPosition());
+                }
+            }
+        }else {
+            restOfPlayers();
+        }
+        return gameResults;
+    }
+
+    public void restOfPlayers(){
         for (Programmer programmer : players) {
             if (programmer == players.get(0)) {
             }else{
                 gameResults.add(programmer.getName() + " " + programmer.getPosition());
             }
         }
-        return gameResults;
+    }
+
+    public boolean samePosition(){
+        int pos = players.get(0).getPosition();
+        int count = 0;
+        for (Programmer player:players) {
+            if(pos == player.getPosition()){
+                count++;
+            }
+        }
+        if (count == numberOfPlayers){
+            return true;
+        }
+        return false;
     }
 }
 

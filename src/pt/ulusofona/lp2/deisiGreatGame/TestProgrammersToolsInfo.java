@@ -129,7 +129,7 @@ public class TestProgrammersToolsInfo {
 
         System.out.println(gameManager.getPlayers().get(0).getTools());
 
-        Assert.assertEquals(false,gameManager.moveCurrentPlayer(1));
+        Assert.assertEquals(true,gameManager.moveCurrentPlayer(1));
     }
 
 }

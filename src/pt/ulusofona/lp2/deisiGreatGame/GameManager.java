@@ -281,7 +281,9 @@ public class GameManager {
         StringBuilder info = new StringBuilder();
 
         for (Programmer programmer : players) {
-            info.append(programmer.programmerTools()).append(" | ");
+            if(!programmer.getStatusBool()){
+                info.append(programmer.programmerTools()).append(" | ");
+            }
         }
 
         return info.substring(0,info.length()-3);
@@ -403,7 +405,7 @@ public class GameManager {
         gameResults.add("");
         gameResults.add("RESTANTES");
         for (Programmer programmer : players) {
-            if (programmer == players.get(0)) {
+            if (programmer == players.get(0) || !programmer.getStatusBool()) {
             }else{
                 gameResults.add(programmer.getName() + " " + programmer.getPosition());
             }

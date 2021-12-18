@@ -169,4 +169,12 @@ public class Programmer {
             return prog2.getId() - prog1.getId();
         }
     }
+
+    public static class NameComparator implements Comparator<Programmer> {
+
+        @Override
+        public int compare(Programmer prog1, Programmer prog2) {
+            return prog1.getName().compareTo(prog2.getName());
+        }
+    }
 }

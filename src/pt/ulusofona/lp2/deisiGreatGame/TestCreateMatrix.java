@@ -97,4 +97,15 @@ public class TestCreateMatrix {
         effects[1][2] = "4";
         return effects;
     }
+
+    public String [][]createEffectsMatrix7(){
+        String[][] effects = new String[2][4];
+        effects[0][0] = "0";
+        effects[0][1] = "7";
+        effects[0][2] = "2";
+        effects[1][0] = "0";
+        effects[1][1] = "8";
+        effects[1][2] = "7";
+        return effects;
+    }
 }

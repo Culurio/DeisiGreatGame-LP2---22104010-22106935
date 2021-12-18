@@ -279,13 +279,16 @@ public class GameManager {
 
     public String getProgrammersInfo(){
         StringBuilder info = new StringBuilder();
-
+        int count = 0;
         for (Programmer programmer : players) {
-            if(!programmer.getStatusBool()){
+            if(programmer.getStatusBool()){
                 info.append(programmer.programmerTools()).append(" | ");
+                count++;
             }
         }
-
+        if (count == 0){
+            return "No Players";
+        }
         return info.substring(0,info.length()-3);
     }
 

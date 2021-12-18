@@ -70,4 +70,37 @@ public class TestProgrammerAbyss {
         Assert.assertEquals(3,gameManager.getPlayers().get(0).getPosition());
 
     }
+
+    @Test
+    public void testProgrammerAbyss5(){
+        TestCreateMatrix m1 = new TestCreateMatrix();
+        GameManager gameManager = new GameManager();
+        gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix7());
+
+        Assert.assertEquals("gongas : No tools | Joao : No tools",gameManager.getProgrammersInfo());
+
+        gameManager.moveCurrentPlayer(2);
+        gameManager.reactToAbyssOrTool();
+
+        gameManager.moveCurrentPlayer(1);
+        gameManager.reactToAbyssOrTool();
+
+        gameManager.moveCurrentPlayer(1);
+        gameManager.reactToAbyssOrTool();
+
+        gameManager.moveCurrentPlayer(1);
+        gameManager.reactToAbyssOrTool();
+
+        gameManager.moveCurrentPlayer(1);
+        gameManager.reactToAbyssOrTool();
+
+        gameManager.moveCurrentPlayer(1);
+        gameManager.reactToAbyssOrTool();
+
+        gameManager.moveCurrentPlayer(1);
+        gameManager.reactToAbyssOrTool();
+
+        Assert.assertEquals("gongas : No tools",gameManager.getProgrammersInfo());
+
+    }
 }

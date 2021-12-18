@@ -17,7 +17,7 @@ public class SecundaryEffects extends Abyss{
         if (programmer.verifyTool(1)){
             return "Toma uns comprimidos anti radiação :)";
         }
-        programmer.move(-programmer.goBackXTurns(3));//deu bigode
+        programmer.goBackXTurns(2);//deu bigode
         return "Chernobyl\n";
     }
 

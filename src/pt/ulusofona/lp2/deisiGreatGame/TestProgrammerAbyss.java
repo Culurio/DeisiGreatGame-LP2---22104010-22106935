@@ -52,4 +52,22 @@ public class TestProgrammerAbyss {
         Assert.assertEquals(2,gameManager.getPlayers().get(0).getPosition());
 
     }
+
+    @Test
+    public void testProgrammerAbyss4(){
+        TestCreateMatrix m1 = new TestCreateMatrix();
+        GameManager gameManager = new GameManager();
+        gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix5());
+
+        gameManager.moveCurrentPlayer(2);
+        gameManager.reactToAbyssOrTool();
+        System.out.println(gameManager.getAbysses().get(0).name);
+        gameManager.moveCurrentPlayer(2);
+        gameManager.reactToAbyssOrTool();
+
+        gameManager.moveCurrentPlayer(5);
+        gameManager.reactToAbyssOrTool();
+        Assert.assertEquals(3,gameManager.getPlayers().get(0).getPosition());
+
+    }
 }

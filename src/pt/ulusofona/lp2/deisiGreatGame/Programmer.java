@@ -87,6 +87,7 @@ public class Programmer {
             this.position = 1;
         }else {
             position += moves;
+            percursoDeCasas.add(position);
         }
     }
 
@@ -110,11 +111,11 @@ public class Programmer {
         return stuck;
     }
 
-    public int goBackXTurns(int numTurns){
+    public void goBackXTurns(int numTurns){
         if(percursoDeCasas.size() < numTurns){
-            return 1;
+            position = 1;
         }
-        return position - percursoDeCasas.get(percursoDeCasas.size() - numTurns);//deu bigode
+        position = percursoDeCasas.get((percursoDeCasas.size()-1) - numTurns);//deu bigode
     }
 
     public void addTool(Tool tool){

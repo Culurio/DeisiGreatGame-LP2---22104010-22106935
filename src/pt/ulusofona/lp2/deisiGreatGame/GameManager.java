@@ -329,7 +329,7 @@ public class GameManager {
                 return tool.getName();
             }
         }
-        return "Casa Vazia";
+        return null;
     }
 
 

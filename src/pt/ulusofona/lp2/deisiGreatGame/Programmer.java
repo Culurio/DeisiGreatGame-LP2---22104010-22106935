@@ -42,6 +42,7 @@ public class Programmer {
     boolean verifyTool(int id){
         for (Tool tool : tools.values()){
             if (tool.getId() == id){
+                tools.remove(id);
                 return true;
             }
         }

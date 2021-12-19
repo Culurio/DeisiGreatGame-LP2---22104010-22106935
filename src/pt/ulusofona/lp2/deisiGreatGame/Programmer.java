@@ -149,8 +149,6 @@ public class Programmer {
 
     @Override
     public String toString() {
-
-
         return getId() + " | " + getName() + " | " + getPosition() + " | " + getTools() + " | " + getProgrammerFavLan()
                 + " | " + getStatus();
     }

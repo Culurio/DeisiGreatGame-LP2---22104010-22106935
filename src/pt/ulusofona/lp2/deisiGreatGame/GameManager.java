@@ -296,8 +296,7 @@ public class GameManager {
         if(players.get(currentPlayer).getStatusBool()){
             return players.get(currentPlayer).getId();
         }
-        currentPlayer += 1;
-        plays +=1;
+        reactToAbyssOrTool();
         return players.get(currentPlayer).getId();
     }
 
@@ -314,7 +313,7 @@ public class GameManager {
             if (nrSpaces + programmer.getPosition() > boardSize) {
                 nrSpaces = boardSize - programmer.getPosition() - nrSpaces;
             }
-
+            players.get(0).lose();
             programmer.move(nrSpaces);
             return true;
         }

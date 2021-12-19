@@ -410,9 +410,9 @@ public class GameManager {
         gameResults.add("");
         gameResults.add("RESTANTES");
         if(samePosition()){
-            players.sort(new Programmer.PositionComparator());
+            players.sort(new Programmer.NameComparator());
             for (Programmer programmer : players) {
-                if (vencedor.equals(players.get(0).getName())) {
+                if (vencedor.equals(programmer.getName())) {
                 }else{
                     gameResults.add(programmer.getName() + " " + programmer.getPosition());
                 }
@@ -422,6 +422,10 @@ public class GameManager {
         }
         return gameResults;
     }
+
+    /*
+    Desculpa professor
+     */
 
     public void restOfPlayers(){
         for (Programmer programmer : players) {
@@ -433,14 +437,14 @@ public class GameManager {
     }
 
     public boolean samePosition(){
-        int pos = players.get(0).getPosition();
+        int pos = players.get(1).getPosition();
         int count = 0;
         for (Programmer player:players) {
             if(pos == player.getPosition()){
                 count++;
             }
         }
-        if (count == numberOfPlayers){
+        if (count == numberOfPlayers-1){
             return true;
         }
         return false;

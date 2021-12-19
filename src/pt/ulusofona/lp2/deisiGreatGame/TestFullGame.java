@@ -29,4 +29,35 @@ public class TestFullGame {
                 ,gameManager.getGameResults().toString());
 
     }
+
+    @Test
+    public void testProgrammerAbyss6(){
+        TestCreateMatrix m1 = new TestCreateMatrix();
+        GameManager gameManager = new GameManager();
+        gameManager.createInitialBoard(m1.createMatrix4Players2(), 10,m1.createEffectsMatrix3());
+
+
+        gameManager.moveCurrentPlayer(5);
+        gameManager.reactToAbyssOrTool();
+
+        gameManager.moveCurrentPlayer(1);
+        gameManager.reactToAbyssOrTool();
+
+        gameManager.moveCurrentPlayer(4);
+        gameManager.reactToAbyssOrTool();
+
+        gameManager.moveCurrentPlayer(4);
+        gameManager.reactToAbyssOrTool();
+
+        gameManager.moveCurrentPlayer(3);
+        gameManager.reactToAbyssOrTool();
+
+        gameManager.moveCurrentPlayer(4);
+        gameManager.reactToAbyssOrTool();
+
+
+        Assert.assertEquals("[O GRANDE JOGO DO DEISI, , NR. DE TURNOS, 7, , VENCEDOR, gongas, , RESTANTES, Alaudio 5, Aoao 5, Covane 5]"
+                ,gameManager.getGameResults().toString());
+
+    }
 }

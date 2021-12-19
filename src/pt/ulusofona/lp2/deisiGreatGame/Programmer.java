@@ -116,7 +116,7 @@ public class Programmer {
             position = 1;
             return;
         }
-        position = percursoDeCasas.get((percursoDeCasas.size() - 1) - numTurns);//deu bigode
+        position = percursoDeCasas.get((percursoDeCasas.size() - 1) - numTurns);
     }
 
     public void addTool(Tool tool) {

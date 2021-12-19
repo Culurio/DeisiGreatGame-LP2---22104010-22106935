@@ -86,7 +86,7 @@ public class TestFullGame {
         System.out.println(gameManager.getPlayers().get(gameManager.getCurrentPlayer()).getPosition());
 
 
-        Assert.assertEquals("[1 | gongas | 10 | No tools | java; python | Em Jogo, 12 | Aoao | 1 | No tools | java | Em Jogo, 28 | Covane | 5 | No tools | GoLang; Lua; Rust | Em Jogo, 69 | Alaudio | 5 | No tools | C; C#; C++ | Em Jogo]"
+        Assert.assertEquals("[1 | gongas | 6 | No tools | java; python | Em Jogo, 12 | Aoao | 2 | No tools | java | Em Jogo, 28 | Covane | 4 | No tools | GoLang; Lua; Rust | Em Jogo, 69 | Alaudio | 5 | No tools | C; C#; C++ | Em Jogo]"
                 ,gameManager.getPlayers().toString());
 
     }

@@ -297,6 +297,7 @@ public class GameManager {
             return players.get(currentPlayer).getId();
         }
         currentPlayer += 1;
+        plays +=1;
         return players.get(currentPlayer).getId();
     }
 

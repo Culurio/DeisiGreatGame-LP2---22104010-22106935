@@ -296,7 +296,7 @@ public class GameManager {
         if(players.get(currentPlayer).getStatusBool()){
             return players.get(currentPlayer).getId();
         }
-        reactToAbyssOrTool();
+        reactToAbyssOrTool(); 
         return players.get(currentPlayer).getId();
     }
 

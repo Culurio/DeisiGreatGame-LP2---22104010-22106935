@@ -143,4 +143,21 @@ public class TestCreateMatrix {
         effects[1][2] = "7";
         return effects;
     }
+
+    public String [][]createEffectsMatrix8(){
+        String[][] effects = new String[4][4];
+        effects[0][0] = "0";
+        effects[0][1] = "7";
+        effects[0][2] = "3";
+        effects[1][0] = "0";
+        effects[1][1] = "8";
+        effects[1][2] = "4";
+        effects[2][0] = "0";
+        effects[2][1] = "3";
+        effects[2][2] = "7";
+        effects[3][0] = "0";
+        effects[3][1] = "5";
+        effects[3][2] = "8";
+        return effects;
+    }
 }

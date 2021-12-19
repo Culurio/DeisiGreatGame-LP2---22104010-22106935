@@ -65,7 +65,7 @@ public class TestFullGame {
     public void testProgrammerAbyss7(){
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        gameManager.createInitialBoard(m1.createMatrix4Players2(), 10,m1.createEffectsMatrix3());
+        gameManager.createInitialBoard(m1.createMatrix4Players2(), 10,m1.createEffectsMatrix8());
 
         System.out.println(gameManager.getPlayers().get(gameManager.getCurrentPlayer()).getPosition());
         gameManager.moveCurrentPlayer(5);
@@ -74,13 +74,13 @@ public class TestFullGame {
         gameManager.moveCurrentPlayer(1);
         gameManager.reactToAbyssOrTool();
 
-        gameManager.moveCurrentPlayer(4);
+        gameManager.moveCurrentPlayer(6);
         gameManager.reactToAbyssOrTool();
 
         gameManager.moveCurrentPlayer(4);
         gameManager.reactToAbyssOrTool();
 
-        gameManager.moveCurrentPlayer(4);
+        gameManager.moveCurrentPlayer(2);
         gameManager.reactToAbyssOrTool();
 
         System.out.println(gameManager.getPlayers().get(gameManager.getCurrentPlayer()).getPosition());

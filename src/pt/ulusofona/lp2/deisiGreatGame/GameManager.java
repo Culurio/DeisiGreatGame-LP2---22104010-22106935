@@ -293,6 +293,10 @@ public class GameManager {
     }
 
     public int getCurrentPlayerID() {
+        if(players.get(currentPlayer).getStatusBool()){
+            return players.get(currentPlayer).getId();
+        }
+        currentPlayer += 1;
         return players.get(currentPlayer).getId();
     }
 

@@ -10,4 +10,4 @@ Se o professor quiser aqui está o video com o erro e um dos bloopers com o resp
 https://youtu.be/9e-6zp0GBuw?t=64
 
 Aqui está a tabela:
-![](Tabela preenchida.png?raw=true "Tabela preenchida")
+![](tabela_preenchida.png?raw=true "Tabela preenchida")

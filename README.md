@@ -8,3 +8,6 @@ Ok, agora falando sobre o programa, ele está 95% funcional neste exato momento 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Se o professor quiser aqui está o video com o erro e um dos bloopers com o respetivo timmer para não perder muito tempo:
 https://youtu.be/9e-6zp0GBuw?t=64
+
+Aqui está a tabela:
+![](Tabela preenchida.png?raw=true "Diagrama UML")

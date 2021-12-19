@@ -14,7 +14,7 @@ public class DuplicatedCode extends Abyss {
                 Duplicated Code - O programador recua até à casa onde estava antes de chegar a esta casa.
         */
 
-        if (programmer.verifyTool(0) || programmer.verifyTool(1)){
+        if (programmer.verifyTool(0)){
             return ":) Boa poupaste umas boas linhas";
         }
 

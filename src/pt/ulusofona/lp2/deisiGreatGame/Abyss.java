@@ -1,7 +1,9 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 import java.util.List;
-
+/*
+Classe Pai de todos os abismos
+ */
 abstract public class Abyss{
 
     protected int id;

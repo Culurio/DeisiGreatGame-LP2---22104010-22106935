@@ -23,18 +23,30 @@ public class GameManager {
         this.boardSize = boardSize;
     }
 
+    /*
+    setter usado para os testes unitarios
+     */
     public void setCurrentPlayer(int currentPlayer) {
         this.currentPlayer = currentPlayer;
     }
 
+    /*
+    mostra os jogadores a jogar
+     */
     public int getNumberOfPlayers() {
         return numberOfPlayers;
     }
 
+    /*
+    mostra o tamanho do tabuleiro
+     */
     public int getBoardSize() {
         return boardSize;
     }
 
+    /*
+    numero de jogadas
+     */
     public int getPlays() {
         return plays;
     }
@@ -209,6 +221,7 @@ public class GameManager {
                     abysses.add(abyss);
                 }
             }
+
             return  true;
         }
         return false;
@@ -250,6 +263,9 @@ public class GameManager {
         return null;
     }
 
+    /*
+    vai filtrar os programadores todos se incluir os que perderam não precisa de filtro
+     */
     public List<Programmer> getProgrammers(boolean includeDefeated) {
         List<Programmer> playersAlive = new ArrayList<Programmer>();
         if(includeDefeated){
@@ -265,6 +281,10 @@ public class GameManager {
         return playersAlive;
     }
 
+    /*
+    com a pesquisa linear vai a todas as posições dos jogadores se for igual adiciona a uma lista com jogadores na mesma
+    posição
+     */
     public List<Programmer> getProgrammers(int position) {
         List<Programmer> playerOnPosition = new ArrayList<Programmer>();
 
@@ -277,6 +297,9 @@ public class GameManager {
         return playerOnPosition;
     }
 
+    /*
+    Mostra informação dos jogadores e das suas ferramentas
+     */
     public String getProgrammersInfo(){
         StringBuilder info = new StringBuilder();
         int count = 0;
@@ -293,15 +316,12 @@ public class GameManager {
     }
 
     public int getCurrentPlayerID() {
-        if(players.get(currentPlayer).getStatusBool()){
-            return players.get(currentPlayer).getId();
-        }
-        reactToAbyssOrTool(); 
         return players.get(currentPlayer).getId();
     }
 
     /*
-    Faz com que o jogador se mova e dá next no jogador atual
+    Faz com que o jogador se mova caso ele tenha perdido ou num loop infinitio não joga
+    quando passa da ultima posição vai x para trás
      */
     public boolean moveCurrentPlayer(int nrSpaces) {
         Programmer programmer = players.get(currentPlayer);
@@ -310,6 +330,7 @@ public class GameManager {
         if (nrSpaces < 1 || nrSpaces > 6 || !programmer.getStatusBool() || programmer.isStuck()) {
             return false;
         } else {
+            //A posição não pode ser maior que o tamanho do tabuleiro se for faz esta conta e vai esse numero para trás
             if (nrSpaces + programmer.getPosition() > boardSize) {
                 nrSpaces = boardSize - programmer.getPosition() - nrSpaces;
             }
@@ -317,12 +338,35 @@ public class GameManager {
             return true;
         }
     }
+    /*
+    Dá update ao numero de jogadores pois se 1 sair não vai dar current player
+     */
+    public void updateNumberOfPlayers(){
+        int count=0;
+        for (Programmer programmer:players){
+            if (programmer.getStatusBool()){
+                count++;
+            }
+        }
+        numberOfPlayers = count;
+    }
 
-    public String reactToAbyssOrTool(){
-        int staticCurrent = currentPlayer;
-        Programmer programmer = players.get(staticCurrent);
+    /*
+    Função que passa o turno
+     */
+    public void skipTurn(){
         currentPlayer = (currentPlayer + 1) % numberOfPlayers;
         plays++;
+    }
+
+    /*
+    Reage aos abismos e às ferramentas e passa o turno caso não exista abismo ou ferramenta dá return de null
+     */
+    public String reactToAbyssOrTool(){
+        updateNumberOfPlayers();
+        int staticCurrent = currentPlayer;
+        Programmer programmer = players.get(staticCurrent);
+        skipTurn();
         for (Abyss abyss: abysses) {
             if(programmer.getPosition() == abyss.getPosition() && programmer.getStatusBool()){
                 return abyss.effect(programmer,players);
@@ -339,6 +383,9 @@ public class GameManager {
     }
 
 
+    /*
+    verifica se o jogo terminou
+     */
     public boolean gameIsOver() {
         int contador=0;
         for (Programmer programmer : players) {

@@ -54,12 +54,16 @@ public class TestGetProgrammers {
     public void TestGetProgrammersInfo2() {
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        gameManager.createInitialBoard(m1.createMatrix2Players(),15,m1.createEffectsMatrix3());
+        gameManager.createInitialBoard(m1.createMatrix2Players(),15,m1.createEffectsMatrix9());
         System.out.println(gameManager.getPlayers().get(0).getPosition());
         gameManager.moveCurrentPlayer(1);
         gameManager.reactToAbyssOrTool();
         System.out.println(gameManager.getPlayers().get(0).getPosition());
-        Assert.assertEquals("gongas : No tools | Joao : No tools"
+
+        gameManager.moveCurrentPlayer(2);
+        gameManager.reactToAbyssOrTool();
+
+        Assert.assertEquals("gongas : IDE | Joao : Testes unitários"
                 , gameManager.getProgrammersInfo());
     }
 
@@ -67,7 +71,32 @@ public class TestGetProgrammers {
     public void TestGetProgrammersInfo3() {
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        gameManager.createInitialBoard(m1.createMatrix2Players(),15,m1.createEffectsMatrix3());
+        gameManager.createInitialBoard(m1.createMatrix2Players(),15,m1.createEffectsMatrix10());
+
+        gameManager.moveCurrentPlayer(1);
+        gameManager.reactToAbyssOrTool();
+
+        gameManager.moveCurrentPlayer(2);
+        gameManager.reactToAbyssOrTool();
+
+        gameManager.moveCurrentPlayer(1);
+        gameManager.reactToAbyssOrTool();
+
+        Assert.assertEquals("gongas : No tools | Joao : No tools"
+                , gameManager.getProgrammersInfo());
+    }
+
+    @Test
+    public void TestGetProgrammersInfo4() {
+        TestCreateMatrix m1 = new TestCreateMatrix();
+        GameManager gameManager = new GameManager();
+        gameManager.createInitialBoard(m1.createMatrix2Players(),15,m1.createEffectsMatrix10());
+
+        gameManager.moveCurrentPlayer(1);
+        gameManager.reactToAbyssOrTool();
+
+        gameManager.moveCurrentPlayer(2);
+        gameManager.reactToAbyssOrTool();
 
         gameManager.moveCurrentPlayer(1);
         gameManager.reactToAbyssOrTool();

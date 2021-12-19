@@ -111,6 +111,9 @@ public class Programmer {
         return stuck;
     }
 
+    /*
+    temos um historico de jogadas de todos os jogadores logo podemos voltar atrás nas jogadas
+     */
     public void goBackXTurns(int numTurns) {
         if (percursoDeCasas.size() - 1 < numTurns) {
             position = 1;

@@ -60,4 +60,34 @@ public class TestFullGame {
                 ,gameManager.getGameResults().toString());
 
     }
+
+    @Test
+    public void testProgrammerAbyss7(){
+        TestCreateMatrix m1 = new TestCreateMatrix();
+        GameManager gameManager = new GameManager();
+        gameManager.createInitialBoard(m1.createMatrix4Players2(), 10,m1.createEffectsMatrix3());
+
+        System.out.println(gameManager.getPlayers().get(gameManager.getCurrentPlayer()).getPosition());
+        gameManager.moveCurrentPlayer(5);
+        gameManager.reactToAbyssOrTool();
+
+        gameManager.moveCurrentPlayer(1);
+        gameManager.reactToAbyssOrTool();
+
+        gameManager.moveCurrentPlayer(4);
+        gameManager.reactToAbyssOrTool();
+
+        gameManager.moveCurrentPlayer(4);
+        gameManager.reactToAbyssOrTool();
+
+        gameManager.moveCurrentPlayer(4);
+        gameManager.reactToAbyssOrTool();
+
+        System.out.println(gameManager.getPlayers().get(gameManager.getCurrentPlayer()).getPosition());
+
+
+        Assert.assertEquals("[1 | gongas | 10 | No tools | java; python | Em Jogo, 12 | Aoao | 1 | No tools | java | Em Jogo, 28 | Covane | 5 | No tools | GoLang; Lua; Rust | Em Jogo, 69 | Alaudio | 5 | No tools | C; C#; C++ | Em Jogo]"
+                ,gameManager.getPlayers().toString());
+
+    }
 }

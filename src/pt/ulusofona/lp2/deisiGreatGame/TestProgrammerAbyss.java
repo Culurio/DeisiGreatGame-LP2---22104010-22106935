@@ -87,7 +87,7 @@ public class TestProgrammerAbyss {
 
         System.out.println(gameManager.getCurrentPlayerID());
 
-        Assert.assertEquals("gongas : No tools",gameManager.getProgrammersInfo());
+        Assert.assertEquals("gongas : No tools | Joao : No tools",gameManager.getProgrammersInfo());
 
     }
 }

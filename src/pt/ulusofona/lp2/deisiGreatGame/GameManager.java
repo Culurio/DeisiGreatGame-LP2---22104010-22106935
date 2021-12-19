@@ -315,7 +315,14 @@ public class GameManager {
         return info.substring(0,info.length()-3);
     }
 
+    /*
+    Se o jogador estiver fora passa o turno e dá o id seguinte
+     */
     public int getCurrentPlayerID() {
+        if(players.get(currentPlayer).getStatusBool()){
+            return players.get(currentPlayer).getId();
+        }
+        reactToAbyssOrTool();
         return players.get(currentPlayer).getId();
     }
 
@@ -363,7 +370,7 @@ public class GameManager {
     Reage aos abismos e às ferramentas e passa o turno caso não exista abismo ou ferramenta dá return de null
      */
     public String reactToAbyssOrTool(){
-        updateNumberOfPlayers();
+        //updateNumberOfPlayers();
         int staticCurrent = currentPlayer;
         Programmer programmer = players.get(staticCurrent);
         skipTurn();

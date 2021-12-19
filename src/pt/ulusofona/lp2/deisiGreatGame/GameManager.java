@@ -313,7 +313,6 @@ public class GameManager {
             if (nrSpaces + programmer.getPosition() > boardSize) {
                 nrSpaces = boardSize - programmer.getPosition() - nrSpaces;
             }
-            players.get(0).lose();
             programmer.move(nrSpaces);
             return true;
         }

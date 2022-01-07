@@ -75,7 +75,7 @@ public class GameManager {
     A função createInitialBoard vai ler a matriz que contem a informação toda acerta dos jogadores que vão ser criados
      */
 
-    public boolean createInitialBoard(String[][] playerInfo, int worldSize) {
+    public void createInitialBoard(String[][] playerInfo, int worldSize) {
         players.clear();
         this.boardSize = worldSize;
         ArrayList<Integer> usedInts = new ArrayList<>();
@@ -88,7 +88,7 @@ public class GameManager {
         //Resets feitos
 
         if (worldSize < 0 || worldSize < 2 * numberOfPlayers || numberOfPlayers<=1) {
-            return false;
+
         }
         for (int row = 0; row < numberOfPlayers; row++) {
             String name;
@@ -101,7 +101,7 @@ public class GameManager {
              */
             if (Integer.parseInt(playerInfo[row][0].trim()) < 0 ||
                     usedInts.contains(Integer.parseInt(playerInfo[row][0].trim()))) {
-                return false;
+
             }
             id = Integer.parseInt(playerInfo[row][0].trim());
             usedInts.add(Integer.parseInt(playerInfo[row][0].trim()));
@@ -110,7 +110,7 @@ public class GameManager {
             Verificar se o nome está vazio ou é null
              */
             if (playerInfo[row][1] == null || playerInfo[row][1].isEmpty()) {
-                return false;
+
             }
             name = playerInfo[row][1];
 
@@ -124,7 +124,7 @@ public class GameManager {
             Ver se a cor do jogador já foi utilizada e associar cor
              */
             if (usedColor.contains(playerInfo[row][3])) {
-                return false;
+
             }
 
             switch (playerInfo[row][3]) {
@@ -153,32 +153,31 @@ public class GameManager {
             currentPlayer = 0;
         }
 
-        return true;
     }
 
-    public boolean createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools){
+    public void createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools){
         tools.clear();
         int effectId;
         Abyss abyss = null;
         String type;
         int effectPosition;
 
-        if(createInitialBoard(playerInfo,worldSize)){
+        createInitialBoard(playerInfo,worldSize);
             for (int row = 0; row < abyssesAndTools.length; row++) {
                 type = abyssesAndTools[row][0];
                 effectId = Integer.parseInt(abyssesAndTools[row][1]);
                 effectPosition = Integer.parseInt(abyssesAndTools[row][2]);
 
                 if(type == null || !type.equals("1") && !type.equals("0")){
-                    return false;
+
                 }
 
                 if(effectId < 0 || (effectId > 9 && type.equals("0") || (effectId > 5 && type.equals("1")))){
-                    return false;
+
                 }
 
                 if (effectPosition < 0 || effectPosition > worldSize) {
-                    return false;
+
                 }
 
                 if (type.equals("1")){
@@ -222,10 +221,7 @@ public class GameManager {
                 }
             }
 
-            return  true;
         }
-        return false;
-    }
 
     public String getImagePng(int position) {
         if (position == boardSize) {

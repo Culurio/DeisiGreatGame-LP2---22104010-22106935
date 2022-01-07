@@ -7,19 +7,8 @@ import java.util.ArrayList;
 
 public class TestGetProgrammers {
 
-    //guardar os tempos para melhorar no futuro
     @Test
     public void TestCreateInitialBoard1() {
-        TestCreateMatrix m1 = new TestCreateMatrix();
-        GameManager gameManager = new GameManager();
-        long startTime = System.currentTimeMillis();
-        Assert.assertTrue(gameManager.createInitialBoard(m1.createMatrix2Players(), 79));
-        long elapsedTime =System.currentTimeMillis() - startTime;
-        System.out.println(elapsedTime);
-    }
-
-    @Test
-    public void TestCreateInitialBoard2() {
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
         gameManager.createInitialBoard(m1.createMatrix2Players(), 79);

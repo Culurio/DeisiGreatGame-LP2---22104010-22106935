@@ -11,6 +11,8 @@ public class GameManager {
     private int boardSize;
     private int plays;
     private int currentPlayer;
+    private List<Position> positions;
+    private List<Position> abyssesPositions;
     private final List<Tool> tools = new ArrayList<>();
     private final List<Abyss> abysses = new ArrayList<>();
     private List<Programmer> players = new ArrayList<>();
@@ -84,6 +86,7 @@ public class GameManager {
         plays = 1;
         currentPlayer = 0;
         gameResults.clear();
+        positions = new ArrayList<Position>(Collections.nCopies(worldSize, new Position(0)));
 
         //Resets feitos
 
@@ -161,6 +164,7 @@ public class GameManager {
         Abyss abyss = null;
         String type;
         int effectPosition;
+        abyssesPositions = new ArrayList<Position>(Collections.nCopies(worldSize, new Position(0)));
 
         createInitialBoard(playerInfo,worldSize);
             for (int row = 0; row < abyssesAndTools.length; row++) {
@@ -337,6 +341,7 @@ public class GameManager {
             if (nrSpaces + programmer.getPosition() > boardSize) {
                 nrSpaces = boardSize - programmer.getPosition() - nrSpaces;
             }
+            positions.set(nrSpaces+programmer.getPosition(),new Position(positions.get(nrSpaces+programmer.getPosition()).getPosition()+1));
             programmer.move(nrSpaces);
             return true;
         }
@@ -372,6 +377,7 @@ public class GameManager {
         skipTurn();
         for (Abyss abyss: abysses) {
             if(programmer.getPosition() == abyss.getPosition() && programmer.getStatusBool()){
+                abyssesPositions.set(abyss.position,new Position(abyssesPositions.get(abyss.position).getPosition() + 1,abyss.name));
                 return abyss.effect(programmer,players);
             }
         }
@@ -383,6 +389,10 @@ public class GameManager {
             }
         }
         return null;
+    }
+
+    public List<Position> getPositions(){
+        return positions;
     }
 
 
@@ -501,6 +511,10 @@ public class GameManager {
             return true;
         }
         return false;
+    }
+
+    public List<Position> getAbyssesPositions() {
+        return abyssesPositions;
     }
 }
 

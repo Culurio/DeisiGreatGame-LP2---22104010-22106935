@@ -9,10 +9,10 @@ public class TestCircularTurn {
     O primeiro turno é do jogador que está na primeira linha da matriz
      */
     @Test
-    public void testCurrentId() {
+    public void testCurrentId() throws InvalidInitialBoardException {
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        //gameManager.createInitialBoard(m1.createMatrix2Players(), 79);
+        gameManager.createInitialBoard(m1.createMatrix2Players(), 79);
         Assert.assertEquals(1, gameManager.getCurrentPlayerID());
     }
 
@@ -20,10 +20,10 @@ public class TestCircularTurn {
     Vai jogar 1 turno e quando 1 jogardor joga o turno passa
      */
     @Test
-    public void testCurrentId2() {
+    public void testCurrentId2() throws InvalidInitialBoardException {
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        //gameManager.createInitialBoard(m1.createMatrix2Players(), 79);
+        gameManager.createInitialBoard(m1.createMatrix2Players(), 79);
         long startTime = System.currentTimeMillis();
         gameManager.moveCurrentPlayer(2);
         gameManager.reactToAbyssOrTool();
@@ -33,10 +33,10 @@ public class TestCircularTurn {
     }
 
     @Test
-    public void testCurrentId3() {
+    public void testCurrentId3() throws InvalidInitialBoardException {
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        //gameManager.createInitialBoard(m1.createMatrix4Players(), 79);
+        gameManager.createInitialBoard(m1.createMatrix4Players(), 79);
         gameManager.moveCurrentPlayer(2);//ID 1 vai para ID 12
         gameManager.reactToAbyssOrTool();
         gameManager.moveCurrentPlayer(5);//ID 12 vai para ID 28
@@ -46,10 +46,10 @@ public class TestCircularTurn {
         Assert.assertEquals(69, gameManager.getCurrentPlayerID());
     }
     @Test
-    public void testCurrentPosition(){
+    public void testCurrentPosition() throws InvalidInitialBoardException {
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        //gameManager.createInitialBoard(m1.createMatrix4Players(), 79);
+        gameManager.createInitialBoard(m1.createMatrix4Players(), 79);
         long startTime = System.currentTimeMillis();
         gameManager.moveCurrentPlayer(2);
         gameManager.reactToAbyssOrTool();
@@ -66,10 +66,10 @@ public class TestCircularTurn {
         System.out.println(elapsedTime);
     }
     @Test
-    public void testCurrentPosition2(){
+    public void testCurrentPosition2() throws InvalidInitialBoardException {
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        //gameManager.createInitialBoard(m1.createMatrix4Players(), 79);
+        gameManager.createInitialBoard(m1.createMatrix4Players(), 79);
         gameManager.moveCurrentPlayer(1);
         gameManager.reactToAbyssOrTool();
         gameManager.moveCurrentPlayer(2);

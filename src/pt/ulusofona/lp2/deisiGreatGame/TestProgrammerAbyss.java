@@ -5,10 +5,10 @@ import org.junit.Test;
 
 public class TestProgrammerAbyss {
     @Test
-    public void testProgrammerAbyss(){
+    public void testProgrammerAbyss() throws InvalidInitialBoardException {
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        //gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix3());
+        gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix3());
 
         gameManager.moveCurrentPlayer(1);
         gameManager.reactToAbyssOrTool();
@@ -23,10 +23,10 @@ public class TestProgrammerAbyss {
     }
 
     @Test
-    public void testProgrammerAbyss2(){
+    public void testProgrammerAbyss2() throws InvalidInitialBoardException {
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        //gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix4());
+        gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix4());
 
         gameManager.moveCurrentPlayer(6);
         gameManager.reactToAbyssOrTool();
@@ -41,10 +41,10 @@ public class TestProgrammerAbyss {
     }
 
     @Test
-    public void testProgrammerAbyss3(){
+    public void testProgrammerAbyss3() throws InvalidInitialBoardException {
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        //gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix4());
+        gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix4());
 
         gameManager.moveCurrentPlayer(2);
         gameManager.reactToAbyssOrTool();
@@ -54,10 +54,10 @@ public class TestProgrammerAbyss {
     }
 
     @Test
-    public void testProgrammerAbyss4(){
+    public void testProgrammerAbyss4() throws InvalidInitialBoardException {
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        //gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix5());
+        gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix5());
 
         gameManager.moveCurrentPlayer(2);
         gameManager.reactToAbyssOrTool();
@@ -72,10 +72,10 @@ public class TestProgrammerAbyss {
     }
 
     @Test
-    public void testProgrammerAbyss5(){
+    public void testProgrammerAbyss5() throws InvalidInitialBoardException {
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        //gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix7());
+        gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix7());
 
         Assert.assertEquals("gongas : No tools | Joao : No tools",gameManager.getProgrammersInfo());
 

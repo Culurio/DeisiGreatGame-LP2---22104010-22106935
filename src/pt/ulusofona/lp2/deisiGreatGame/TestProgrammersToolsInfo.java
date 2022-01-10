@@ -23,32 +23,32 @@ public class TestProgrammersToolsInfo {
     }
 
     @Test
-    public void testProgrammerTools2(){
+    public void testProgrammerTools2() throws InvalidInitialBoardException {
         TestCreateMatrix m1 = new TestCreateMatrix();
         ArrayList<String> lan = new ArrayList<>();
         GameManager gameManager = new GameManager();
-        //gameManager.createInitialBoard(m1.createMatrix2Players(), 79,m1.createEffectsMatrix());
+        gameManager.createInitialBoard(m1.createMatrix2Players(), 79,m1.createEffectsMatrix());
         System.out.println(gameManager.getProgrammersInfo());
         Assert.assertEquals(false, false);
     }
 
     @Test
-    public void testProgrammerTools3(){
+    public void testProgrammerTools3() throws InvalidInitialBoardException {
         TestCreateMatrix m1 = new TestCreateMatrix();
         ArrayList<String> lan = new ArrayList<>();
         GameManager gameManager = new GameManager();
-        //gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix());
+        gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix());
         Tool tool = gameManager.getTools().get(0);
         gameManager.getPlayers().get(0).addTool(tool);
         Assert.assertEquals("gongas : Tratamento de Excepções | Joao : No tools", gameManager.getProgrammersInfo());
     }
 
     @Test
-    public void testProgrammerTools4(){
+    public void testProgrammerTools4() throws InvalidInitialBoardException {
         TestCreateMatrix m1 = new TestCreateMatrix();
         ArrayList<String> lan = new ArrayList<>();
         GameManager gameManager = new GameManager();
-        //gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix());
+        gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix());
         gameManager.moveCurrentPlayer(6);
         gameManager.reactToAbyssOrTool();
         gameManager.moveCurrentPlayer(6);
@@ -59,11 +59,11 @@ public class TestProgrammersToolsInfo {
     }
 
     @Test
-    public void testProgrammerTools5(){
+    public void testProgrammerTools5() throws InvalidInitialBoardException {
         TestCreateMatrix m1 = new TestCreateMatrix();
         ArrayList<String> lan = new ArrayList<>();
         GameManager gameManager = new GameManager();
-        //gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix2());
+        gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix2());
 
         gameManager.moveCurrentPlayer(1);
         gameManager.reactToAbyssOrTool();
@@ -79,11 +79,11 @@ public class TestProgrammersToolsInfo {
     }
 
     @Test
-    public void testProgrammerTools6(){
+    public void testProgrammerTools6() throws InvalidInitialBoardException {
         TestCreateMatrix m1 = new TestCreateMatrix();
         ArrayList<String> lan = new ArrayList<>();
         GameManager gameManager = new GameManager();
-        //gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix2());
+        gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix2());
 
         gameManager.moveCurrentPlayer(1);
         gameManager.reactToAbyssOrTool();
@@ -110,10 +110,10 @@ public class TestProgrammersToolsInfo {
     }
 
     @Test
-    public void testProgrammerTools7(){
+    public void testProgrammerTools7() throws InvalidInitialBoardException {
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        //gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix6());
+        gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix6());
 
         gameManager.moveCurrentPlayer(2);
         gameManager.reactToAbyssOrTool();

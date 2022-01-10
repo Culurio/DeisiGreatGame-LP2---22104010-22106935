@@ -5,10 +5,10 @@ import org.junit.Test;
 
 public class TestFullGame {
     @Test
-    public void testProgrammerAbyss5(){
+    public void testProgrammerAbyss5() throws InvalidInitialBoardException {
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        //gameManager.createInitialBoard(m1.createMatrix2Players2(), 10,m1.createEffectsMatrix3());
+        gameManager.createInitialBoard(m1.createMatrix2Players2(), 10,m1.createEffectsMatrix3());
 
 
         gameManager.moveCurrentPlayer(5);
@@ -31,10 +31,10 @@ public class TestFullGame {
     }
 
     @Test
-    public void testProgrammerAbyss6(){
+    public void testProgrammerAbyss6() throws InvalidInitialBoardException {
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        //gameManager.createInitialBoard(m1.createMatrix4Players2(), 10,m1.createEffectsMatrix3());
+        gameManager.createInitialBoard(m1.createMatrix4Players2(), 10,m1.createEffectsMatrix3());
 
 
         gameManager.moveCurrentPlayer(5);
@@ -62,10 +62,10 @@ public class TestFullGame {
     }
 
     @Test
-    public void testProgrammerAbyss7(){
+    public void testProgrammerAbyss7() throws InvalidInitialBoardException {
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        //gameManager.createInitialBoard(m1.createMatrix4Players2(), 10,m1.createEffectsMatrix8());
+        gameManager.createInitialBoard(m1.createMatrix4Players2(), 10,m1.createEffectsMatrix8());
 
         System.out.println(gameManager.getPlayers().get(gameManager.getCurrentPlayer()).getPosition());
         gameManager.moveCurrentPlayer(5);

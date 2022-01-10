@@ -16,7 +16,7 @@ fun command(commandType:CommandType) : Function2<GameManager,List<String>,String
 fun commandGet(manager: GameManager, args: List<String>): String?{
     return when (args[0]){
         "PLAYER" -> getPlayer(manager,args)
-        "PLAYERS_BY_LANGUAGE" -> manager.players.filter{it.programmerFavLanList.contains(args[1])}.joinToString {it.name +","}.replace(", ","").dropLast(1)
+        "PLAYERS_BY_LANGUAGE" -> getPlayersByLanguages(manager,args)
         "POLYGLOTS" -> manager.players.filter{it.programmerFavLanList.size > 1}.sortedWith(Comparator<Programmer>{ a, b ->
             when {
                 a.programmerFavLanList.size > b.programmerFavLanList.size -> 1
@@ -50,8 +50,14 @@ fun commandPost(manager: GameManager, args: List<String>): String?{
     }
 }
 
+fun getPlayersByLanguages(manager: GameManager, args: List<String>):String?{
+    var ans: String
+    ans = manager.players.filter{it.programmerFavLanList.contains(args[1])}.joinToString {it.name +","}
+    return ans.replace(", ","").dropLast(1)
+}
+
 fun getPlayer(manager: GameManager, args: List<String>):String?{
-    var ans = ""
+    var ans: String
     ans = manager.players.filter{it.name.contains(args[1])}.take(1).toString().replace("[","").replace("]","")
     if (ans == "")
         ans = "Inexistent player"
@@ -59,11 +65,10 @@ fun getPlayer(manager: GameManager, args: List<String>):String?{
 }
 
 fun move(manager: GameManager, args: List<String>):String?{
-    var answer: String? = "OK"
     if(!manager.moveCurrentPlayer(Integer.parseInt(args[1]))){
         return null
     }
-    answer = manager.reactToAbyssOrTool()
+    var answer: String? = manager.reactToAbyssOrTool()
     if(answer == null){
         return "OK"
     }

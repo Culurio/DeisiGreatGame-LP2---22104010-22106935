@@ -235,7 +235,7 @@ public class GameManager implements Serializable{
         }catch (InvalidInitialBoardException e){
             System.out.println(e.getMessage());
         }
-        }
+    }
 
     public String getImagePng(int position) {
         if (position == boardSize) {

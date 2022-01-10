@@ -16,14 +16,14 @@ fun command(commandType:CommandType) : Function2<GameManager,List<String>,String
 fun commandGet(manager: GameManager, args: List<String>): String?{
     return when (args[0]){
         "PLAYER" -> manager.players.filter{it.name.contains(args[1])}.take(1).toString()
-        "PLAYERS_BY_LANGUAGE" -> manager.players.filter{it.programmerFavLan.contains(args[1])}.joinToString {it.name}
+        "PLAYERS_BY_LANGUAGE" -> manager.players.filter{it.programmerFavLan.contains(args[1])}.joinToString {it.name.trim()}
         "POLYGLOTS" -> manager.players.filter{it.programmerFavLanList.size > 1}.sortedWith(Comparator<Programmer>{ a, b ->
             when {
                 a.programmerFavLanList.size > b.programmerFavLanList.size -> 1
                 a.programmerFavLanList.size < b.programmerFavLanList.size -> -1
                 else -> 0
             }
-        }).joinToString { it.name +":"+ it.programmerFavLanList.size }
+        }).joinToString { it.name +":"+ it.programmerFavLanList.size+"\n" }.replace(",","").trim()
         "MOST_USED_POSITIONS" ->manager.positions.sortedWith(Comparator<Position>{ a, b ->
             when {
                 a.position < b.position -> 1
@@ -50,7 +50,7 @@ fun commandPost(manager: GameManager, args: List<String>): String?{
     }
 }
 fun move(manager: GameManager, args: List<String>):String?{
-    var answer: String? = "ok"
+    var answer: String? = "OK"
     manager.moveCurrentPlayer(Integer.parseInt(args[1]))
     answer = manager.reactToAbyssOrTool()
     if(answer == null){
@@ -84,5 +84,5 @@ fun addAbyss(manager: GameManager, args: List<String>):String?{
         9 -> abyss = SegmentationFault(effectId, effectPosition)
     }
     manager.abysses.add(abyss)
-    return "ok"
+    return "OK"
 }

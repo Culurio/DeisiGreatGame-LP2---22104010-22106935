@@ -541,20 +541,30 @@ public class GameManager implements Serializable{
         try {
             ObjectInputStream out = new ObjectInputStream(new FileInputStream(file.getName()));
             GameManager p1 =(GameManager) out.readObject();
-            this.players = p1.players;
-            this.abyssesPositions = p1.abyssesPositions;
-            this.abysses = p1.abysses;
-            this.tools = p1.tools;
-            this.positions = p1.positions;
-            this.numberOfPlayers = p1.numberOfPlayers;
-            this.plays= p1.plays;
-            this.gameResults = p1.gameResults;
-            this.currentPlayer=p1.currentPlayer;
-            this.boardSize = p1.boardSize;
+            clear();
+            numberOfPlayers = p1.numberOfPlayers;
+            boardSize = p1.boardSize;
+            plays = p1.plays;
+            currentPlayer = p1.currentPlayer;
+            positions = p1.positions;
+            abyssesPositions = p1.abyssesPositions;
+            tools = p1.tools;
+            abysses = p1.abysses;
+            players = p1.players;
+            gameResults = p1.gameResults;
         } catch (IOException | ClassNotFoundException e) {
             return false;
         }
         return true;
+    }
+
+    public void clear(){
+        positions.clear();
+        abyssesPositions.clear();
+        tools.clear();
+        abysses.clear();
+        players.clear();
+        gameResults.clear();
     }
 }
 

@@ -15,7 +15,7 @@ fun command(commandType:CommandType) : Function2<GameManager,List<String>,String
 
 fun commandGet(manager: GameManager, args: List<String>): String?{
     return when (args[0]){
-        "PLAYER" -> manager.players.filter{it.name.contains(args[1])}.take(1).toString().replace("[","").replace("]","")
+        "PLAYER" -> getPlayer(manager,args)
         "PLAYERS_BY_LANGUAGE" -> manager.players.filter{it.programmerFavLanList.contains(args[1])}.joinToString {it.name +","}.replace(", ","").dropLast(1)
         "POLYGLOTS" -> manager.players.filter{it.programmerFavLanList.size > 1}.sortedWith(Comparator<Programmer>{ a, b ->
             when {
@@ -49,6 +49,15 @@ fun commandPost(manager: GameManager, args: List<String>): String?{
         else -> null
     }
 }
+
+fun getPlayer(manager: GameManager, args: List<String>):String?{
+    var ans = ""
+    ans = manager.players.filter{it.name.contains(args[1])}.take(1).toString().replace("[","").replace("]","")
+    if (ans == "")
+        ans = "Inexistent player"
+    return ans
+}
+
 fun move(manager: GameManager, args: List<String>):String?{
     var answer: String? = "OK"
     if(!manager.moveCurrentPlayer(Integer.parseInt(args[1]))){

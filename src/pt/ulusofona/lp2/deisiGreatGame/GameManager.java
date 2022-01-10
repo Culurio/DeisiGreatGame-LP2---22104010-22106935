@@ -542,8 +542,8 @@ public class GameManager implements Serializable{
 
     public boolean loadGame(File file){
         try {
-            ObjectInputStream out = new ObjectInputStream(new FileInputStream(file.getName()));
-            GameManager p1 =(GameManager) out.readObject();
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream(file.getName()));
+            GameManager p1 =(GameManager) in.readObject();
             //clear();
             numberOfPlayers = p1.numberOfPlayers;
             boardSize = p1.boardSize;

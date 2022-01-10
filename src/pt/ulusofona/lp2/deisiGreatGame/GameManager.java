@@ -13,7 +13,7 @@ public class GameManager implements Serializable{
     private int plays;
     private int currentPlayer;
     private List<Position> positions;
-    private List<Position> abyssesPositions;
+    private List<Position> abyssesPositions = new ArrayList<>();
     private  List<Tool> tools = new ArrayList<>();
     private  List<Abyss> abysses = new ArrayList<>();
     private List<Programmer> players = new ArrayList<>();
@@ -169,10 +169,13 @@ public class GameManager implements Serializable{
         Abyss abyss = null;
         String type;
         int effectPosition;
-        abyssesPositions = new ArrayList<Position>(Collections.nCopies(worldSize, new Position(0)));
+        abyssesPositions = new ArrayList<Position>(Collections.nCopies(worldSize + 10, new Position(0)));
 
         createInitialBoard(playerInfo,worldSize);
         try {
+            if (abyssesAndTools == null){
+                throw new InvalidInitialBoardException("Invalid AbyssesAndTools",false,false,false,false,"");
+            }
             for (int row = 0; row < abyssesAndTools.length; row++) {
                 type = abyssesAndTools[row][0];
                 effectId = Integer.parseInt(abyssesAndTools[row][1]);
@@ -541,7 +544,7 @@ public class GameManager implements Serializable{
         try {
             ObjectInputStream out = new ObjectInputStream(new FileInputStream(file.getName()));
             GameManager p1 =(GameManager) out.readObject();
-            clear();
+            //clear();
             numberOfPlayers = p1.numberOfPlayers;
             boardSize = p1.boardSize;
             plays = p1.plays;

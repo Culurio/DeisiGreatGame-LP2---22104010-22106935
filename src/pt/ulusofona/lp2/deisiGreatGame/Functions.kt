@@ -16,7 +16,7 @@ fun command(commandType:CommandType) : Function2<GameManager,List<String>,String
 fun commandGet(manager: GameManager, args: List<String>): String?{
     return when (args[0]){
         "PLAYER" -> manager.players.filter{it.name.contains(args[1])}.take(1).toString().replace("[","").replace("]","")
-        "PLAYERS_BY_LANGUAGE" -> manager.players.filter{it.programmerFavLan.contains(args[1])}.joinToString {it.name.trim()}
+        "PLAYERS_BY_LANGUAGE" -> manager.players.filter{it.programmerFavLan.contains(args[1])}.joinToString {it.name +","}.replace(", ","")
         "POLYGLOTS" -> manager.players.filter{it.programmerFavLanList.size > 1}.sortedWith(Comparator<Programmer>{ a, b ->
             when {
                 a.programmerFavLanList.size > b.programmerFavLanList.size -> 1

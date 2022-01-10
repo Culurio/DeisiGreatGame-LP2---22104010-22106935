@@ -1,6 +1,8 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class Tool {
+import java.io.Serializable;
+
+public class Tool implements Serializable {
 
     protected int id;
     protected String name;

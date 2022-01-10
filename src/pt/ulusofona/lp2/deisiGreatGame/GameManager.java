@@ -3,20 +3,21 @@ package pt.ulusofona.lp2.deisiGreatGame;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.io.*;
 import java.util.*;
 import java.util.List;
 
-public class GameManager {
+public class GameManager implements Serializable{
     private int numberOfPlayers;
     private int boardSize;
     private int plays;
     private int currentPlayer;
     private List<Position> positions;
     private List<Position> abyssesPositions;
-    private final List<Tool> tools = new ArrayList<>();
-    private final List<Abyss> abysses = new ArrayList<>();
+    private  List<Tool> tools = new ArrayList<>();
+    private  List<Abyss> abysses = new ArrayList<>();
     private List<Programmer> players = new ArrayList<>();
-    private final List<String> gameResults = new ArrayList<>();
+    private List<String> gameResults = new ArrayList<>();
 
 
     public GameManager(int boardSize, List<Programmer> players, int numberOfPlayer) {
@@ -515,6 +516,36 @@ public class GameManager {
 
     public List<Position> getAbyssesPositions() {
         return abyssesPositions;
+    }
+
+    public boolean saveGame(File file){
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file.getName()));
+            out.writeObject(this);
+        } catch (IOException e) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean loadGame(File file){
+        try {
+            ObjectInputStream out = new ObjectInputStream(new FileInputStream(file.getName()));
+            GameManager p1 =(GameManager) out.readObject();
+            this.players = p1.players;
+            this.abyssesPositions = p1.abyssesPositions;
+            this.abysses = p1.abysses;
+            this.tools = p1.tools;
+            this.positions = p1.positions;
+            this.numberOfPlayers = p1.numberOfPlayers;
+            this.plays= p1.plays;
+            this.gameResults = p1.gameResults;
+            this.currentPlayer=p1.currentPlayer;
+            this.boardSize = p1.boardSize;
+        } catch (IOException | ClassNotFoundException e) {
+            return false;
+        }
+        return true;
     }
 }
 

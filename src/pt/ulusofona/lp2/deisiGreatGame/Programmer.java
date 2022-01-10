@@ -1,9 +1,10 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 import java.awt.event.PaintEvent;
+import java.io.Serializable;
 import java.util.*;
 
-public class Programmer {
+public class Programmer implements Serializable {
     private final String name;
     private final int id;
     private final ProgrammerColor avatarColor;

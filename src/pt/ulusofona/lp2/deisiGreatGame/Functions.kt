@@ -44,17 +44,45 @@ fun commandGet(manager: GameManager, args: List<String>): String?{
 
 fun commandPost(manager: GameManager, args: List<String>): String?{
     return when (args[0]){
-        "MOVE" -> teste(manager,args)
-        "ABYSS" -> manager.players.filter{it.name == args[1]}.map{it}.toString()
+        "MOVE" -> move(manager,args)
+        "ABYSS" -> addAbyss(manager,args)
         else -> ""
     }
 }
-fun teste(manager: GameManager, args: List<String>):String?{
+fun move(manager: GameManager, args: List<String>):String?{
     var answer: String? = "ok"
     manager.moveCurrentPlayer(Integer.parseInt(args[1]))
     answer = manager.reactToAbyssOrTool()
     if(answer == null){
-        return "ok"
+        return "OK"
     }
     return answer
+}
+
+fun addAbyss(manager: GameManager, args: List<String>):String?{
+    var abyss: Abyss? = null
+    val effectPosition:Int = manager.players.get(manager.currentPlayer).position
+    val effectId:Int = Integer.parseInt(args[1])
+
+    manager.tools.forEach {if(it.position == effectPosition){
+        return "Position is occupied"
+    } }
+
+    manager.abysses.forEach {if(it.position == effectPosition){
+        return "Position is occupied"
+    } }
+    when (effectId) {
+        0 -> abyss = SyntaxError(effectId, effectPosition)
+        1 -> abyss = LogicError(effectId, effectPosition)
+        2 -> abyss = ExceptionError(effectId, effectPosition)
+        3 -> abyss = FileNotFoundError(effectId, effectPosition)
+        4 -> abyss = CrashError(effectId, effectPosition)
+        5 -> abyss = DuplicatedCode(effectId, effectPosition)
+        6 -> abyss = SecundaryEffects(effectId, effectPosition)
+        7 -> abyss = BlueScreenError(effectId, effectPosition)
+        8 -> abyss = InfiniteCicle(effectId, effectPosition)
+        9 -> abyss = SegmentationFault(effectId, effectPosition)
+    }
+    manager.abysses.add(abyss)
+    return "ok"
 }

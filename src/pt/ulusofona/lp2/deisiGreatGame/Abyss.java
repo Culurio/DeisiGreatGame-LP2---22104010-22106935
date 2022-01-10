@@ -1,10 +1,11 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
+import java.io.Serializable;
 import java.util.List;
 /*
 Classe Pai de todos os abismos
  */
-abstract public class Abyss{
+abstract public class Abyss implements Serializable {
 
     protected int id;
     protected String name;

@@ -88,7 +88,7 @@ public class GameManager implements Serializable{
         plays = 1;
         currentPlayer = 0;
         gameResults.clear();
-        positions = new ArrayList<Position>(Collections.nCopies(worldSize, new Position(0)));
+        positions = new ArrayList<Position>(Collections.nCopies(worldSize+10, new Position(0)));
 
         //Resets feitos
         try{

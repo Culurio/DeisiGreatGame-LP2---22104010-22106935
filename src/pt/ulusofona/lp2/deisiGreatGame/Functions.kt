@@ -16,28 +16,28 @@ fun command(commandType:CommandType) : Function2<GameManager,List<String>,String
 fun commandGet(manager: GameManager, args: List<String>): String?{
     return when (args[0]){
         "PLAYER" -> manager.players.filter{it.name.contains(args[1])}.take(1).toString().replace("[","").replace("]","")
-        "PLAYERS_BY_LANGUAGE" -> manager.players.filter{it.programmerFavLan.contains(args[1])}.joinToString {it.name +","}.replace(", ","")
+        "PLAYERS_BY_LANGUAGE" -> manager.players.filter{it.programmerFavLan.contains(args[1])}.joinToString {it.name +","}.replace(", ","").dropLast(1)
         "POLYGLOTS" -> manager.players.filter{it.programmerFavLanList.size > 1}.sortedWith(Comparator<Programmer>{ a, b ->
             when {
                 a.programmerFavLanList.size > b.programmerFavLanList.size -> 1
                 a.programmerFavLanList.size < b.programmerFavLanList.size -> -1
                 else -> 0
             }
-        }).joinToString {it.name +":"+ it.programmerFavLanList.size+"\n"}.replace(", ","")
+        }).joinToString {it.name +":"+ it.programmerFavLanList.size+"\n"}.replace(", ","").dropLast(1)
         "MOST_USED_POSITIONS" ->manager.positions.sortedWith(Comparator<Position>{ a, b ->
             when {
                 a.position < b.position -> 1
                 a.position > b.position -> -1
                 else -> 0
             }
-        }).take(Integer.parseInt(args[1])).joinToString { "${manager.positions.indexOf(it)}:${it.position}\n" }.replace(", ","").trim()
+        }).take(Integer.parseInt(args[1])).joinToString { "${manager.positions.indexOf(it)}:${it.position}\n" }.replace(", ","").trim().dropLast(1)
         "MOST_USED_ABYSSES" -> manager.abyssesPositions.sortedWith(Comparator<Position>{ a, b ->
             when {
                 a.position < b.position -> 1
                 a.position > b.position -> -1
                 else -> 0
             }
-        }).take(Integer.parseInt(args[1])).joinToString { "${it.abyss}:${it.position}\n" }.replace(", ","").trim()
+        }).take(Integer.parseInt(args[1])).joinToString { "${it.abyss}:${it.position}\n" }.replace(", ","").trim().dropLast(1)
         else -> null
     }
 }

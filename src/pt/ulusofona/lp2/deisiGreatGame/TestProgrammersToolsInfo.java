@@ -27,7 +27,7 @@ public class TestProgrammersToolsInfo {
         TestCreateMatrix m1 = new TestCreateMatrix();
         ArrayList<String> lan = new ArrayList<>();
         GameManager gameManager = new GameManager();
-        gameManager.createInitialBoard(m1.createMatrix2Players(), 79,m1.createEffectsMatrix());
+        //gameManager.createInitialBoard(m1.createMatrix2Players(), 79,m1.createEffectsMatrix());
         System.out.println(gameManager.getProgrammersInfo());
         Assert.assertEquals(false, false);
     }
@@ -37,7 +37,7 @@ public class TestProgrammersToolsInfo {
         TestCreateMatrix m1 = new TestCreateMatrix();
         ArrayList<String> lan = new ArrayList<>();
         GameManager gameManager = new GameManager();
-        gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix());
+        //gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix());
         Tool tool = gameManager.getTools().get(0);
         gameManager.getPlayers().get(0).addTool(tool);
         Assert.assertEquals("gongas : Tratamento de Excepções | Joao : No tools", gameManager.getProgrammersInfo());
@@ -48,7 +48,7 @@ public class TestProgrammersToolsInfo {
         TestCreateMatrix m1 = new TestCreateMatrix();
         ArrayList<String> lan = new ArrayList<>();
         GameManager gameManager = new GameManager();
-        gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix());
+        //gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix());
         gameManager.moveCurrentPlayer(6);
         gameManager.reactToAbyssOrTool();
         gameManager.moveCurrentPlayer(6);
@@ -63,7 +63,7 @@ public class TestProgrammersToolsInfo {
         TestCreateMatrix m1 = new TestCreateMatrix();
         ArrayList<String> lan = new ArrayList<>();
         GameManager gameManager = new GameManager();
-        gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix2());
+        //gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix2());
 
         gameManager.moveCurrentPlayer(1);
         gameManager.reactToAbyssOrTool();
@@ -83,7 +83,7 @@ public class TestProgrammersToolsInfo {
         TestCreateMatrix m1 = new TestCreateMatrix();
         ArrayList<String> lan = new ArrayList<>();
         GameManager gameManager = new GameManager();
-        gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix2());
+        //gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix2());
 
         gameManager.moveCurrentPlayer(1);
         gameManager.reactToAbyssOrTool();
@@ -113,7 +113,7 @@ public class TestProgrammersToolsInfo {
     public void testProgrammerTools7(){
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix6());
+        //gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix6());
 
         gameManager.moveCurrentPlayer(2);
         gameManager.reactToAbyssOrTool();

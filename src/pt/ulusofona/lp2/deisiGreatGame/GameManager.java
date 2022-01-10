@@ -78,7 +78,8 @@ public class GameManager implements Serializable{
     A função createInitialBoard vai ler a matriz que contem a informação toda acerta dos jogadores que vão ser criados
      */
 
-    public void createInitialBoard(String[][] playerInfo, int worldSize) {
+    public void createInitialBoard(String[][] playerInfo, int worldSize) throws
+            InvalidInitialBoardException {
         players.clear();
         this.boardSize = worldSize;
         ArrayList<Integer> usedInts = new ArrayList<>();
@@ -90,76 +91,79 @@ public class GameManager implements Serializable{
         positions = new ArrayList<Position>(Collections.nCopies(worldSize, new Position(0)));
 
         //Resets feitos
-
-        if (worldSize < 0 || worldSize < 2 * numberOfPlayers || numberOfPlayers<=1) {
-
-        }
-        for (int row = 0; row < numberOfPlayers; row++) {
-            String name;
-            ArrayList<String> favoriteLanguages = new ArrayList<>();
-            int id;
-            ProgrammerColor avatarColor;
+        try{
+            if (worldSize < 0 || worldSize < 2 * numberOfPlayers || numberOfPlayers<=1) {
+                throw new InvalidInitialBoardException("Invalid WorldSize",true,false,false,false);
+            }
+            for (int row = 0; row < numberOfPlayers; row++) {
+                String name;
+                ArrayList<String> favoriteLanguages = new ArrayList<>();
+                int id;
+                ProgrammerColor avatarColor;
 
             /*
             Verificar se o Id é valido
              */
-            if (Integer.parseInt(playerInfo[row][0].trim()) < 0 ||
-                    usedInts.contains(Integer.parseInt(playerInfo[row][0].trim()))) {
-
-            }
-            id = Integer.parseInt(playerInfo[row][0].trim());
-            usedInts.add(Integer.parseInt(playerInfo[row][0].trim()));
+                if (Integer.parseInt(playerInfo[row][0].trim()) < 0 ||
+                        usedInts.contains(Integer.parseInt(playerInfo[row][0].trim()))) {
+                    throw new InvalidInitialBoardException("Invalid Programmer ID",false,false,false,true);
+                }
+                id = Integer.parseInt(playerInfo[row][0].trim());
+                usedInts.add(Integer.parseInt(playerInfo[row][0].trim()));
 
             /*
             Verificar se o nome está vazio ou é null
              */
-            if (playerInfo[row][1] == null || playerInfo[row][1].isEmpty()) {
-
-            }
-            name = playerInfo[row][1];
+                if (playerInfo[row][1] == null || playerInfo[row][1].isEmpty()) {
+                    throw new InvalidInitialBoardException("Invalid Programmer Name",false,true,false,false);
+                }
+                name = playerInfo[row][1];
 
             /*
             Guardar as linguagens favoritas
              */
-            String[] save = playerInfo[row][2].split(";");
-            Collections.addAll(favoriteLanguages, save);
+                String[] save = playerInfo[row][2].split(";");
+                Collections.addAll(favoriteLanguages, save);
 
             /*
             Ver se a cor do jogador já foi utilizada e associar cor
              */
-            if (usedColor.contains(playerInfo[row][3])) {
+                if (usedColor.contains(playerInfo[row][3])) {
+                    throw new InvalidInitialBoardException("Invalid Programmer Color",false,false,true,false);
+                }
 
+                switch (playerInfo[row][3]) {
+                    case "Blue":
+                        avatarColor = ProgrammerColor.BLUE;
+                        break;
+                    case "Brown":
+                        avatarColor = ProgrammerColor.BROWN;
+                        break;
+                    case "Green":
+                        avatarColor = ProgrammerColor.GREEN;
+                        break;
+                    case "Purple":
+                        avatarColor = ProgrammerColor.PURPLE;
+                        break;
+                    default:
+                        avatarColor = ProgrammerColor.NONE;
+                }
+                usedColor.add(playerInfo[row][3]);
+
+                Programmer player = new Programmer(name, id, favoriteLanguages, avatarColor);
+                Collections.sort(player.getProgrammerFavLanList());
+                players.add(player);
+                players.sort(new Programmer.IDComparator());
+                Collections.reverse(players);
+                currentPlayer = 0;
             }
-
-            switch (playerInfo[row][3]) {
-                case "Blue":
-                    avatarColor = ProgrammerColor.BLUE;
-                    break;
-                case "Brown":
-                    avatarColor = ProgrammerColor.BROWN;
-                    break;
-                case "Green":
-                    avatarColor = ProgrammerColor.GREEN;
-                    break;
-                case "Purple":
-                    avatarColor = ProgrammerColor.PURPLE;
-                    break;
-                default:
-                    avatarColor = ProgrammerColor.NONE;
-            }
-            usedColor.add(playerInfo[row][3]);
-
-            Programmer player = new Programmer(name, id, favoriteLanguages, avatarColor);
-            Collections.sort(player.getProgrammerFavLanList());
-            players.add(player);
-            players.sort(new Programmer.IDComparator());
-            Collections.reverse(players);
-            currentPlayer = 0;
+        }catch (InvalidInitialBoardException e){
+            System.out.println(e.getMessage());
         }
-
     }
 
-    public void createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools){
+    public void createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools) throws
+            InvalidInitialBoardException{
         tools.clear();
         int effectId;
         Abyss abyss = null;
@@ -168,21 +172,22 @@ public class GameManager implements Serializable{
         abyssesPositions = new ArrayList<Position>(Collections.nCopies(worldSize, new Position(0)));
 
         createInitialBoard(playerInfo,worldSize);
+        try {
             for (int row = 0; row < abyssesAndTools.length; row++) {
                 type = abyssesAndTools[row][0];
                 effectId = Integer.parseInt(abyssesAndTools[row][1]);
                 effectPosition = Integer.parseInt(abyssesAndTools[row][2]);
 
                 if(type == null || !type.equals("1") && !type.equals("0")){
-
+                    throw new InvalidInitialBoardException("Invalid EffectType",false,false,true,false,"");
                 }
 
                 if(effectId < 0 || (effectId > 9 && type.equals("0") || (effectId > 5 && type.equals("1")))){
-
+                    throw new InvalidInitialBoardException("Invalid EffectId",false,false,false,true,"");
                 }
 
                 if (effectPosition < 0 || effectPosition > worldSize) {
-
+                    throw new InvalidInitialBoardException("Invalid EffectPosition",false,false,false,false,"");
                 }
 
                 if (type.equals("1")){
@@ -193,40 +198,44 @@ public class GameManager implements Serializable{
                     switch (effectId){
                         case 0:
                             abyss = new SyntaxError(effectId,effectPosition);
-                        break;
+                            break;
                         case 1:
                             abyss = new LogicError(effectId,effectPosition);
-                        break;
+                            break;
                         case 2:
                             abyss = new ExceptionError(effectId, effectPosition);
-                        break;
+                            break;
                         case 3:
                             abyss = new FileNotFoundError(effectId,effectPosition);
-                        break;
+                            break;
                         case 4:
                             abyss = new CrashError(effectId,effectPosition);
-                        break;
+                            break;
                         case 5:
                             abyss = new DuplicatedCode(effectId,effectPosition);
-                        break;
+                            break;
                         case 6:
                             abyss = new SecundaryEffects(effectId,effectPosition);
-                        break;
+                            break;
                         case 7:
                             abyss = new BlueScreenError(effectId,effectPosition);
-                        break;
+                            break;
                         case 8:
                             abyss = new InfiniteCicle(effectId,effectPosition);
                             break;
                         case 9:
                             abyss = new SegmentationFault(effectId,effectPosition);
                             break;
+                        default:
+                            throw new InvalidInitialBoardException("Invalid Abyss",false,false,false,false,"");
                     }
                     abysses.add(abyss);
                 }
             }
-
+        }catch (InvalidInitialBoardException e){
+            System.out.println(e.getMessage());
         }
+    }
 
     public String getImagePng(int position) {
         if (position == boardSize) {

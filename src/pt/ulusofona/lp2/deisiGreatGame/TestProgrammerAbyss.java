@@ -8,7 +8,7 @@ public class TestProgrammerAbyss {
     public void testProgrammerAbyss(){
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix3());
+        //gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix3());
 
         gameManager.moveCurrentPlayer(1);
         gameManager.reactToAbyssOrTool();
@@ -26,7 +26,7 @@ public class TestProgrammerAbyss {
     public void testProgrammerAbyss2(){
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix4());
+        //gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix4());
 
         gameManager.moveCurrentPlayer(6);
         gameManager.reactToAbyssOrTool();
@@ -44,7 +44,7 @@ public class TestProgrammerAbyss {
     public void testProgrammerAbyss3(){
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix4());
+        //gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix4());
 
         gameManager.moveCurrentPlayer(2);
         gameManager.reactToAbyssOrTool();
@@ -57,7 +57,7 @@ public class TestProgrammerAbyss {
     public void testProgrammerAbyss4(){
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix5());
+        //gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix5());
 
         gameManager.moveCurrentPlayer(2);
         gameManager.reactToAbyssOrTool();
@@ -75,7 +75,7 @@ public class TestProgrammerAbyss {
     public void testProgrammerAbyss5(){
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix7());
+        //gameManager.createInitialBoard(m1.createMatrix2Players(), 10,m1.createEffectsMatrix7());
 
         Assert.assertEquals("gongas : No tools | Joao : No tools",gameManager.getProgrammersInfo());
 

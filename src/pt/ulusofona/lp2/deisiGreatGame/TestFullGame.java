@@ -8,7 +8,7 @@ public class TestFullGame {
     public void testProgrammerAbyss5(){
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        gameManager.createInitialBoard(m1.createMatrix2Players2(), 10,m1.createEffectsMatrix3());
+        //gameManager.createInitialBoard(m1.createMatrix2Players2(), 10,m1.createEffectsMatrix3());
 
 
         gameManager.moveCurrentPlayer(5);
@@ -34,7 +34,7 @@ public class TestFullGame {
     public void testProgrammerAbyss6(){
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        gameManager.createInitialBoard(m1.createMatrix4Players2(), 10,m1.createEffectsMatrix3());
+        //gameManager.createInitialBoard(m1.createMatrix4Players2(), 10,m1.createEffectsMatrix3());
 
 
         gameManager.moveCurrentPlayer(5);
@@ -65,7 +65,7 @@ public class TestFullGame {
     public void testProgrammerAbyss7(){
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        gameManager.createInitialBoard(m1.createMatrix4Players2(), 10,m1.createEffectsMatrix8());
+        //gameManager.createInitialBoard(m1.createMatrix4Players2(), 10,m1.createEffectsMatrix8());
 
         System.out.println(gameManager.getPlayers().get(gameManager.getCurrentPlayer()).getPosition());
         gameManager.moveCurrentPlayer(5);

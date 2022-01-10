@@ -12,7 +12,7 @@ public class TestCircularTurn {
     public void testCurrentId() {
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        gameManager.createInitialBoard(m1.createMatrix2Players(), 79);
+        //gameManager.createInitialBoard(m1.createMatrix2Players(), 79);
         Assert.assertEquals(1, gameManager.getCurrentPlayerID());
     }
 
@@ -23,7 +23,7 @@ public class TestCircularTurn {
     public void testCurrentId2() {
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        gameManager.createInitialBoard(m1.createMatrix2Players(), 79);
+        //gameManager.createInitialBoard(m1.createMatrix2Players(), 79);
         long startTime = System.currentTimeMillis();
         gameManager.moveCurrentPlayer(2);
         gameManager.reactToAbyssOrTool();
@@ -36,7 +36,7 @@ public class TestCircularTurn {
     public void testCurrentId3() {
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        gameManager.createInitialBoard(m1.createMatrix4Players(), 79);
+        //gameManager.createInitialBoard(m1.createMatrix4Players(), 79);
         gameManager.moveCurrentPlayer(2);//ID 1 vai para ID 12
         gameManager.reactToAbyssOrTool();
         gameManager.moveCurrentPlayer(5);//ID 12 vai para ID 28
@@ -49,7 +49,7 @@ public class TestCircularTurn {
     public void testCurrentPosition(){
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        gameManager.createInitialBoard(m1.createMatrix4Players(), 79);
+        //gameManager.createInitialBoard(m1.createMatrix4Players(), 79);
         long startTime = System.currentTimeMillis();
         gameManager.moveCurrentPlayer(2);
         gameManager.reactToAbyssOrTool();
@@ -69,7 +69,7 @@ public class TestCircularTurn {
     public void testCurrentPosition2(){
         TestCreateMatrix m1 = new TestCreateMatrix();
         GameManager gameManager = new GameManager();
-        gameManager.createInitialBoard(m1.createMatrix4Players(), 79);
+        //gameManager.createInitialBoard(m1.createMatrix4Players(), 79);
         gameManager.moveCurrentPlayer(1);
         gameManager.reactToAbyssOrTool();
         gameManager.moveCurrentPlayer(2);

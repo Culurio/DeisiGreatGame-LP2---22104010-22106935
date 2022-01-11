@@ -30,14 +30,14 @@ fun commandGet(manager: GameManager, args: List<String>): String?{
                 a.position > b.position -> -1
                 else -> 0
             }
-        }).take(Integer.parseInt(args[1])).joinToString { "${manager.positions.indexOf(it)}:${it.position}\n" }.replace(", ","").trim().dropLast(1)
+        }).take(Integer.parseInt(args[1])).joinToString { "${manager.positions.indexOf(it)}:${it.position}\n" }.replace(", ","").trim()
         "MOST_USED_ABYSSES" -> manager.abyssesPositions.sortedWith(Comparator<Position>{ a, b ->
             when {
                 a.position < b.position -> 1
                 a.position > b.position -> -1
                 else -> 0
             }
-        }).take(Integer.parseInt(args[1])).joinToString { "${it.abyss}:${it.position}\n" }.replace(", ","").trim().dropLast(1)
+        }).take(Integer.parseInt(args[1])).joinToString { "${it.abyss}:${it.position}\n" }.replace(", ","").trim()
         else -> null
     }
 }

@@ -92,7 +92,7 @@ public class GameManager implements Serializable{
 
         //Resets feitos
         try{
-            if (worldSize < 0 || worldSize < 2 * numberOfPlayers || numberOfPlayers<2) {
+            if (worldSize < 0 || worldSize < 2 * numberOfPlayers || numberOfPlayers<=1) {
                 throw new InvalidInitialBoardException("Invalid WorldSize or Invalid Number of Players",true,false,false,false);
             }
             for (int row = 0; row < numberOfPlayers; row++) {

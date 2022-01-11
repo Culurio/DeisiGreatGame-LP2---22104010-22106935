@@ -77,7 +77,7 @@ fun move(manager: GameManager, args: List<String>):String?{
 
 fun addAbyss(manager: GameManager, args: List<String>):String?{
     var abyss: Abyss? = null
-    val effectPosition:Int = manager.players.get(manager.currentPlayer).position
+    val effectPosition:Int = Integer.parseInt(args[2])
     val effectId:Int = Integer.parseInt(args[1])
 
     manager.tools.forEach {if(it.position == effectPosition){
